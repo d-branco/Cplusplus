@@ -6,7 +6,7 @@
 #    By: abessa-m <abessa-m@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/08 21:04:23 by abessa-m          #+#    #+#              #
-#    Updated: 2025/08/23 09:07:14 by abessa-m         ###   ########.fr        #
+#    Updated: 2025/08/23 18:54:39 by abessa-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,47 @@ fclean: clean
 re: fclean all
 	@echo "$(GRAY)redone$(COR)"
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re style
+#################################################################### formatter #
+style:
+	@echo "\
+	Language: Cpp\n\
+	\n\
+	AlignConsecutiveDeclarations: true\n\
+	AlignEscapedNewlinesLeft: true\n\
+	AllowAllParametersOfDeclarationOnNextLine: false\n\
+	AllowShortBlocksOnASingleLine: false\n\
+	AllowShortFunctionsOnASingleLine: None\n\
+	AlwaysBreakAfterReturnType: None\n\
+	AlwaysBreakBeforeMultilineStrings: false\n\
+	BinPackArguments: true\n\
+	BinPackParameters: true\n\
+	BreakBeforeBraces: Allman\n\
+	BreakBeforeTernaryOperators: false\n\
+	ColumnLimit: 80\n\
+	IndentWidth: 4\n\
+	KeepEmptyLinesAtTheStartOfBlocks: false\n\
+	MaxEmptyLinesToKeep: 1\n\
+	PointerAlignment: Right\n\
+	PenaltyBreakBeforeFirstCallParameter: 1\n\
+	PenaltyBreakString: 1\n\
+	PenaltyExcessCharacter: 0\n\
+	SpaceAfterCStyleCast: true\n\
+	SpaceBeforeAssignmentOperators: true\n\
+	SpaceBeforeParens: ControlStatements\n\
+	SpaceInEmptyParentheses: false\n\
+	SpacesInCStyleCastParentheses: false\n\
+	SpacesInParentheses: false\n\
+	SpacesInSquareBrackets: false\n\
+	TabWidth: 4\n\
+	UseTab: ForIndentation\
+	" > .clang-format;
+	@clang-format --dry-run *.cpp
+
+format:
+	@clang-format -i *.cpp								&&\
+	echo "formatted"
+
 ####################################################################### Colors #
 COR		:= \033[0m# COlor Remove
 PURPLE	:= \033[1;35m# purple
