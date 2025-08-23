@@ -1,6 +1,7 @@
 #Project
 .idea/
 /*/docs/
+*subject.pdf
 build/
 log/
 *ignoreme*
@@ -22,5 +23,5 @@ log/
 # Executables
 *.exe
 *.out
-00/ex00/megaphone
 .clang-format
+00/ex00/megaphone

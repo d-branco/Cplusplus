@@ -6,12 +6,12 @@
 #    By: abessa-m <abessa-m@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/08 21:04:23 by abessa-m          #+#    #+#              #
-#    Updated: 2025/08/23 18:54:39 by abessa-m         ###   ########.fr        #
+#    Updated: 2025/08/23 21:14:55 by abessa-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			:= megaphone
-NAME-BONUS		:= $(NAME)_bonus
+#NAME-BONUS		:= $(NAME)_bonus
 
 ##################################################################### Compiler #
 CC				:= c++
@@ -32,15 +32,15 @@ SRCS			:=	\
 	megaphone.cpp
 
 OBJS			:= $(SRCS:/%.cpp=$(BUILD_DIR)/%.o)
-SRCS-BONUS		:=
-
-OBJS-BONUS		:= $(SRCS-BONUS:/%.cpp=$(BUILD_DIR)/%.o)
+#SRCS-BONUS		:=
+#
+#OBJS-BONUS		:= $(SRCS-BONUS:/%.cpp=$(BUILD_DIR)/%.o)
 ###################################################################### Targets #
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@\
-	echo "$(GRAY)Compiler:     $(COR)	$(CC)"							;	\
+	echo "$(GRAY)Compiled with:$(COR)	$(CC)"							;	\
 	echo "$(GRAY)Compile flags:$(COR)	$(CFLAGS)"						;	\
 	$(CC) $(OBJS) $(INCLUDES)   $(CFLAGS) -o $(NAME)					&&	\
 	echo "$(GRAY)File compiled:$(COR)	./$(NAME)"
@@ -52,14 +52,14 @@ $(BUILD_DIR)/%.o: /%.cpp
 	$(CC) $(INCLUDES) $(CFLAGS) -c $< -o $@								&&	\
 	echo "$(GRAY)File compiled:$(COR)	$<"
 
-bonus: $(NAME-BONUS)
-
-$(NAME-BONUS): $(OBJS-BONUS)
-	@\
-	echo "$(GRAY)Compiler:     $(COR)	$(CC)"							;	\
-	echo "$(GRAY)Compile flags:$(COR)	$(CFLAGS)"						;	\
-	$(CC) $(OBJS-BONUS) $(INCLUDES)   $(CFLAGS) -o $(NAME-BONUS)		&&	\
-	echo "$(GRAY)File compiled:$(COR)	./$(NAME-BONUS)"
+#bonus: $(NAME-BONUS)
+#
+#$(NAME-BONUS): $(OBJS-BONUS)
+#	@\
+#	echo "$(GRAY)Compiler:     $(COR)	$(CC)"							;	\
+#	echo "$(GRAY)Compile flags:$(COR)	$(CFLAGS)"						;	\
+#	$(CC) $(OBJS-BONUS) $(INCLUDES)   $(CFLAGS) -o $(NAME-BONUS)		&&	\
+#	echo "$(GRAY)File compiled:$(COR)	./$(NAME-BONUS)"
 #	echo "$(GRAY)Linking flags:$(COR)	$(INCLUDES)"					;	\
 
 clean:
@@ -76,7 +76,7 @@ fclean: clean
 re: fclean all
 	@echo "$(GRAY)redone$(COR)"
 
-.PHONY: all clean fclean re style
+.PHONY: all clean fclean re
 #################################################################### formatter #
 style:
 	@echo "\
@@ -111,10 +111,10 @@ style:
 	TabWidth: 4\n\
 	UseTab: ForIndentation\
 	" > .clang-format;
-	@clang-format --dry-run *.cpp
+	@clang-format --verbose --dry-run *.cpp
 
 format:
-	@clang-format -i *.cpp								&&\
+	@clang-format -i *.cpp												&&	\
 	echo "formatted"
 
 ####################################################################### Colors #
@@ -143,7 +143,8 @@ test: fclean $(NAME)
 	\
 	echo "\
 	$(COR)$(GRAY)========================================== $(NAME) END\n\
-	$(COR)RETURN VALUE: $$?"
+	$(COR)RETURN VALUE: $$?"											;	\
+	clang-format --dry-run *.cpp
 
 valgrind: $(NAME)
 	@\
@@ -156,7 +157,6 @@ valgrind: $(NAME)
 		--max-stackframe=4200000											\
 	\
 		./$(NAME)
-
 
 exe: fclean $(NAME)
 	@\
