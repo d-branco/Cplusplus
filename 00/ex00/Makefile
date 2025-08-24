@@ -6,7 +6,7 @@
 #    By: abessa-m <abessa-m@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/08 21:04:23 by abessa-m          #+#    #+#              #
-#    Updated: 2025/08/23 21:14:55 by abessa-m         ###   ########.fr        #
+#    Updated: 2025/08/24 18:32:23 by abessa-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,13 @@ style:
 	@echo "\
 	Language: Cpp\n\
 	\n\
-	AlignConsecutiveDeclarations: true\n\
+	AlignConsecutiveDeclarations:\n\
+	  Enabled: true\n\
+	  AcrossEmptyLines: false\n\
+	  AcrossComments: false\n\
+	  AlignCompound: false\n\
+	  AlignFunctionPointers: false\n\
+	  PadOperators: true\n\
 	AlignEscapedNewlinesLeft: true\n\
 	AllowAllParametersOfDeclarationOnNextLine: false\n\
 	AllowShortBlocksOnASingleLine: false\n\
@@ -109,13 +115,16 @@ style:
 	SpacesInParentheses: false\n\
 	SpacesInSquareBrackets: false\n\
 	TabWidth: 4\n\
-	UseTab: ForIndentation\
-	" > .clang-format;
-	@clang-format --verbose --dry-run *.cpp
+	UseTab: Always\n\
+	" > .clang-format													;	\
+	clang-format --verbose --dry-run *.cpp								;	\
+	rm -f .clang-format
 
 format:
-	@clang-format -i *.cpp												&&	\
-	echo "formatted"
+	@\
+	clang-format -i *.cpp												&&	\
+	echo "formatted"													;	\
+	rm -f .clang-format
 
 ####################################################################### Colors #
 COR		:= \033[0m# COlor Remove
@@ -144,7 +153,8 @@ test: fclean $(NAME)
 	echo "\
 	$(COR)$(GRAY)========================================== $(NAME) END\n\
 	$(COR)RETURN VALUE: $$?"											;	\
-	clang-format --dry-run *.cpp
+	clang-format --dry-run *.cpp										;	\
+	rm -f $(NAME)
 
 valgrind: $(NAME)
 	@\
@@ -156,23 +166,23 @@ valgrind: $(NAME)
 		--track-origins=yes													\
 		--max-stackframe=4200000											\
 	\
-		./$(NAME)
+		./$(NAME)														;	\
+	rm -f $(NAME)
 
 exe: fclean $(NAME)
 	@\
-	./$(NAME)															||	\
-	echo "RETURN VALUE: $(YELLOW)$$?$(COR)"
+	./$(NAME)															;	\
+	rm -f $(NAME)
 
 run: $(NAME)
 	@\
-	./$(NAME)															||	\
-	echo "RETURN VALUE: $(YELLOW)$$?$(COR)"
+	./$(NAME)
 
 debug: CFLAGS += $(DEBUG_FLAGS)
 debug: fclean $(NAME)
 	@\
-	./$(NAME)															||	\
-	echo "RETURN VALUE: $(YELLOW)$$?$(COR)"
+	./$(NAME)															;	\
+	rm -f $(NAME)
 
 gprof: CFLAGS += $(GPROF_FLAGS)
 gprof: fclean $(NAME)
@@ -180,4 +190,5 @@ gprof: fclean $(NAME)
 	./$(NAME)															;	\
 	gprof $(NAME) gmon.out > gmon-ignoreme.txt							;	\
 	cat gmon-ignoreme.txt												;	\
-	rm -f gmon-ignoreme.txt gmon.out
+	rm -f gmon-ignoreme.txt gmon.out									;	\
+	rm -f $(NAME)
