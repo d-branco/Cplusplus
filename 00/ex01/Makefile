@@ -6,7 +6,7 @@
 #    By: abessa-m <abessa-m@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/08 21:04:23 by abessa-m          #+#    #+#              #
-#    Updated: 2025/08/25 09:55:14 by abessa-m         ###   ########.fr        #
+#    Updated: 2025/08/25 11:53:25 by abessa-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,7 @@ re: fclean all
 	@echo "$(GRAY)redone$(COR)"
 
 .PHONY: all clean fclean re
-#################################################################### formatter #
+####################################################################### linter #
 .clang-format:
 	@echo "\
 	Language: Cpp\n\
@@ -99,6 +99,8 @@ re: fclean all
 	BinPackParameters: false\n\
 	BreakBeforeBraces: Allman\n\
 	BreakBeforeTernaryOperators: false\n\
+	BreakConstructorInitializers: AfterColon\n\
+	PackConstructorInitializers: CurrentLine\n\
 	ColumnLimit: 80\n\
 	IndentWidth: 4\n\
 	KeepEmptyLinesAtTheStartOfBlocks: false\n\
@@ -107,6 +109,7 @@ re: fclean all
 	PenaltyBreakBeforeFirstCallParameter: 1\n\
 	PenaltyBreakString: 2\n\
 	PenaltyExcessCharacter: 3\n\
+	SeparateDefinitionBlocks: Always\n\
 	SpaceAfterCStyleCast: true\n\
 	SpaceBeforeAssignmentOperators: true\n\
 	SpaceBeforeParens: ControlStatements\n\
@@ -115,7 +118,7 @@ re: fclean all
 	SpacesInParentheses: false\n\
 	SpacesInSquareBrackets: false\n\
 	TabWidth: 4\n\
-	UseTab: ForIndentation\n\
+	UseTab: Always\n\
 	" > .clang-format
 
 style: .clang-format
@@ -134,11 +137,13 @@ style: .clang-format
 	CheckOptions:\n\
 	  - key:   readability-identifier-naming.ClassCase\n\
 	    value: CamelCase\n\
+	  - key:   readability-identifier-naming.FunctionCase\n\
+	    value: lower_case\n\
 	\n\
 	HeaderFilterRegex: '.*'\n\
 	" > .clang-tidy														;	\
 	clang-tidy --quiet *.cpp *.hpp -- -std=c++98 -Wall -Wextra -Werror	;	\
-	#rm -f .clang-tidy
+	rm -f .clang-tidy
 
 format: .clang-format
 	@\
