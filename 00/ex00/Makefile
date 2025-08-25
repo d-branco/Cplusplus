@@ -6,7 +6,7 @@
 #    By: abessa-m <abessa-m@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/08 21:04:23 by abessa-m          #+#    #+#              #
-#    Updated: 2025/08/24 18:32:23 by abessa-m         ###   ########.fr        #
+#    Updated: 2025/08/25 07:52:52 by abessa-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,7 @@ re: fclean all
 
 .PHONY: all clean fclean re
 #################################################################### formatter #
-style:
+.clang-format:
 	@echo "\
 	Language: Cpp\n\
 	\n\
@@ -116,11 +116,23 @@ style:
 	SpacesInSquareBrackets: false\n\
 	TabWidth: 4\n\
 	UseTab: Always\n\
-	" > .clang-format													;	\
-	clang-format --verbose --dry-run *.cpp								;	\
-	rm -f .clang-format
+	" > .clang-format
 
-format:
+style: .clang-format
+	@\
+	clang-format --verbose --dry-run *.cpp								;	\
+	rm -f .clang-format													;	\
+	echo "\
+	Checks: 'readability-*,bugprone-*,performance-*,modernize-*,\n\
+	         -modernize-use-trailing-return-type'\n\
+	CheckOptions:\n\
+	  - key: readability-identifier-naming.ClassCase\n\
+	    value: CamelCase\n\
+	" > .clang-tidy														;	\
+	clang-tidy --quiet *.cpp -- -std=c++98 -Wall -Wextra -Werror		;	\
+	rm -f .clang-tidy
+
+format: .clang-format
 	@\
 	clang-format -i *.cpp												&&	\
 	echo "formatted"													;	\
