@@ -6,10 +6,11 @@
 /*   By: abessa-m <abessa-m@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 16:00:05 by abessa-m          #+#    #+#             */
-/*   Updated: 2025/08/25 07:53:58 by abessa-m         ###   ########.fr       */
+/*   Updated: 2025/08/25 08:06:49 by abessa-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cctype>
 #include <cstdlib>
 #include <iostream>
 
