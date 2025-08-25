@@ -1,39 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   yellow_pages.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abessa-m <abessa-m@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/23 16:00:05 by abessa-m          #+#    #+#             */
-/*   Updated: 2025/08/25 08:06:49 by abessa-m         ###   ########.fr       */
+/*   Created: 2025/08/25 12:23:26 by abessa-m          #+#    #+#             */
+/*   Updated: 2025/08/25 13:15:19 by abessa-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cctype>
+#ifndef YELLOW_PAGES_H
+#define YELLOW_PAGES_H
+
+#include "Contact.hpp"
+#include "PhoneBook.hpp"
+
 #include <cstdlib>
+#include <iomanip> //set width with std::setw(size)
 #include <iostream>
 
-int main(int argc, char **argv)
-{
-	if (argc == 1)
-	{
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
-		return (EXIT_SUCCESS);
-	}
-
-	int chr;
-	int arg = 1;
-	while (arg < argc)
-	{
-		chr = 0;
-		while (argv[arg][chr] != '\0')
-		{
-			std::cout << (char) std::toupper(argv[arg][chr]);
-			chr++;
-		}
-		arg++;
-	}
-	std::cout << '\n';
-	return (EXIT_SUCCESS);
-}
+#endif

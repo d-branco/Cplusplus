@@ -1,39 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   yellow_pages.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abessa-m <abessa-m@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/23 16:00:05 by abessa-m          #+#    #+#             */
-/*   Updated: 2025/08/25 08:06:49 by abessa-m         ###   ########.fr       */
+/*   Created: 2025/08/25 12:02:04 by abessa-m          #+#    #+#             */
+/*   Updated: 2025/08/25 13:11:26 by abessa-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cctype>
-#include <cstdlib>
-#include <iostream>
+#include "yellow_pages.hpp"
 
-int main(int argc, char **argv)
+int main(void)
 {
-	if (argc == 1)
-	{
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
-		return (EXIT_SUCCESS);
-	}
+	
 
-	int chr;
-	int arg = 1;
-	while (arg < argc)
-	{
-		chr = 0;
-		while (argv[arg][chr] != '\0')
-		{
-			std::cout << (char) std::toupper(argv[arg][chr]);
-			chr++;
-		}
-		arg++;
-	}
-	std::cout << '\n';
+	std::cout << "All's good!\n";
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 #    By: abessa-m <abessa-m@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/08 21:04:23 by abessa-m          #+#    #+#              #
-#    Updated: 2025/08/25 11:53:25 by abessa-m         ###   ########.fr        #
+#    Updated: 2025/08/25 12:31:16 by abessa-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,10 +26,12 @@ DEBUG_FLAGS		+= -D DEBUG=1
 RM				:= rm -f
 AR				:= ar rcs
 ########################################################## Objects and Headers #
-#INCLUDES		:= -I./include
+INCLUDES		:= -I./include
 BUILD_DIR		:= build
 SRCS			:=	\
-	Contact.cpp
+	yellow_pages.cpp														\
+	\
+	src/Contact.cpp															\
 
 OBJS			:= $(SRCS:/%.cpp=$(BUILD_DIR)/%.o)
 #SRCS-BONUS		:=
