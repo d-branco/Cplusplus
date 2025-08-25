@@ -1,5 +1,7 @@
 #Project
 .idea/
+.vscode/
+scripts/
 /*/docs/
 *subject.pdf
 build/
