@@ -2,10 +2,10 @@
 #                                           ::::::::    ::::::::   :::::::::   #
 #    Makefile                             :+:    :+:  :+:    :+:  :+:          #
 #                                              +:+         :+:   :+:           #
-#    https://github.com/d-branco            +#+         +#+      +#+#+#+       #
+#    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/08/25 18:40:36     #########  #########  ###      ###       #
+#    Updated: 2025/08/25 19:15:02     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -31,6 +31,7 @@ SRCS			:=	\
 	yellow_pages.cpp														\
 	\
 	src/Contact.cpp															\
+	src/PhoneBook.cpp														\
 
 OBJS			:= $(SRCS:/%.cpp=$(BUILD_DIR)/%.o)
 #SRCS-BONUS		:=
@@ -143,12 +144,13 @@ style: .clang-format
 	\n\
 	HeaderFilterRegex: '.*'\n\
 	" > .clang-tidy														;	\
-	clang-tidy --quiet *.cpp *.hpp -- -std=c++98 -Wall -Wextra -Werror	;	\
+	clang-tidy --quiet *.cpp src/*.cpp include/*.hpp \
+	-- -std=c++98 -Wall -Wextra -Werror	;	\
 	rm -f .clang-tidy
 
 format: .clang-format
 	@\
-	clang-format -i *.cpp *.hpp											&&	\
+	clang-format -i *.cpp src/*.cpp include/*.hpp						&&	\
 	echo "formatted"													;	\
 	rm -f .clang-format
 

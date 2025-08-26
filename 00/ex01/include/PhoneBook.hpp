@@ -2,9 +2,42 @@
 /*                                          ::::::::    ::::::::   :::::::::  */
 /*   PhoneBook.hpp                        :+:    :+:  :+:    :+:  :+:         */
 /*                                             +:+         :+:   :+:          */
-/*   https://github.com/d-branco            +#+         +#+      +#+#+#+      */
+/*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/25 13:15:26      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/25 18:32:41     #########  #########  ###      ###      */
+/*   Created: 2025/08/25 19:29:48      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/26 21:34:20     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
+
+#ifndef PHONEBOOK_H
+#define PHONEBOOK_H
+
+#include "yellow_pages.hpp"
+#include <vector>
+
+class Contact;
+
+class PhoneBook
+{
+  private:
+	const int					max_log;
+	int							current_log;
+	std::vector<Contact>		line;
+
+  public:
+	///////////////////////////////////////////////////////////// Constructor //
+	PhoneBook(int max_log);
+	////////////////////////////////////////////////////////////// Destructor //
+	~PhoneBook();
+	//////////////////////////////////////////////////////////////////// Copy //
+	PhoneBook(const PhoneBook &other);
+	PhoneBook &operator=(const PhoneBook &other);
+	///////////////////////////////////////////////////////////////// Getters //
+	const Contact &get_line(int index) const;
+	///////////////////////////////////////////////////////////////// Setters //
+	/////////////////////////////////////////////////////// Add a new contact //
+	void	add_contact(const Contact &new_contact);
+};
+
+
+#endif
