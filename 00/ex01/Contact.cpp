@@ -5,14 +5,24 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/08/28 16:09:52      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 16:49:10     #########  #########  ###      ###      */
+/*   Updated: 2025/08/28 18:34:48     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
 ///////////////////////////////////////////////////////////////// Constructor //
-Contact::Contact() :
+Contact::Contact()
+{
+	if (DEBUG)
+		std::cout << "Contact constructed.\n";
+}
+
+Contact::Contact(const std::string &name,
+	const std::string			   &surname,
+	const std::string			   &nick,
+	int								phone_number,
+	const std::string			   &secret) :
 	name(name),
 	surname(surname),
 	nick(nick),
@@ -24,6 +34,8 @@ Contact::Contact() :
 ////////////////////////////////////////////////////////////////// Destructor //
 Contact::~Contact()
 {
+	if (DEBUG)
+		std::cout << "Contact destructed.\n";
 }
 
 //////////////////////////////////////////////////////////////////////// Copy //
@@ -76,27 +88,27 @@ std::string Contact::get_secret() const
 }
 
 ///////////////////////////////////////////////////////////////////// Setters //
-void Contact::set_name(const std::string &name)
+void Contact::set_name(const std::string &new_name)
 {
-	this->name = name;
+	this->name = new_name;
 }
 
-void Contact::set_surname(const std::string &surname)
+void Contact::set_surname(const std::string &new_surname)
 {
-	this->surname = surname;
+	this->surname = new_surname;
 }
 
-void Contact::set_nick(const std::string &nick)
+void Contact::set_nick(const std::string &new_nick)
 {
-	this->nick = nick;
+	this->nick = new_nick;
 }
 
-void Contact::set_phone_number(int phone_number)
+void Contact::set_phone_number(int new_phone_number)
 {
-	this->phone_number = phone_number;
+	this->phone_number = new_phone_number;
 }
 
-void Contact::set_secret(const std::string &secret)
+void Contact::set_secret(const std::string &new_secret)
 {
-	this->secret = secret;
+	this->secret = new_secret;
 }

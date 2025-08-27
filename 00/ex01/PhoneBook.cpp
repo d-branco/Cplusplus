@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/28 16:18:39      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 16:39:37     #########  #########  ###      ###      */
+/*   Created: 2025/08/28 16:41:35      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/28 17:07:54     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -15,29 +15,33 @@
 PhoneBook::PhoneBook()
 {
 	current_log = 0;
+	if (DEBUG)
+		std::cout << "PhoneBook constructed.\n";
 }
 
 ////////////////////////////////////////////////////////////////// Destructor //
 PhoneBook::~PhoneBook()
 {
+	if (DEBUG)
+		std::cout << "PhoneBook desstructed.\n";
 }
 
 //////////////////////////////////////////////////////////////////////// Copy //
-PhoneBook::PhoneBook(const PhoneBook &other) :
-	current_log(other.current_log),
-	line(other.line)
-{
-}
-
-PhoneBook &PhoneBook::operator=(const PhoneBook &other)
-{
-	if (this != &other)
-	{
-		current_log = 0;
-	}
-	return (*this);
-}
-
+// PhoneBook::PhoneBook(const PhoneBook &other) :
+//	current_log(other.current_log),
+//	line(other.line)
+//{
+// }
+//
+// PhoneBook &PhoneBook::operator=(const PhoneBook &other)
+//{
+//	if (this != &other)
+//	{
+//		current_log = 0;
+//	}
+//	return (*this);
+// }
+//
 ///////////////////////////////////////////////////////////////////// Getters //
 // const Contact &PhoneBook::get_line(int index) const
 //{
@@ -52,7 +56,8 @@ PhoneBook &PhoneBook::operator=(const PhoneBook &other)
 /////////////////////////////////////////////////////////// Add a new contact //
 void PhoneBook::add_contact(const Contact &person)
 {
-	line[current_log] = person;
+	(void) person;
+	// line[current_log] = person;
 
 	if (current_log >= 8)
 		current_log = 0;
@@ -61,4 +66,5 @@ void PhoneBook::add_contact(const Contact &person)
 /////////////////////////////////////////////////////////// Add a new contact //
 void PhoneBook::search_contact(const Contact &person)
 {
+	(void) person;
 }

@@ -5,13 +5,14 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/08/28 16:12:48      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 16:48:10     #########  #########  ###      ###      */
+/*   Updated: 2025/08/28 18:33:50     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #ifndef CONTACT_H
 #define CONTACT_H
 
+#include "yellow_pages.hpp"
 #include <string>
 
 class Contact
@@ -25,6 +26,11 @@ class Contact
 
   public:
 	Contact(); ////////////////////////////////////////////////// Constructor //
+	Contact(const std::string &name,
+		const std::string	  &surname,
+		const std::string	  &nick,
+		int					   phone_number,
+		const std::string	  &secret);
 	~Contact(); ////////////////////////////////////////////////// Destructor //
 	Contact(const Contact &other); ///////////////////////////////////// Copy //
 	Contact	   &operator=(const Contact &other); /////////////////////// Copy //
@@ -35,11 +41,11 @@ class Contact
 	int			get_phone_number() const;
 	std::string get_secret() const;
 	///////////////////////////////////////////////////////////////// Setters //
-	void		set_name(const std::string &name);
-	void		set_surname(const std::string &surname);
-	void		set_nick(const std::string &nick);
-	void		set_phone_number(int phone_number);
-	void		set_secret(const std::string &secret);
+	void		set_name(const std::string &new_name);
+	void		set_surname(const std::string &new_surname);
+	void		set_nick(const std::string &new_nick);
+	void		set_phone_number(int new_phone_number);
+	void		set_secret(const std::string &new_secret);
 };
 
 #endif
