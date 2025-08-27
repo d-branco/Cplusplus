@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/08/28 18:36:23      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 20:46:24     #########  #########  ###      ###      */
+/*   Updated: 2025/08/28 21:01:45     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include "Contact.hpp"
 #include "yellow_pages.hpp"
+#include <csignal>
 #include <iomanip>
 #include <iostream>
 #include <string>
