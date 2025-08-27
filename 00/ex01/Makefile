@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/08/28 09:26:27     #########  #########  ###      ###       #
+#    Updated: 2025/08/28 16:15:24     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -30,8 +30,8 @@ BUILD_DIR		:= build
 SRCS			:=	\
 	yellow_pages.cpp														\
 	\
-	src/Contact.cpp															\
-	src/PhoneBook.cpp														\
+	Contact.cpp															\
+	PhoneBook.cpp														\
 
 OBJS			:= $(SRCS:/%.cpp=$(BUILD_DIR)/%.o)
 #SRCS-BONUS		:=
@@ -86,12 +86,20 @@ re: fclean all
 	\n\
 	AlignConsecutiveDeclarations:\n\
 	  Enabled: true\n\
+	  AcrossEmptyLines: true\n\
+	  AcrossComments: true\n\
+	  AlignCompound: true\n\
+	  AlignFunctionPointers: false\n\
+	  PadOperators: true\n\
+	AlignConsecutiveMacros:\n\
+	  Enabled: true\n\
 	  AcrossEmptyLines: false\n\
 	  AcrossComments: false\n\
 	  AlignCompound: false\n\
-	  AlignFunctionPointers: false\n\
 	  PadOperators: true\n\
+	AlignAfterOpenBracket: DontAlign\n\
 	AlignEscapedNewlinesLeft: true\n\
+	AllowAllConstructorInitializersOnNextLine: false\n\
 	AllowAllParametersOfDeclarationOnNextLine: false\n\
 	AllowShortBlocksOnASingleLine: false\n\
 	AllowShortFunctionsOnASingleLine: None\n\
@@ -104,13 +112,16 @@ re: fclean all
 	BreakConstructorInitializers: AfterColon\n\
 	PackConstructorInitializers: CurrentLine\n\
 	ColumnLimit: 80\n\
+	ConstructorInitializerIndentWidth: 4\n\
+	IndentPPDirectives: AfterHash\n\
 	IndentWidth: 4\n\
 	KeepEmptyLinesAtTheStartOfBlocks: false\n\
 	MaxEmptyLinesToKeep: 1\n\
 	PointerAlignment: Right\n\
-	PenaltyBreakBeforeFirstCallParameter: 1\n\
-	PenaltyBreakString: 2\n\
-	PenaltyExcessCharacter: 3\n\
+	PenaltyBreakBeforeFirstCallParameter: 100\n\
+	PenaltyBreakString: 100\n\
+	PenaltyExcessCharacter: 1000000\n\
+	PPIndentWidth: 1\n\
 	SeparateDefinitionBlocks: Always\n\
 	SpaceAfterCStyleCast: true\n\
 	SpaceBeforeAssignmentOperators: true\n\
@@ -144,13 +155,13 @@ style: .clang-format
 	\n\
 	HeaderFilterRegex: '.*'\n\
 	" > .clang-tidy														;	\
-	clang-tidy --quiet *.cpp src/*.cpp include/*.hpp \
+	clang-tidy --quiet *.cpp *.hpp 											\
 	-- -std=c++98 -Wall -Wextra -Werror	;	\
 	rm -f .clang-tidy
 
 format: .clang-format
 	@\
-	clang-format -i *.cpp src/*.cpp include/*.hpp						&&	\
+	clang-format -i *.cpp *.hpp											&&	\
 	echo "formatted"													;	\
 	rm -f .clang-format
 

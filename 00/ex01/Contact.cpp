@@ -4,19 +4,15 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/25 11:53:28      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/27 09:38:15     #########  #########  ###      ###      */
+/*   Created: 2025/08/28 16:09:52      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/28 16:49:10     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
-#include "yellow_pages.hpp"
+#include "Contact.hpp"
 
 ///////////////////////////////////////////////////////////////// Constructor //
-Contact::Contact(std::string name,
-				 std::string surname,
-				 std::string nick,
-				 int		 phone_number,
-				 std::string secret) :
+Contact::Contact() :
 	name(name),
 	surname(surname),
 	nick(nick),
