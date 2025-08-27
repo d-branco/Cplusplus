@@ -4,15 +4,15 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/28 20:24:16      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 20:43:25     #########  #########  ###      ###      */
+/*   Created: 2025/08/28 21:37:45      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/28 21:41:39     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #ifndef CONTACT_H
 #define CONTACT_H
 
-#include "yellow_pages.hpp"
+#include <iostream>
 #include <string>
 
 class Contact
@@ -25,8 +25,7 @@ class Contact
 	std::string secret_;
 
   public:
-	// Contact(); //////////////////////////////////////////////// Constructor
-	// //
+	Contact(); ////////////////////////////////////////////////// Constructor //
 	Contact(const std::string &name,
 			const std::string &surname,
 			const std::string &nick,

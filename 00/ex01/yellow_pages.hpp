@@ -4,14 +4,15 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/28 19:26:28      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 19:27:27     #########  #########  ###      ###      */
+/*   Created: 2025/08/28 21:39:41      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/28 21:40:00     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #ifndef YELLOW_PAGES_H
 #define YELLOW_PAGES_H
 
+#include <csignal>
 #include <cstdlib>
 #include <iomanip> //set width with std::setw(size)
 #include <iostream>
@@ -25,6 +26,9 @@ enum
 	TRUE	= 1,
 	MAX_LOG = 8
 };
+
+class Contact;
+class PhoneBook;
 
 #ifndef DEBUG
 # define DEBUG 0

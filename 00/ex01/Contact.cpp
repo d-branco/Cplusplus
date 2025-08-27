@@ -4,20 +4,21 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/28 20:24:16      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 20:45:21     #########  #########  ###      ###      */
+/*   Created: 2025/08/28 21:33:05      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/28 21:41:29     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
+#include "yellow_pages.hpp"
 
 ///////////////////////////////////////////////////////////////// Constructor //
-// Contact::Contact()
-//{
-//	if (DEBUG)
-//		std::cout << "DEBUG Contact created with default constructor.\n";
-// }
-//
+Contact::Contact()
+{
+	if (DEBUG)
+		std::cout << "DEBUG Contact created with default constructor.\n";
+}
+
 Contact::Contact(const std::string &name,
 				 const std::string &surname,
 				 const std::string &nick,

@@ -4,12 +4,13 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/28 19:20:32      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 20:46:24     #########  #########  ###      ###      */
+/*   Created: 2025/08/28 21:40:58      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/28 21:42:56     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
+#include "yellow_pages.hpp"
 
 ///////////////////////////////////////////////////////////////// Constructor //
 PhoneBook::PhoneBook() : current_log_(0)
@@ -25,7 +26,7 @@ PhoneBook::~PhoneBook()
 {
 	if (DEBUG)
 	{
-		std::cout << "DEBUG PhoneBook desstructed.\n";
+		std::cout << "DEBUG PhoneBook destructed.\n";
 	}
 }
 
@@ -57,9 +58,12 @@ PhoneBook::~PhoneBook()
 //
 ///////////////////////////////////////////////////////////////////// Setters //
 /////////////////////////////////////////////////////////// Add a new contact //
-void PhoneBook::add_contact(const Contact &person)
+void PhoneBook::add_contact()
 {
-	(void) person;
+	if (DEBUG)
+	{
+		std::cout << "DEBUG PhoneBook: adding contact.\n";
+	}
 	// line[current_log_] = person;
 
 	if (current_log_ >= MAX_LOG)
@@ -69,7 +73,10 @@ void PhoneBook::add_contact(const Contact &person)
 }
 
 /////////////////////////////////////////////////////////// Add a new contact //
-void PhoneBook::search_contact(const Contact &person)
+void PhoneBook::search_contact()
 {
-	(void) person;
+	if (DEBUG)
+	{
+		std::cout << "DEBUG PhoneBook: searching contact.\n";
+	}
 }
