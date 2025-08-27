@@ -4,16 +4,18 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/27 08:18:53      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/27 09:39:06     #########  #########  ###      ###      */
+/*   Created: 2025/08/28 09:22:59      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/28 09:28:00     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #include "yellow_pages.hpp"
 
 ///////////////////////////////////////////////////////////////// Constructor //
-PhoneBook::PhoneBook(int max_log) : max_log(8), current_log(0)
+PhoneBook::PhoneBook(int max_log) : max_log(max_log), current_log(0)
 {
+	if (max_log <= 0)
+		max_log = 1;
 }
 
 ////////////////////////////////////////////////////////////////// Destructor //
@@ -53,10 +55,8 @@ const Contact &PhoneBook::get_line(int index) const
 /////////////////////////////////////////////////////////// Add a new contact //
 void PhoneBook::add_contact(const Contact &new_contact)
 {
-	// add_contact
-	current_log++;
-	if (current_log <= max_log)
-	{
+	line[current_log] = new_contact;
+
+	if (current_log >= max_log)
 		current_log = 0;
-	}
 }

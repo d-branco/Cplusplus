@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/08/27 08:26:00     #########  #########  ###      ###       #
+#    Updated: 2025/08/28 09:26:27     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -181,8 +181,7 @@ test: fclean $(NAME)
 	echo "\
 	$(COR)$(GRAY)========================================== $(NAME) END\n\
 	$(COR)RETURN VALUE: $$?"											;	\
-	clang-format --dry-run *.cpp										;	\
-	rm -f $(NAME)
+	clang-format --dry-run *.cpp
 
 valgrind: $(NAME)
 	@\
@@ -194,13 +193,11 @@ valgrind: $(NAME)
 		--track-origins=yes													\
 		--max-stackframe=4200000											\
 	\
-		./$(NAME)														;	\
-	rm -f $(NAME)
+		./$(NAME)
 
 exe: fclean $(NAME)
 	@\
-	./$(NAME)															;	\
-	rm -f $(NAME)
+	./$(NAME)
 
 run: $(NAME)
 	@\
@@ -209,8 +206,7 @@ run: $(NAME)
 debug: CFLAGS += $(DEBUG_FLAGS)
 debug: fclean $(NAME)
 	@\
-	./$(NAME)															;	\
-	rm -f $(NAME)
+	./$(NAME)
 
 gprof: CFLAGS += $(GPROF_FLAGS)
 gprof: fclean $(NAME)
@@ -218,5 +214,4 @@ gprof: fclean $(NAME)
 	./$(NAME)															;	\
 	gprof $(NAME) gmon.out > gmon-ignoreme.txt							;	\
 	cat gmon-ignoreme.txt												;	\
-	rm -f gmon-ignoreme.txt gmon.out									;	\
-	rm -f $(NAME)
+	rm -f gmon-ignoreme.txt gmon.out
