@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/08/28 18:37:01      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 18:37:23     #########  #########  ###      ###      */
+/*   Updated: 2025/08/28 19:10:01     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -13,44 +13,46 @@
 
 int main()
 {
-	std::cout << "Starting\n";
+	if (DEBUG)
+		std::cout << "DEBUG Starting\n";
 
 	if (DEBUG)
-		std::cout << "There's DEBUG\n";
-	else
-		std::cout << "There's NO debug\n";
+		std::cout << "DEBUG all the way!\n";
 
-	PhoneBook ph_book;
-	std::cout << "PhoneBook created\n";
+	PhoneBook yellow_pages;
 
 	Contact new_contact1("Joao",
-		"Ferreira",
-		"John",
+		"Chaves",
+		"Pacific",
 		912345678,
-		"Prefers to be called Johnny by his friends");
-	std::cout << "First contact created\n";
+		"Loves to be called Johnny");
 
 	Contact new_contact2 = new_contact1;
-	std::cout << "Second contact created by copying the first\n";
-	// ph_book.add_contact(new_contact2);
+	// yellow_pages.add_contact(new_contact2);
 	// std::cout << "Second contact added\n";
 
-	new_contact1.set_name("Hannah");
-	new_contact1.set_surname("Keys");
-	new_contact1.set_nick("Chaves");
+	new_contact1.set_name("Isabel");
+	new_contact1.set_surname("Bella");
+	new_contact1.set_nick("Stillwell");
 	new_contact1.set_phone_number(924680135);
-	new_contact1.set_secret("Likes mint chocolate");
-	std::cout << "First contact edited\n";
+	new_contact1.set_secret("Adores mint chocolate");
+	if (DEBUG)
+		std::cout << "DEBUG First contact edited\n";
 
-	// ph_book.add_contact(new_contact1);
+	// yellow_pages.add_contact(new_contact1);
 	// std::cout << "First contact added\n";
 
-	std::cout << new_contact1.get_name() << " \"" << new_contact1.get_nick()
-			  << "\" " << new_contact1.get_surname() << "\n";
+	if (DEBUG)
+		std::cout << "DEBUG "
+			<< new_contact1.get_name() << " \"" << new_contact1.get_nick()
+			<< "\" " << new_contact1.get_surname() << "\n";
 
-	std::cout << new_contact2.get_name() << " \"" << new_contact2.get_nick()
-			  << "\" " << new_contact2.get_surname() << "\n";
+	if (DEBUG)
+		std::cout << "DEBUG "
+			<< new_contact2.get_name() << " \"" << new_contact2.get_nick()
+			<< "\" " << new_contact2.get_surname() << "\n";
 
-	std::cout << "All's good!\n";
+	if (DEBUG)
+		std::cout << "DEBUG All's good!\n";
 	return (EXIT_SUCCESS);
 }

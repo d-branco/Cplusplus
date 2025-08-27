@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/28 16:41:35      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 17:07:54     #########  #########  ###      ###      */
+/*   Created: 2025/08/28 18:36:23      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/28 18:43:11     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ PhoneBook::PhoneBook()
 {
 	current_log = 0;
 	if (DEBUG)
-		std::cout << "PhoneBook constructed.\n";
+		std::cout << "DEBUG PhoneBook constructed.\n";
 }
 
 ////////////////////////////////////////////////////////////////// Destructor //
 PhoneBook::~PhoneBook()
 {
 	if (DEBUG)
-		std::cout << "PhoneBook desstructed.\n";
+		std::cout << "DEBUG PhoneBook desstructed.\n";
 }
 
 //////////////////////////////////////////////////////////////////////// Copy //

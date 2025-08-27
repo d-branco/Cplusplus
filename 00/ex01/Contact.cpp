@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/28 16:09:52      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 18:34:48     #########  #########  ###      ###      */
+/*   Created: 2025/08/28 18:36:23      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/28 19:02:35     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 Contact::Contact()
 {
 	if (DEBUG)
-		std::cout << "Contact constructed.\n";
+		std::cout << "DEBUG Contact created with default constructor.\n";
 }
 
 Contact::Contact(const std::string &name,
@@ -29,13 +29,15 @@ Contact::Contact(const std::string &name,
 	phone_number(phone_number),
 	secret(secret)
 {
+	if (DEBUG)
+		std::cout << "DEBUG Contact created with parameterized constructor.\n";
 }
 
 ////////////////////////////////////////////////////////////////// Destructor //
 Contact::~Contact()
 {
 	if (DEBUG)
-		std::cout << "Contact destructed.\n";
+		std::cout << "DEBUG Contact destructed.\n";
 }
 
 //////////////////////////////////////////////////////////////////////// Copy //
@@ -46,6 +48,8 @@ Contact::Contact(const Contact &other) :
 	phone_number(other.phone_number),
 	secret(other.secret)
 {
+	if (DEBUG)
+		std::cout << "DEBUG Contact created with copy constructor.\n";
 }
 
 Contact &Contact::operator=(const Contact &other)
