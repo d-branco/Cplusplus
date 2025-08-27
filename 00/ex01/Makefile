@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/08/28 16:15:24     #########  #########  ###      ###       #
+#    Updated: 2025/08/28 20:24:15     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -97,11 +97,13 @@ re: fclean all
 	  AcrossComments: false\n\
 	  AlignCompound: false\n\
 	  PadOperators: true\n\
-	AlignAfterOpenBracket: DontAlign\n\
+	AlignAfterOpenBracket: Align\n\
+	AlignConsecutiveAssignments: true\n\
 	AlignEscapedNewlinesLeft: true\n\
 	AllowAllConstructorInitializersOnNextLine: false\n\
 	AllowAllParametersOfDeclarationOnNextLine: false\n\
 	AllowShortBlocksOnASingleLine: false\n\
+	AllowShortIfStatementsOnASingleLine: false\n\
 	AllowShortFunctionsOnASingleLine: None\n\
 	AlwaysBreakAfterReturnType: None\n\
 	AlwaysBreakBeforeMultilineStrings: false\n\
@@ -122,6 +124,7 @@ re: fclean all
 	PenaltyBreakString: 100\n\
 	PenaltyExcessCharacter: 1000000\n\
 	PPIndentWidth: 1\n\
+	RemoveBracesLLVM: false\n\
 	SeparateDefinitionBlocks: Always\n\
 	SpaceAfterCStyleCast: true\n\
 	SpaceBeforeAssignmentOperators: true\n\

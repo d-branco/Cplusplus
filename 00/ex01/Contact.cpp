@@ -4,25 +4,25 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/28 18:36:23      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 19:02:35     #########  #########  ###      ###      */
+/*   Created: 2025/08/28 19:20:13      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/28 20:20:06     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
 ///////////////////////////////////////////////////////////////// Constructor //
-Contact::Contact()
-{
-	if (DEBUG)
-		std::cout << "DEBUG Contact created with default constructor.\n";
-}
-
+// Contact::Contact()
+//{
+//	if (DEBUG)
+//		std::cout << "DEBUG Contact created with default constructor.\n";
+// }
+//
 Contact::Contact(const std::string &name,
-	const std::string			   &surname,
-	const std::string			   &nick,
-	int								phone_number,
-	const std::string			   &secret) :
+				 const std::string &surname,
+				 const std::string &nick,
+				 int				phone_number,
+				 const std::string &secret) :
 	name(name),
 	surname(surname),
 	nick(nick),
@@ -30,14 +30,18 @@ Contact::Contact(const std::string &name,
 	secret(secret)
 {
 	if (DEBUG)
+	{
 		std::cout << "DEBUG Contact created with parameterized constructor.\n";
+	}
 }
 
 ////////////////////////////////////////////////////////////////// Destructor //
 Contact::~Contact()
 {
 	if (DEBUG)
+	{
 		std::cout << "DEBUG Contact destructed.\n";
+	}
 }
 
 //////////////////////////////////////////////////////////////////////// Copy //
@@ -49,18 +53,20 @@ Contact::Contact(const Contact &other) :
 	secret(other.secret)
 {
 	if (DEBUG)
+	{
 		std::cout << "DEBUG Contact created with copy constructor.\n";
+	}
 }
 
 Contact &Contact::operator=(const Contact &other)
 {
 	if (this != &other)
 	{
-		name = other.name;
-		surname = other.surname;
-		nick = other.nick;
+		name		 = other.name;
+		surname		 = other.surname;
+		nick		 = other.nick;
 		phone_number = other.phone_number;
-		secret = other.secret;
+		secret		 = other.secret;
 	}
 	return *this;
 }

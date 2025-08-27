@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/28 16:12:48      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 18:33:50     #########  #########  ###      ###      */
+/*   Created: 2025/08/28 18:36:23      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/28 19:10:57     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ class Contact
 	std::string secret;
 
   public:
-	Contact(); ////////////////////////////////////////////////// Constructor //
+	// Contact(); //////////////////////////////////////////////// Constructor
+	// //
 	Contact(const std::string &name,
-		const std::string	  &surname,
-		const std::string	  &nick,
-		int					   phone_number,
-		const std::string	  &secret);
+			const std::string &surname,
+			const std::string &nick,
+			int				   phone_number,
+			const std::string &secret);
 	~Contact(); ////////////////////////////////////////////////// Destructor //
 	Contact(const Contact &other); ///////////////////////////////////// Copy //
 	Contact	   &operator=(const Contact &other); /////////////////////// Copy //
