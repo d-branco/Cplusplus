@@ -22,6 +22,7 @@ class Contact
 	std::string nick;
 	int			phone_number;
 	std::string secret;
+
   public:
 	///////////////////////////////////////////////////////////// Constructor //
 	Contact(std::string name,

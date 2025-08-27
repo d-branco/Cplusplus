@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/08/25 19:15:02     #########  #########  ###      ###       #
+#    Updated: 2025/08/27 08:26:00     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -16,7 +16,7 @@ NAME			:= yellow_pages.exe
 CC				:= c++
 CFLAGS			+= -std=c++98
 CFLAGS			+= -Wall -Wextra
-CFLAGS			+= -Werror
+#CFLAGS			+= -Werror
 
 GPROF_FLAGS		+= -pg
 DEBUG_FLAGS		+= -g

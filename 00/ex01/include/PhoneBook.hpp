@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/25 19:29:48      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/26 21:34:20     #########  #########  ###      ###      */
+/*   Created: 2025/08/27 08:18:53      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/27 08:23:30     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ class Contact;
 class PhoneBook
 {
   private:
-	const int					max_log;
-	int							current_log;
-	std::vector<Contact>		line;
+	const int			 max_log;
+	int					 current_log;
+	std::vector<Contact> line;
 
   public:
 	///////////////////////////////////////////////////////////// Constructor //
@@ -36,8 +36,7 @@ class PhoneBook
 	const Contact &get_line(int index) const;
 	///////////////////////////////////////////////////////////////// Setters //
 	/////////////////////////////////////////////////////// Add a new contact //
-	void	add_contact(const Contact &new_contact);
+	void add_contact(const Contact &new_contact);
 };
-
 
 #endif
