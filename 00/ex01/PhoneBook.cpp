@@ -5,14 +5,14 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/08/28 19:20:32      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 20:18:36     #########  #########  ###      ###      */
+/*   Updated: 2025/08/28 20:46:24     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
 ///////////////////////////////////////////////////////////////// Constructor //
-PhoneBook::PhoneBook() : current_log(0)
+PhoneBook::PhoneBook() : current_log_(0)
 {
 	if (DEBUG)
 	{
@@ -31,7 +31,7 @@ PhoneBook::~PhoneBook()
 
 //////////////////////////////////////////////////////////////////////// Copy //
 // PhoneBook::PhoneBook(const PhoneBook &other) :
-//	current_log(other.current_log),
+//	current_log_(other.current_log_),
 //	line(other.line)
 //{
 // }
@@ -40,7 +40,7 @@ PhoneBook::~PhoneBook()
 //{
 //	if (this != &other)
 //	{
-//		current_log = 0;
+//		current_log_ = 0;
 //	}
 //	return (*this);
 // }
@@ -60,11 +60,11 @@ PhoneBook::~PhoneBook()
 void PhoneBook::add_contact(const Contact &person)
 {
 	(void) person;
-	// line[current_log] = person;
+	// line[current_log_] = person;
 
-	if (current_log >= MAX_LOG)
+	if (current_log_ >= MAX_LOG)
 	{
-		current_log = 0;
+		current_log_ = 0;
 	}
 }
 

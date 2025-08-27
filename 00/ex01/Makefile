@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/08/28 20:24:15     #########  #########  ###      ###       #
+#    Updated: 2025/08/28 20:48:21     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -155,6 +155,8 @@ style: .clang-format
 	    value: CamelCase\n\
 	  - key:   readability-identifier-naming.FunctionCase\n\
 	    value: lower_case\n\
+	  - key: readability-identifier-naming.PrivateMemberSuffix\n\
+	    value: '_'\n\
 	\n\
 	HeaderFilterRegex: '.*'\n\
 	" > .clang-tidy														;	\

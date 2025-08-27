@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/28 18:36:23      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 19:10:57     #########  #########  ###      ###      */
+/*   Created: 2025/08/28 20:24:16      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/28 20:43:25     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 class Contact
 {
   private:
-	std::string name;
-	std::string surname;
-	std::string nick;
-	int			phone_number;
-	std::string secret;
+	std::string name_;
+	std::string surname_;
+	std::string nick_;
+	int			phone_number_;
+	std::string secret_;
 
   public:
 	// Contact(); //////////////////////////////////////////////// Constructor

@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/28 19:20:13      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 20:20:06     #########  #########  ###      ###      */
+/*   Created: 2025/08/28 20:24:16      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/28 20:45:21     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ Contact::Contact(const std::string &name,
 				 const std::string &nick,
 				 int				phone_number,
 				 const std::string &secret) :
-	name(name),
-	surname(surname),
-	nick(nick),
-	phone_number(phone_number),
-	secret(secret)
+	name_(name),
+	surname_(surname),
+	nick_(nick),
+	phone_number_(phone_number),
+	secret_(secret)
 {
 	if (DEBUG)
 	{
@@ -46,11 +46,11 @@ Contact::~Contact()
 
 //////////////////////////////////////////////////////////////////////// Copy //
 Contact::Contact(const Contact &other) :
-	name(other.name),
-	surname(other.surname),
-	nick(other.nick),
-	phone_number(other.phone_number),
-	secret(other.secret)
+	name_(other.name_),
+	surname_(other.surname_),
+	nick_(other.nick_),
+	phone_number_(other.phone_number_),
+	secret_(other.secret_)
 {
 	if (DEBUG)
 	{
@@ -62,11 +62,11 @@ Contact &Contact::operator=(const Contact &other)
 {
 	if (this != &other)
 	{
-		name		 = other.name;
-		surname		 = other.surname;
-		nick		 = other.nick;
-		phone_number = other.phone_number;
-		secret		 = other.secret;
+		name_		  = other.name_;
+		surname_	  = other.surname_;
+		nick_		  = other.nick_;
+		phone_number_ = other.phone_number_;
+		secret_		  = other.secret_;
 	}
 	return *this;
 }
@@ -74,51 +74,51 @@ Contact &Contact::operator=(const Contact &other)
 ///////////////////////////////////////////////////////////////////// Getters //
 std::string Contact::get_name() const
 {
-	return name;
+	return name_;
 }
 
 std::string Contact::get_surname() const
 {
-	return surname;
+	return surname_;
 }
 
 std::string Contact::get_nick() const
 {
-	return nick;
+	return nick_;
 }
 
 int Contact::get_phone_number() const
 {
-	return phone_number;
+	return phone_number_;
 }
 
 std::string Contact::get_secret() const
 {
-	return secret;
+	return secret_;
 }
 
 ///////////////////////////////////////////////////////////////////// Setters //
 void Contact::set_name(const std::string &new_name)
 {
-	this->name = new_name;
+	this->name_ = new_name;
 }
 
 void Contact::set_surname(const std::string &new_surname)
 {
-	this->surname = new_surname;
+	this->surname_ = new_surname;
 }
 
 void Contact::set_nick(const std::string &new_nick)
 {
-	this->nick = new_nick;
+	this->nick_ = new_nick;
 }
 
 void Contact::set_phone_number(int new_phone_number)
 {
-	this->phone_number = new_phone_number;
+	this->phone_number_ = new_phone_number;
 }
 
 void Contact::set_secret(const std::string &new_secret)
 {
-	this->secret = new_secret;
+	this->secret_ = new_secret;
 }
