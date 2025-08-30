@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/08/28 21:21:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/30 11:22:19     #########  #########  ###      ###      */
+/*   Updated: 2025/08/30 12:47:49     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -74,14 +74,19 @@ int	 main()
 		}
 		if (input == "ADD")
 		{
+			if (DEBUG)
+			{
+				std::cout << "DEBUG [ ] add_contact function.!\n";
+			}
 			yellow_pages.add_contact();
 		}
 		else if (input == "SEARCH")
 		{
 			if (DEBUG)
 			{
-				std::cout << "DEBUG [ ] SEARCH contact function.!\n";
+				std::cout << "DEBUG [ ] search_contact function.!\n";
 			}
+			yellow_pages.search_contact();
 		}
 	}
 
@@ -91,6 +96,7 @@ int	 main()
 	}
 	std::cout << "\n - [ ] ADD contact function.!\n";
 	std::cout << " - [ ] SEARCH contact function.!\n";
+	std::cout << " - [ ] Set MAX_LOG = 3\n";
 	std::cout << " - [ ] Copy and copy operator overload"
 			  << " on PhoneBook class\n\n";
 	return (EXIT_SUCCESS);

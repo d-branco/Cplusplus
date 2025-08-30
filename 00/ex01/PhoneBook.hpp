@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/08/28 21:37:45      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 21:40:30     #########  #########  ###      ###      */
+/*   Updated: 2025/08/30 12:38:02     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -13,6 +13,7 @@
 #define PHONEBOOK_H
 
 #include "Contact.hpp"
+#include "yellow_pages.hpp"
 
 #include <iomanip>
 #include <iostream>
@@ -22,7 +23,7 @@ class PhoneBook
 {
   private:
 	int		current_log_;
-	Contact line[8];
+	Contact line_[MAX_LOG];
 
   public:
 	PhoneBook(); //////////////////////////////////////////////// Constructor //

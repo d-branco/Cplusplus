@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/08/28 21:40:58      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/30 11:21:06     #########  #########  ###      ###      */
+/*   Updated: 2025/08/30 13:01:54     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ PhoneBook::~PhoneBook()
 //////////////////////////////////////////////////////////////////////// Copy //
 // PhoneBook::PhoneBook(const PhoneBook &other) :
 //	current_log_(other.current_log_),
-//	line(other.line)
+//	line_(other.line_)
 //{
 // }
 //
@@ -53,7 +53,7 @@ PhoneBook::~PhoneBook()
 //	{
 //		index = 0;
 //	}
-//	return (line[index]);
+//	return (line_[index]);
 // }
 //
 ///////////////////////////////////////////////////////////////////// Setters //
@@ -68,7 +68,7 @@ void PhoneBook::add_contact()
 	std::string input;
 	std::cout << "Contact NAME:\n";
 	std::getline(std::cin, input);
-	line[current_log_].set_name(input);
+	line_[current_log_].set_name(input);
 	current_log_++;
 	if (current_log_ >= MAX_LOG)
 	{
@@ -81,6 +81,32 @@ void PhoneBook::search_contact()
 {
 	if (DEBUG)
 	{
-		std::cout << "DEBUG PhoneBook: searching contact.\n";
+		std::cout << "DEBUG PhoneBook: search_contat: displaying table.\n";
+	}
+	int i = 0;
+	std::string temp;
+	while (i < MAX_LOG)
+	{
+		if (line_[i].get_name().length() == 0)
+		{
+			continue ;
+		}
+		if (line_[i].get_name().length() > 10)
+		{
+			temp = line_[i].get_name().substr(0, 9);
+			temp = temp + ".";
+			std::cout << temp << "|";
+		}
+		else
+		{
+			std::cout << std::setw(10) << line_[i].get_name() << "|";
+		}
+		std::cout << "\n";
+		i++;
+	}
+
+	if (DEBUG)
+	{
+		std::cout << "DEBUG PhoneBook: search_contat: searching index.\n";
 	}
 }

@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/08/28 21:39:41      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/30 10:54:56     #########  #########  ###      ###      */
+/*   Updated: 2025/08/30 12:39:55     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 #include <iomanip> //set width with std::setw(size)
 #include <iostream>
 
-#include "Contact.hpp"
-#include "PhoneBook.hpp"
-
 enum
 {
-	MAX_LOG = 8
+	MAX_LOG = 3
 };
+
+#include "Contact.hpp"
+#include "PhoneBook.hpp"
 
 class Contact;
 class PhoneBook;

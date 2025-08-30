@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/28 21:33:05      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 21:41:29     #########  #########  ###      ###      */
+/*   Created: 2025/08/30 12:27:54      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/30 12:33:15     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -16,7 +16,14 @@
 Contact::Contact()
 {
 	if (DEBUG)
+	{
 		std::cout << "DEBUG Contact created with default constructor.\n";
+	}
+	name_		  = "";
+	surname_	  = "";
+	nick_		  = "";
+	phone_number_ = 0;
+	secret_		  = "";
 }
 
 Contact::Contact(const std::string &name,
@@ -32,7 +39,8 @@ Contact::Contact(const std::string &name,
 {
 	if (DEBUG)
 	{
-		std::cout << "DEBUG Contact created with parameterized constructor.\n";
+		std::cout << "DEBUG Contact " << name_
+				  << " created with parameterized constructor.\n";
 	}
 }
 
@@ -41,7 +49,7 @@ Contact::~Contact()
 {
 	if (DEBUG)
 	{
-		std::cout << "DEBUG Contact destructed.\n";
+		std::cout << "DEBUG Contact " << name_ << " destructed.\n";
 	}
 }
 
@@ -55,7 +63,8 @@ Contact::Contact(const Contact &other) :
 {
 	if (DEBUG)
 	{
-		std::cout << "DEBUG Contact created with copy constructor.\n";
+		std::cout << "DEBUG Contact " << name_
+				  << " created with copy constructor.\n";
 	}
 }
 
