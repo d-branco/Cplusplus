@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/08/30 15:40:35      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/30 15:58:05     #########  #########  ###      ###      */
+/*   Updated: 2025/08/30 16:52:56     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -65,8 +65,16 @@ void PhoneBook::add_contact()
 		std::cout << "DEBUG PhoneBook: adding contact. Current log: "
 				  << current_log_ << "\n";
 	}
-	std::string input = get_string("Contact NAME:\n");
+	std::string input = get_string("Contact first name:\n");
 	line_[current_log_].set_name(input);
+	input = get_string("Contact last name:\n");
+	line_[current_log_].set_surname(input);
+	input = get_string("Contact nickname:\n");
+	line_[current_log_].set_nick(input);
+	// input = get_string("Contact NAME:\n");
+	//	line_[current_log_].set_name(input);
+	input = get_string("Contact darkest secret:\n");
+	line_[current_log_].set_secret(input);
 
 	current_log_++;
 	if (current_log_ >= MAX_LOG)
@@ -77,7 +85,7 @@ void PhoneBook::add_contact()
 
 std::string PhoneBook::get_string(const std::string &str) const
 {
-	std::string input = "";
+	std::string input		 = "";
 	size_t		input_length = 0;
 
 	while (input_length == 0)
@@ -85,7 +93,7 @@ std::string PhoneBook::get_string(const std::string &str) const
 		std::cout << str;
 		std::getline(std::cin, input);
 		input_length = input.length();
-		size_t chr = 0;
+		size_t chr	 = 0;
 		while (isspace(input[chr]))
 		{
 			chr++;
@@ -114,8 +122,11 @@ void PhoneBook::search_contact()
 			i++;
 			continue;
 		}
-		std::cout << std::left << std::setw(3) << i << " | ";
+		std::cout << std::setw(3) << i;
 		print_padded(line_[i].get_name());
+		print_padded(line_[i].get_surname());
+		print_padded(line_[i].get_nick());
+		std::cout << "\n";
 		i++;
 	}
 
@@ -128,16 +139,16 @@ void PhoneBook::search_contact()
 void PhoneBook::print_padded(const std::string &str) const
 {
 	std::string temp;
+
+	std::cout << " | ";
 	if (str.length() > COLUMN_WIDTH)
 	{
 		temp = str.substr(0, COLUMN_WIDTH - 1);
 		temp = temp + ".";
-		std::cout << temp << " | ";
+		std::cout << temp;
 	}
 	else
 	{
 		std::cout << std::setw(COLUMN_WIDTH) << str;
-		std::cout << " | ";
 	}
-	std::cout << "\n";
 }
