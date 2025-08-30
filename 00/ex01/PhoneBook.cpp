@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/30 17:22:43      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/30 17:30:29     #########  #########  ###      ###      */
+/*   Created: 2025/08/30 18:09:12      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/30 18:12:00     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -31,31 +31,22 @@ PhoneBook::~PhoneBook()
 }
 
 //////////////////////////////////////////////////////////////////////// Copy //
-// PhoneBook::PhoneBook(const PhoneBook &other) :
-//	current_log_(other.current_log_),
-//	line_(other.line_)
-//{
-// }
-//
-// PhoneBook &PhoneBook::operator=(const PhoneBook &other)
-//{
-//	if (this != &other)
-//	{
-//		current_log_ = 0;
-//	}
-//	return (*this);
-// }
-//
+PhoneBook::PhoneBook(const PhoneBook &other) :
+	current_log_(other.current_log_),
+	line_(other.line_)
+{
+}
+
+PhoneBook &PhoneBook::operator=(const PhoneBook &other)
+{
+	if (this != &other)
+	{
+		current_log_ = 0;
+	}
+	return (*this);
+}
+
 ///////////////////////////////////////////////////////////////////// Getters //
-// const Contact &PhoneBook::get_line(int index) const
-//{
-//	if (index >= MAX_LOG)
-//	{
-//		index = 0;
-//	}
-//	return (line_[index]);
-// }
-//
 ///////////////////////////////////////////////////////////////////// Setters //
 /////////////////////////////////////////////////////////// Add a new contact //
 void PhoneBook::add_contact()
@@ -89,7 +80,7 @@ void PhoneBook::add_contact()
 			chr++;
 		}
 	}
-	line_[current_log_].set_phone_number(std::stoi(input));
+	line_[current_log_].set_phone_number(input);
 
 	line_[current_log_].set_secret(
 		get_string("Enter contact darkest secret:\n"));
@@ -152,6 +143,26 @@ void PhoneBook::search_contact()
 	if (DEBUG)
 	{
 		std::cout << "DEBUG PhoneBook: search_contat: searching index.\n";
+	}
+	std::string input;
+	std::cout << "Enter index to display: \n";
+	if (!std::getline(std::cin, input))
+		exit(EXIT_FAILURE);
+	if ((input.length() == 1) && (isdigit(input[0])) &&
+		((input[0] - '0') < MAX_LOG) &&
+		(!line_[(input[0] - '0')].get_name().empty()))
+	{
+		size_t nbr = input[0] - '0';
+		std::cout << "      First name: " << line_[nbr].get_name() << "\n";
+		std::cout << "       Last name: " << line_[nbr].get_surname() << "\n";
+		std::cout << "        Nickname: " << line_[nbr].get_nick() << "\n";
+		std::cout << "    Phone number: " << line_[nbr].get_phone_number()
+				  << "\n";
+		std::cout << "  Darkest secret: " << line_[nbr].get_secret() << "\n";
+	}
+	else
+	{
+		std::cerr << "Invalid index\n";
 	}
 }
 
