@@ -115,5 +115,5 @@ void debug_write_signal(int signum)
 			std::cerr << "\nDEBUG Signal: SIGQUIT (CTRL + \\)\n";
 		}
 	}
-	//exit(EXIT_FAILURE);
+	// exit(EXIT_FAILURE);
 }

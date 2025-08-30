@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/28 21:37:45      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/30 13:56:51     #########  #########  ###      ###      */
+/*   Created: 2025/08/30 15:40:35      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/30 15:42:31     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@
 class PhoneBook
 {
   private:
-	int		current_log_;
-	Contact line_[MAX_LOG];
-	void	print_padded(const std::string & str) const;
+	int			current_log_;
+	Contact		line_[MAX_LOG];
+	std::string get_string(const std::string &str) const;
+	void		print_padded(const std::string &str) const;
 
   public:
 	PhoneBook(); //////////////////////////////////////////////// Constructor //

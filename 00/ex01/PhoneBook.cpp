@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/30 13:53:21      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/30 14:03:04     #########  #########  ###      ###      */
+/*   Created: 2025/08/30 15:40:35      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/30 15:41:41     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -65,15 +65,36 @@ void PhoneBook::add_contact()
 		std::cout << "DEBUG PhoneBook: adding contact. Current log: "
 				  << current_log_ << "\n";
 	}
-	std::string input;
-	std::cout << "Contact NAME:\n";
-	std::getline(std::cin, input);
+	std::string input = get_string("Contact NAME:\n");
 	line_[current_log_].set_name(input);
+
 	current_log_++;
 	if (current_log_ >= MAX_LOG)
 	{
 		current_log_ = 0;
 	}
+}
+
+std::string PhoneBook::get_string(const std::string &str) const
+{
+	std::string input = "";
+
+	while (input.length() == 0)
+	{
+		std::cout << str;
+		std::getline(std::cin, input);
+		size_t chr = 0;
+		while (isspace(input[chr]))
+		{
+			chr++;
+			if (chr == input.length())
+			{
+				input = "";
+				break;
+			}
+		}
+	}
+	return (input);
 }
 
 /////////////////////////////////////////////////////////// Add a new contact //
@@ -89,9 +110,9 @@ void PhoneBook::search_contact()
 		if (line_[i].get_name().length() == 0)
 		{
 			i++;
-			continue ;
+			continue;
 		}
-		std::cout << std::setw(3) << i << " | ";
+		std::cout << std::left << std::setw(3) << i << " | ";
 		print_padded(line_[i].get_name());
 		i++;
 	}
@@ -102,7 +123,7 @@ void PhoneBook::search_contact()
 	}
 }
 
-void	PhoneBook::print_padded(const std::string &str) const
+void PhoneBook::print_padded(const std::string &str) const
 {
 	std::string temp = "";
 	if (str.length() > 10)
