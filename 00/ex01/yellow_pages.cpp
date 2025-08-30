@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/08/28 21:21:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 22:01:01     #########  #########  ###      ###      */
+/*   Updated: 2025/08/30 11:22:19     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	 main()
 	PhoneBook	yellow_pages;
 	std::string input;
 
-	if (DEBUG)
+	/*if (DEBUG)
 	{
 		Contact new_contact1("Joao",
 							 "Chaves",
@@ -55,7 +55,7 @@ int	 main()
 		std::cout << "DEBUG " << new_contact2.get_name() << " \""
 				  << new_contact2.get_nick() << "\" "
 				  << new_contact2.get_surname() << "\n";
-	}
+	}*/
 
 	while (true) /////////////////////////////////////////////////////// loop //
 	{
@@ -74,10 +74,7 @@ int	 main()
 		}
 		if (input == "ADD")
 		{
-			if (DEBUG)
-			{
-				std::cout << "DEBUG [ ] ADD contact function.!\n";
-			}
+			yellow_pages.add_contact();
 		}
 		else if (input == "SEARCH")
 		{
@@ -92,7 +89,10 @@ int	 main()
 	{
 		std::cout << "DEBUG All's good!\n";
 	}
-	std::cout << "\n - [ ] Copy and copy operator overload on PhoneBook\n\n";
+	std::cout << "\n - [ ] ADD contact function.!\n";
+	std::cout << " - [ ] SEARCH contact function.!\n";
+	std::cout << " - [ ] Copy and copy operator overload"
+			  << " on PhoneBook class\n\n";
 	return (EXIT_SUCCESS);
 }
 

@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/08/28 21:40:58      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 21:42:56     #########  #########  ###      ###      */
+/*   Updated: 2025/08/30 11:21:06     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -62,10 +62,14 @@ void PhoneBook::add_contact()
 {
 	if (DEBUG)
 	{
-		std::cout << "DEBUG PhoneBook: adding contact.\n";
+		std::cout << "DEBUG PhoneBook: adding contact. Current log: "
+				  << current_log_ << "\n";
 	}
-	// line[current_log_] = person;
-
+	std::string input;
+	std::cout << "Contact NAME:\n";
+	std::getline(std::cin, input);
+	line[current_log_].set_name(input);
+	current_log_++;
 	if (current_log_ >= MAX_LOG)
 	{
 		current_log_ = 0;
