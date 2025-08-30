@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/08/30 15:40:35      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/30 15:41:41     #########  #########  ###      ###      */
+/*   Updated: 2025/08/30 15:58:05     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -78,18 +78,20 @@ void PhoneBook::add_contact()
 std::string PhoneBook::get_string(const std::string &str) const
 {
 	std::string input = "";
+	size_t		input_length = 0;
 
-	while (input.length() == 0)
+	while (input_length == 0)
 	{
 		std::cout << str;
 		std::getline(std::cin, input);
+		input_length = input.length();
 		size_t chr = 0;
 		while (isspace(input[chr]))
 		{
 			chr++;
-			if (chr == input.length())
+			if (chr == input_length)
 			{
-				input = "";
+				input_length = 0;
 				break;
 			}
 		}
@@ -125,16 +127,16 @@ void PhoneBook::search_contact()
 
 void PhoneBook::print_padded(const std::string &str) const
 {
-	std::string temp = "";
-	if (str.length() > 10)
+	std::string temp;
+	if (str.length() > COLUMN_WIDTH)
 	{
-		temp = str.substr(0, 9);
+		temp = str.substr(0, COLUMN_WIDTH - 1);
 		temp = temp + ".";
 		std::cout << temp << " | ";
 	}
 	else
 	{
-		std::cout << std::setw(10) << str;
+		std::cout << std::setw(COLUMN_WIDTH) << str;
 		std::cout << " | ";
 	}
 	std::cout << "\n";
