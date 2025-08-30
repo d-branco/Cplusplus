@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/08/28 21:37:45      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/28 21:41:39     #########  #########  ###      ###      */
+/*   Updated: 2025/08/30 17:54:28     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Contact
 	std::string name_;
 	std::string surname_;
 	std::string nick_;
-	int			phone_number_;
+	std::string phone_number_;
 	std::string secret_;
 
   public:
@@ -29,7 +29,7 @@ class Contact
 	Contact(const std::string &name,
 			const std::string &surname,
 			const std::string &nick,
-			int				   phone_number,
+			const std::string &phone_number,
 			const std::string &secret);
 	~Contact(); ////////////////////////////////////////////////// Destructor //
 	Contact(const Contact &other); ///////////////////////////////////// Copy //
@@ -38,13 +38,13 @@ class Contact
 	std::string get_name() const;
 	std::string get_surname() const;
 	std::string get_nick() const;
-	int			get_phone_number() const;
+	std::string get_phone_number() const;
 	std::string get_secret() const;
 	///////////////////////////////////////////////////////////////// Setters //
 	void		set_name(const std::string &new_name);
 	void		set_surname(const std::string &new_surname);
 	void		set_nick(const std::string &new_nick);
-	void		set_phone_number(int new_phone_number);
+	void		set_phone_number(const std::string &new_phone_number);
 	void		set_secret(const std::string &new_secret);
 };
 

@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/08/30 12:27:54      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/30 12:33:15     #########  #########  ###      ###      */
+/*   Updated: 2025/08/30 18:15:22     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ Contact::Contact()
 	name_		  = "";
 	surname_	  = "";
 	nick_		  = "";
-	phone_number_ = 0;
+	phone_number_ = "";
 	secret_		  = "";
 }
 
 Contact::Contact(const std::string &name,
 				 const std::string &surname,
 				 const std::string &nick,
-				 int				phone_number,
+				 const std::string &phone_number,
 				 const std::string &secret) :
 	name_(name),
 	surname_(surname),
@@ -39,7 +39,7 @@ Contact::Contact(const std::string &name,
 {
 	if (DEBUG)
 	{
-		std::cout << "DEBUG Contact " << name_
+		std::cout << "DEBUG Contact: " << name_
 				  << " created with parameterized constructor.\n";
 	}
 }
@@ -49,7 +49,7 @@ Contact::~Contact()
 {
 	if (DEBUG)
 	{
-		std::cout << "DEBUG Contact " << name_ << " destructed.\n";
+		std::cout << "DEBUG Contact destructed: " << name_ << "\n";
 	}
 }
 
@@ -63,7 +63,7 @@ Contact::Contact(const Contact &other) :
 {
 	if (DEBUG)
 	{
-		std::cout << "DEBUG Contact " << name_
+		std::cout << "DEBUG Contact: " << name_
 				  << " created with copy constructor.\n";
 	}
 }
@@ -97,7 +97,7 @@ std::string Contact::get_nick() const
 	return nick_;
 }
 
-int Contact::get_phone_number() const
+std::string Contact::get_phone_number() const
 {
 	return phone_number_;
 }
@@ -123,7 +123,7 @@ void Contact::set_nick(const std::string &new_nick)
 	this->nick_ = new_nick;
 }
 
-void Contact::set_phone_number(int new_phone_number)
+void Contact::set_phone_number(const std::string &new_phone_number)
 {
 	this->phone_number_ = new_phone_number;
 }

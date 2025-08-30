@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/30 17:22:43      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/30 17:30:29     #########  #########  ###      ###      */
+/*   Created: 2025/08/30 18:09:12      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/30 19:00:31     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -31,31 +31,20 @@ PhoneBook::~PhoneBook()
 }
 
 //////////////////////////////////////////////////////////////////////// Copy //
-// PhoneBook::PhoneBook(const PhoneBook &other) :
-//	current_log_(other.current_log_),
-//	line_(other.line_)
-//{
-// }
-//
-// PhoneBook &PhoneBook::operator=(const PhoneBook &other)
-//{
-//	if (this != &other)
-//	{
-//		current_log_ = 0;
-//	}
-//	return (*this);
-// }
-//
+PhoneBook::PhoneBook(const PhoneBook &other) : current_log_(other.current_log_)
+{
+}
+
+PhoneBook &PhoneBook::operator=(const PhoneBook &other)
+{
+	if (this != &other)
+	{
+		current_log_ = other.current_log_;
+	}
+	return (*this);
+}
+
 ///////////////////////////////////////////////////////////////////// Getters //
-// const Contact &PhoneBook::get_line(int index) const
-//{
-//	if (index >= MAX_LOG)
-//	{
-//		index = 0;
-//	}
-//	return (line_[index]);
-// }
-//
 ///////////////////////////////////////////////////////////////////// Setters //
 /////////////////////////////////////////////////////////// Add a new contact //
 void PhoneBook::add_contact()
@@ -76,7 +65,9 @@ void PhoneBook::add_contact()
 	{
 		std::cout << "Enter contact number:\n";
 		if (!std::getline(std::cin, input))
+		{
 			exit(EXIT_FAILURE);
+		}
 		input_length = input.length();
 		size_t chr	 = 0;
 		while (chr < input_length)
@@ -89,7 +80,7 @@ void PhoneBook::add_contact()
 			chr++;
 		}
 	}
-	line_[current_log_].set_phone_number(std::stoi(input));
+	line_[current_log_].set_phone_number(input);
 
 	line_[current_log_].set_secret(
 		get_string("Enter contact darkest secret:\n"));
@@ -110,10 +101,12 @@ std::string PhoneBook::get_string(const std::string &str) const
 	{
 		std::cout << str;
 		if (!std::getline(std::cin, input))
+		{
 			exit(EXIT_FAILURE);
+		}
 		input_length = input.length();
 		size_t chr	 = 0;
-		while (isspace(input[chr]))
+		while (isspace(input[chr]) != 0)
 		{
 			chr++;
 			if (chr == input_length)
@@ -133,25 +126,47 @@ void PhoneBook::search_contact()
 	{
 		std::cout << "DEBUG PhoneBook: search_contat: displaying table.\n";
 	}
-	size_t i = 0;
-	while (i < MAX_LOG)
+	size_t nbr = 0;
+	while (nbr < MAX_LOG)
 	{
-		if (line_[i].get_name().length() == 0)
+		if (line_[nbr].get_name().empty())
 		{
-			i++;
+			nbr++;
 			continue;
 		}
-		std::cout << std::setw(3) << i;
-		print_padded(line_[i].get_name());
-		print_padded(line_[i].get_surname());
-		print_padded(line_[i].get_nick());
+		std::cout << std::setw(3) << nbr;
+		print_padded(line_[nbr].get_name());
+		print_padded(line_[nbr].get_surname());
+		print_padded(line_[nbr].get_nick());
 		std::cout << "\n";
-		i++;
+		nbr++;
 	}
 
 	if (DEBUG)
 	{
 		std::cout << "DEBUG PhoneBook: search_contat: searching index.\n";
+	}
+	std::string input;
+	std::cout << "Enter index to display: \n";
+	if (!std::getline(std::cin, input))
+	{
+		exit(EXIT_FAILURE);
+	}
+	if ((input.length() == 1) && (isdigit(input[0]) != 0) &&
+		((input[0] - '0') < MAX_LOG) &&
+		(!line_[(input[0] - '0')].get_name().empty()))
+	{
+		nbr = input[0] - '0';
+		std::cout << "      First name: " << line_[nbr].get_name() << "\n";
+		std::cout << "       Last name: " << line_[nbr].get_surname() << "\n";
+		std::cout << "        Nickname: " << line_[nbr].get_nick() << "\n";
+		std::cout << "    Phone number: " << line_[nbr].get_phone_number()
+				  << "\n";
+		std::cout << "  Darkest secret: " << line_[nbr].get_secret() << "\n";
+	}
+	else
+	{
+		std::cerr << "Invalid index\n";
 	}
 }
 
