@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/30 15:40:35      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/30 16:52:56     #########  #########  ###      ###      */
+/*   Created: 2025/08/30 17:22:43      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/30 17:30:29     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -65,16 +65,34 @@ void PhoneBook::add_contact()
 		std::cout << "DEBUG PhoneBook: adding contact. Current log: "
 				  << current_log_ << "\n";
 	}
-	std::string input = get_string("Contact first name:\n");
-	line_[current_log_].set_name(input);
-	input = get_string("Contact last name:\n");
-	line_[current_log_].set_surname(input);
-	input = get_string("Contact nickname:\n");
-	line_[current_log_].set_nick(input);
-	// input = get_string("Contact NAME:\n");
-	//	line_[current_log_].set_name(input);
-	input = get_string("Contact darkest secret:\n");
-	line_[current_log_].set_secret(input);
+
+	line_[current_log_].set_name(get_string("Enter contact first name:\n"));
+	line_[current_log_].set_surname(get_string("Enter contact last name:\n"));
+	line_[current_log_].set_nick(get_string("Enter contact nickname:\n"));
+
+	size_t		input_length = 0;
+	std::string input;
+	while (input_length == 0)
+	{
+		std::cout << "Enter contact number:\n";
+		if (!std::getline(std::cin, input))
+			exit(EXIT_FAILURE);
+		input_length = input.length();
+		size_t chr	 = 0;
+		while (chr < input_length)
+		{
+			if (isdigit(input[chr]) == 0)
+			{
+				input_length = 0;
+				break;
+			}
+			chr++;
+		}
+	}
+	line_[current_log_].set_phone_number(std::stoi(input));
+
+	line_[current_log_].set_secret(
+		get_string("Enter contact darkest secret:\n"));
 
 	current_log_++;
 	if (current_log_ >= MAX_LOG)
@@ -85,13 +103,14 @@ void PhoneBook::add_contact()
 
 std::string PhoneBook::get_string(const std::string &str) const
 {
-	std::string input		 = "";
+	std::string input;
 	size_t		input_length = 0;
 
 	while (input_length == 0)
 	{
 		std::cout << str;
-		std::getline(std::cin, input);
+		if (!std::getline(std::cin, input))
+			exit(EXIT_FAILURE);
 		input_length = input.length();
 		size_t chr	 = 0;
 		while (isspace(input[chr]))
@@ -107,14 +126,14 @@ std::string PhoneBook::get_string(const std::string &str) const
 	return (input);
 }
 
-/////////////////////////////////////////////////////////// Add a new contact //
+////////////////////////////////////////////////////////////// Search contact //
 void PhoneBook::search_contact()
 {
 	if (DEBUG)
 	{
 		std::cout << "DEBUG PhoneBook: search_contat: displaying table.\n";
 	}
-	int i = 0;
+	size_t i = 0;
 	while (i < MAX_LOG)
 	{
 		if (line_[i].get_name().length() == 0)
