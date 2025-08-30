@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/28 21:40:58      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/30 13:01:54     #########  #########  ###      ###      */
+/*   Created: 2025/08/30 13:53:21      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/30 14:03:04     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -84,24 +84,15 @@ void PhoneBook::search_contact()
 		std::cout << "DEBUG PhoneBook: search_contat: displaying table.\n";
 	}
 	int i = 0;
-	std::string temp;
 	while (i < MAX_LOG)
 	{
 		if (line_[i].get_name().length() == 0)
 		{
+			i++;
 			continue ;
 		}
-		if (line_[i].get_name().length() > 10)
-		{
-			temp = line_[i].get_name().substr(0, 9);
-			temp = temp + ".";
-			std::cout << temp << "|";
-		}
-		else
-		{
-			std::cout << std::setw(10) << line_[i].get_name() << "|";
-		}
-		std::cout << "\n";
+		std::cout << std::setw(3) << i << " | ";
+		print_padded(line_[i].get_name());
 		i++;
 	}
 
@@ -109,4 +100,21 @@ void PhoneBook::search_contact()
 	{
 		std::cout << "DEBUG PhoneBook: search_contat: searching index.\n";
 	}
+}
+
+void	PhoneBook::print_padded(const std::string &str) const
+{
+	std::string temp = "";
+	if (str.length() > 10)
+	{
+		temp = str.substr(0, 9);
+		temp = temp + ".";
+		std::cout << temp << " | ";
+	}
+	else
+	{
+		std::cout << std::setw(10) << str;
+		std::cout << " | ";
+	}
+	std::cout << "\n";
 }

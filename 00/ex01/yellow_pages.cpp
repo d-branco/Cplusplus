@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/28 21:21:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/30 12:47:49     #########  #########  ###      ###      */
+/*   Created: 2025/08/30 13:53:21      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/30 14:02:19     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -108,11 +108,12 @@ void debug_write_signal(int signum)
 	{
 		if (signum == 2)
 		{
-			std::cout << "\nDEBUG Signal: SIGINT (CTRL + C)\n";
+			std::cerr << "\nDEBUG Signal: SIGINT (CTRL + C)\n";
 		}
 		else if (signum == 3)
 		{
-			std::cout << "\nDEBUG Signal: SIGQUIT (CTRL + \\)\n";
+			std::cerr << "\nDEBUG Signal: SIGQUIT (CTRL + \\)\n";
 		}
 	}
+	//exit(EXIT_FAILURE);
 }
