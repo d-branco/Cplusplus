@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/31 06:54:23      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/31 06:55:48     #########  #########  ###      ###      */
+/*   Created: 2025/08/31 07:08:45      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/31 07:23:35     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -71,11 +71,55 @@ int Account::getNbWithdrawals()
 
 void Account::displayAccountsInfos()
 {
-	std:: cout << "TODO \n";
-	return ;
+	std::cout << "TODO displayAccountsInfos()\n";
+	return;
+}
+
+Account::Account(int initial_deposit)
+{
+	_displayTimestamp();
+	_totalAmount = initial_deposit;
+}
+
+Account::~Account()
+{
+	_displayTimestamp();
+}
+
+void Account::makeDeposit(int deposit)
+{
+	std::cout << "TODO makeDeposit()\n";
+	(void) deposit;
+	return;
+}
+
+bool Account::makeWithdrawal(int withdrawal)
+{
+	std::cout << "TODO makeWithdrawal()\n";
+	(void) withdrawal;
+	return (false);
+}
+
+int Account::checkAmount(void) const
+{
+	std::cout << "TODO checkAmount()\n";
+	return (0);
+}
+
+void Account::displayStatus(void) const
+{
+	std::cout << "TODO displayStatus()\n";
+	return;
 }
 
 void Account::_displayTimestamp()
 {
+	std::cout << "TODO timestamps\n";
 	std::cout << "[19920104_091532] ";
+}
+
+Account::Account()
+{
+	_displayTimestamp();
+	_totalAmount = 0;
 }
