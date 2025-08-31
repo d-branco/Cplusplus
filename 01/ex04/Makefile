@@ -5,11 +5,11 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/08/31 17:53:06     #########  #########  ###      ###       #
+#    Updated: 2025/08/31 19:30:18     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
-NAME			:= violence.exe
+NAME			:= better_than_sed.exe
 #NAME-BONUS		:= $(NAME)_bonus
 
 ##################################################################### Compiler #
@@ -25,12 +25,10 @@ DEBUG_FLAGS		+= -D DEBUG=1
 RM				:= rm -f
 AR				:= ar rcs
 ########################################################## Objects and Headers #
-INCLUDES		:= -I./include
-BUILD_DIR		:= build
+HEADERS			:= \
+
+
 SRCS			:=	\
-	HumanA.cpp																\
-	HumanB.cpp																\
-	Weapon.cpp																\
 	\
 	main.cpp
 
@@ -38,6 +36,9 @@ OBJS			:= $(SRCS:/%.cpp=$(BUILD_DIR)/%.o)
 #SRCS-BONUS		:=
 #
 #OBJS-BONUS		:= $(SRCS-BONUS:/%.cpp=$(BUILD_DIR)/%.o)
+
+INCLUDES		:= -I./include
+BUILD_DIR		:= build
 ###################################################################### Targets #
 all: $(NAME)
 
@@ -81,7 +82,7 @@ re: fclean all
 
 .PHONY: all clean fclean re
 ####################################################################### linter #
-FORMATABLE		:= HumanA.hpp  HumanB.hpp  Weapon.hpp $(SRCS)
+FORMATABLE		:= $(HEADERS) $(SRCS)
 
 .clang-format:
 	@echo "\
@@ -164,7 +165,7 @@ style: .clang-format
 	HeaderFilterRegex: '.*'\n\
 	" > .clang-tidy														;	\
 	clang-tidy --quiet $(FORMATABLE) 										\
-	-- -std=c++98 -Wall -Wextra -Werror	;	\
+	-- $(CFLAGS)														;	\
 	rm -f .clang-tidy
 
 format: .clang-format
