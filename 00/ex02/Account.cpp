@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/08/31 07:08:45      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/31 07:23:35     #########  #########  ###      ###      */
+/*   Updated: 2025/08/31 07:42:40     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -49,20 +49,28 @@
 	Account(void);
 }*/
 
+int Account::_nbAccounts = 0;
+
 int Account::getNbAccounts()
 {
 	return (_nbAccounts);
 }
+
+int Account::_totalAmount = 0;
 
 int Account::getTotalAmount()
 {
 	return (_totalAmount);
 }
 
+int Account::_totalNbDeposits = 0;
+
 int Account::getNbDeposits()
 {
 	return (_totalNbDeposits);
 }
+
+int Account::_totalNbWithdrawals = 0;
 
 int Account::getNbWithdrawals()
 {
@@ -71,6 +79,7 @@ int Account::getNbWithdrawals()
 
 void Account::displayAccountsInfos()
 {
+	_displayTimestamp();
 	std::cout << "TODO displayAccountsInfos()\n";
 	return;
 }
@@ -79,15 +88,18 @@ Account::Account(int initial_deposit)
 {
 	_displayTimestamp();
 	_totalAmount = initial_deposit;
+	std::cout << "created\n";
 }
 
 Account::~Account()
 {
 	_displayTimestamp();
+	std::cout << "closed\n";
 }
 
 void Account::makeDeposit(int deposit)
 {
+	_displayTimestamp();
 	std::cout << "TODO makeDeposit()\n";
 	(void) deposit;
 	return;
@@ -95,6 +107,7 @@ void Account::makeDeposit(int deposit)
 
 bool Account::makeWithdrawal(int withdrawal)
 {
+	_displayTimestamp();
 	std::cout << "TODO makeWithdrawal()\n";
 	(void) withdrawal;
 	return (false);
@@ -108,18 +121,18 @@ int Account::checkAmount(void) const
 
 void Account::displayStatus(void) const
 {
+	_displayTimestamp();
 	std::cout << "TODO displayStatus()\n";
 	return;
 }
 
 void Account::_displayTimestamp()
 {
-	std::cout << "TODO timestamps\n";
-	std::cout << "[19920104_091532] ";
+	std::cout << "TODO timestamps [19920104_091532] ";
 }
 
-Account::Account()
-{
-	_displayTimestamp();
-	_totalAmount = 0;
-}
+//Account::Account()
+//{
+//	_displayTimestamp();
+//	_totalAmount = 0;
+//}
