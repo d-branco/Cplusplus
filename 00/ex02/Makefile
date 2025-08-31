@@ -5,11 +5,11 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/08/30 20:16:58     #########  #########  ###      ###       #
+#    Updated: 2025/08/31 08:06:15     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
-NAME			:= a.out
+NAME			:= tests.exe
 #NAME-BONUS		:= $(NAME)_bonus
 
 ##################################################################### Compiler #
@@ -190,7 +190,7 @@ test: fclean $(NAME)
 		--track-origins=yes													\
 		--max-stackframe=4200000											\
 	\
-		./$(NAME)														;	\
+		./$(NAME) > log													;	\
 	\
 	echo "\
 	$(COR)$(GRAY)========================================== $(NAME) END\n\
@@ -207,25 +207,33 @@ valgrind: $(NAME)
 		--track-origins=yes													\
 		--max-stackframe=4200000											\
 	\
-		./$(NAME)
+		./$(NAME) > log
 
 exe: fclean $(NAME)
 	@\
-	./$(NAME)
+	./$(NAME) > log
 
 run: $(NAME)
 	@\
-	./$(NAME)
+	./$(NAME) > log
 
 debug: CFLAGS += $(DEBUG_FLAGS)
 debug: fclean $(NAME)
 	@\
-	./$(NAME)
+	./$(NAME) > log
 
 gprof: CFLAGS += $(GPROF_FLAGS)
 gprof: fclean $(NAME)
 	@\
-	./$(NAME)															;	\
+	./$(NAME) > log														;	\
 	gprof $(NAME) gmon.out > gmon-ignoreme.txt							;	\
 	cat gmon-ignoreme.txt												;	\
 	rm -f gmon-ignoreme.txt gmon.out
+
+diff: $(NAME)
+	@\
+	./$(NAME) > log														;	\
+	git diff																\
+		--no-index --word-diff=color --word-diff-regex=.					\
+		log 19920104_091532.log											;	\
+	echo -n ""

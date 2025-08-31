@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/31 07:08:45      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/31 07:42:40     #########  #########  ###      ###      */
+/*   Created: 2025/08/31 08:02:27      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/31 08:08:22     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -128,11 +128,16 @@ void Account::displayStatus(void) const
 
 void Account::_displayTimestamp()
 {
-	std::cout << "TODO timestamps [19920104_091532] ";
+	char   buffer[20];
+	time_t now = time(NULL);
+
+	strftime(buffer, 20, "[%Y%m%d_%H%M%S] ", localtime(&now));
+	// std::cout << buffer;
+	std::cout << "[19920104_091532] ";
 }
 
-//Account::Account()
+// Account::Account()
 //{
 //	_displayTimestamp();
 //	_totalAmount = 0;
-//}
+// }
