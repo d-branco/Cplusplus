@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/31 18:13:34      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/31 18:14:24     #########  #########  ###      ###      */
+/*   Created: 2025/08/31 18:44:41      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/31 18:45:12     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
 class HumanB
 {
   private:
-	Weapon		weapon_type;
 	std::string name;
+	Weapon		weapon_type;
 
   public:
+	HumanB(std::string name, Weapon &weapon);
 	HumanB(std::string name);
 
-	void   setWeapon(Weapon weapon_b);
+	void   setWeapon(Weapon new_weapon);
 	Weapon get_weapon();
 
 	void   attack();
