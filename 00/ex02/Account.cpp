@@ -4,14 +4,17 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/30 20:20:36      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/30 20:24:13     #########  #########  ###      ###      */
+/*   Created: 2025/08/31 06:54:23      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/31 06:55:48     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 
-class Account
+#include <ctime>
+#include <iostream>
+
+/*class Account
 {
   public:
 	typedef Account t;
@@ -44,4 +47,35 @@ class Account
 	int			_nbWithdrawals;
 
 	Account(void);
+}*/
+
+int Account::getNbAccounts()
+{
+	return (_nbAccounts);
+}
+
+int Account::getTotalAmount()
+{
+	return (_totalAmount);
+}
+
+int Account::getNbDeposits()
+{
+	return (_totalNbDeposits);
+}
+
+int Account::getNbWithdrawals()
+{
+	return (_totalNbWithdrawals);
+}
+
+void Account::displayAccountsInfos()
+{
+	std:: cout << "TODO \n";
+	return ;
+}
+
+void Account::_displayTimestamp()
+{
+	std::cout << "[19920104_091532] ";
 }
