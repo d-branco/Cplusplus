@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/08/31 18:27:08      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/31 18:35:39     #########  #########  ###      ###      */
+/*   Updated: 2025/08/31 18:56:32     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ HumanA::HumanA(std::string name, Weapon &weapon) :
 {
 }
 
-void HumanA::setWeapon(Weapon new_weapon)
+void HumanA::setWeapon(Weapon &new_weapon)
 {
 	weapon_type = new_weapon;
 }
@@ -29,4 +29,5 @@ Weapon HumanA::get_weapon()
 
 void HumanA::attack()
 {
+	std::cout << name << "attacks with " << get_weapon().getType() << "\n";
 }

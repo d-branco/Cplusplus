@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/31 18:34:36      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/31 18:42:45     #########  #########  ###      ###      */
+/*   Created: 2025/08/31 18:43:04      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/08/31 18:57:30     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ class HumanA
 {
   private:
 	std::string name;
-	Weapon		weapon_type;
+	Weapon	   &weapon_type;
 
   public:
 	HumanA(std::string name, Weapon &weapon_type);
 
-	void   setWeapon(Weapon new_weapon);
+	void   setWeapon(Weapon &new_weapon);
 	Weapon get_weapon();
 
 	void   attack();

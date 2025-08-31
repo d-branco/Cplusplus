@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/08/31 17:48:40      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/31 18:38:05     #########  #########  ###      ###      */
+/*   Updated: 2025/08/31 18:52:16     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ std::string Weapon::getType()
 	return (type);
 }
 
-void Weapon::setType(std::string type)
+void Weapon::setType(std::string new_type)
 {
-	this->type = type;
+	this->type = new_type;
 }
 
 Weapon::Weapon(std::string type) : type(type)

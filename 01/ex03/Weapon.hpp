@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/08/31 17:55:30      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/31 18:15:06     #########  #########  ###      ###      */
+/*   Updated: 2025/08/31 18:52:25     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Weapon
 	Weapon(std::string type);
 
 	std::string getType();
-	void		setType(std::string type);
+	void		setType(std::string new_type);
 };
 
 #endif
