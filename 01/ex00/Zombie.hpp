@@ -10,7 +10,7 @@
 /* ************************************************************************** */
 
 #ifndef ZOMBIE_H
-# define ZOMBIE_H
+#define ZOMBIE_H
 
 #include <iostream>
 
@@ -21,8 +21,7 @@ class Zombie
 
   public:
 	Zombie(std::string name);
-	void	announce(void);
-
+	void announce(void);
 };
 
 #endif
