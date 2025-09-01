@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/31 11:37:59      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/31 11:53:04     #########  #########  ###      ###      */
+/*   Created: 2025/08/31 13:57:40      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/01 13:32:56     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ void	randomChump(std::string name);
 
 int		main()
 {
-	randomChump("Alice");
-
-	Zombie *ptr = newZombie("Bob");
+	Zombie *ptr = newZombie("Alice");
 	ptr->announce();
+
+	randomChump("Bob");
+
 	delete ptr;
 }
