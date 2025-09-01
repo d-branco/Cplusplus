@@ -5,10 +5,14 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/01 12:06:03      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/01 12:06:27     #########  #########  ###      ###      */
+/*   Updated: 2025/09/01 12:44:56     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
+#ifndef HEAL_H
+#define HEAL_H
+
+#include <iomanip>
 #include <iostream>
 #include <string>
 
@@ -23,3 +27,5 @@ class Harl
   public:
 	void complain(std::string level);
 };
+
+#endif

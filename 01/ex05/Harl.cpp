@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/01 12:10:22      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/01 12:11:45     #########  #########  ###      ###      */
+/*   Created: 2025/09/01 12:50:21      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/01 12:50:27     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -36,4 +36,27 @@ void Harl::error(void)
 {
 	std::cout << "This is unacceptable! "
 			  << "I want to speak to the manager now." << "\n";
+}
+
+void Harl::complain(std::string level)
+{
+	void (Harl::*member_functions[4])() = {&Harl::debug,
+										   &Harl::info,
+										   &Harl::warning,
+										   &Harl::error};
+
+	std::string comments[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+
+	size_t		iter = 0;
+	while (iter < 4)
+	{
+		if (comments[iter] == level)
+		{
+			std::cout << std::left << std::setw(9) << level + ": ";
+			(this->*member_functions[iter])();
+			return;
+		}
+		iter++;
+	}
+	std::cerr << "Error!\nInvalid input: \"" << level << "\"\n";
 }
