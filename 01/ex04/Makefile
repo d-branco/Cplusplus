@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/08/31 19:30:18     #########  #########  ###      ###       #
+#    Updated: 2025/09/01 11:50:26     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -181,6 +181,10 @@ GRAY	:= \033[1;90m# gray
 YELLOW	:= \033[1;93m# yellow
 BLUE	:= \033[1;96m# blue
 ######################################################################### Test #
+TEST_RUN		:= $(NAME) main.cpp "ZzZ" "What did you say?"			;	\
+	diff main.cpp main.cpp.replace										;	\
+	echo -n ""
+
 test: CFLAGS += $(DEBUG_FLAGS)
 test: fclean $(NAME)
 	@\
@@ -196,7 +200,7 @@ test: fclean $(NAME)
 		--track-origins=yes													\
 		--max-stackframe=4200000											\
 	\
-		./$(NAME)														;	\
+		./$(TEST_RUN)													;	\
 	\
 	echo "\
 	$(COR)$(GRAY)========================================== $(NAME) END\n\
@@ -213,25 +217,25 @@ valgrind: $(NAME)
 		--track-origins=yes													\
 		--max-stackframe=4200000											\
 	\
-		./$(NAME)
+		./$(TEST_RUN)
 
 exe: fclean $(NAME)
 	@\
-	./$(NAME)
+	./$(TEST_RUN)
 
 run: $(NAME)
 	@\
-	./$(NAME)
+	./$(TEST_RUN)
 
 debug: CFLAGS += $(DEBUG_FLAGS)
 debug: fclean $(NAME)
 	@\
-	./$(NAME)
+	./$(TEST_RUN)
 
 gprof: CFLAGS += $(GPROF_FLAGS)
 gprof: fclean $(NAME)
 	@\
-	./$(NAME)															;	\
+	./$(TEST_RUN)														;	\
 	gprof $(NAME) gmon.out > gmon-ignoreme.txt							;	\
 	cat gmon-ignoreme.txt												;	\
 	rm -f gmon-ignoreme.txt gmon.out
