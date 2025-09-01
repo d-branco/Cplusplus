@@ -5,11 +5,11 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/09/01 13:41:07     #########  #########  ###      ###       #
+#    Updated: 2025/09/01 13:45:09     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
-NAME			:= harlFilter
+NAME			:= violence.exe
 #NAME-BONUS		:= $(NAME)_bonus
 
 ##################################################################### Compiler #
@@ -26,10 +26,15 @@ RM				:= rm -f
 AR				:= ar rcs
 ########################################################## Objects and Headers #
 HEADERS			:= \
-	Harl.hpp
+	HumanA.hpp																\
+	HumanB.hpp																\
+	Weapon.hpp																\
+
 
 SRCS			:=	\
-	Harl.cpp																\
+	HumanA.cpp																\
+	HumanB.cpp																\
+	Weapon.cpp																\
 																			\
 	main.cpp
 

@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/01 11:38:44      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/01 11:50:04     #########  #########  ###      ###      */
+/*   Created: 2025/09/01 11:50:06      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/01 15:32:38     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 #include <iostream>
 #include <string>
 
-int main(int argc, char **argv)
+/*int main(int argc, char **argv)
 {
 	if (argc != 4)
 	{
 		std::cerr << "Input error!\n"
 				  << "    usage:\n./better_than_sed.exe  "
-				  << "FILE  str_to_find  str_to_replace\n";
+				  << "<FILE>  <str_to_find>  <str_to_replace>\n";
 		return (EXIT_FAILURE);
 	}
 
-	std::ifstream opened_file(argv[1]);
+	std::ifstream input_file(argv[1]);
 
-	if (!opened_file.is_open())
+	if (!input_file.is_open())
 	{
 		std::cerr << "Error.\nFile failed to open.\n";
 		return (EXIT_FAILURE);
@@ -47,16 +47,16 @@ int main(int argc, char **argv)
 
 	char chr;
 	bool found = false;
-	while (opened_file.get(chr))
+	while (input_file.get(chr))
 	{
 		found = false;
 		if (chr == argv[2][0])
 		{
 			// std::cout << "Found the first char: \'" << chr << "\'\n";
-			std::streampos reading_pos = opened_file.tellg();
+			std::streampos reading_pos = input_file.tellg();
 
 			char		   buffer[len];
-			opened_file.read(buffer, len - 1);
+			input_file.read(buffer, len - 1);
 
 			size_t iter = 0;
 			while (iter < len - 1)
@@ -76,8 +76,8 @@ int main(int argc, char **argv)
 			std::cout << "\n";
 			if (found == false)
 			{
-				opened_file.clear();
-				opened_file.seekg(reading_pos);
+				input_file.clear();
+				input_file.seekg(reading_pos);
 			}
 		}
 		if (found == false)
@@ -90,7 +90,67 @@ int main(int argc, char **argv)
 		}
 	}
 
-	opened_file.close();
+	input_file.close();
+	output_file.close();
+	return (EXIT_SUCCESS);
+}*/
+
+int	main(int argc, char **argv)
+{
+	if (argc != 4)
+	{
+		std::cerr << "Input error!\n"
+				  << "    usage:\n./better_than_sed.exe  "
+				  << "<FILE>  <str_to_find>  <str_to_replace>\n";
+		return (EXIT_FAILURE);
+	}
+
+	std::ifstream input_file(argv[1]);
+
+	if (!input_file.is_open())
+	{
+		std::cerr << "Error.\nFile failed to open.\n";
+		return (EXIT_FAILURE);
+	}
+
+	std::string input_name = argv[1];
+	std::string find = argv[2];
+	std::string replace = argv[3];
+
+
+	std::ofstream output_file((input_name + ".replace").c_str());
+	if (!output_file.is_open())
+	{
+		std::cerr << "Error: Could not create output file.\n";
+		return EXIT_FAILURE;
+	}
+
+	std::string line;
+	size_t			position;
+	while(std::getline(input_file, line))
+	{
+		position = 0;
+		position = line.find(find, position);
+		while(std::string::npos != position)
+		{
+			line.erase(position, find.length());
+			line.insert(position, replace);
+			position += replace.length();
+			position = line.find(find, position);
+		}
+		output_file << line << "\n";
+	}
+
+
+
+
+
+
+
+
+
+
+	input_file.close();
 	output_file.close();
 	return (EXIT_SUCCESS);
 }
