@@ -4,13 +4,17 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/02 16:11:41      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/02 17:44:39     #########  #########  ###      ###      */
+/*   Created: 2025/09/02 17:45:10      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/02 19:41:29     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #ifndef FIXED_H
 #define FIXED_H
+
+#include <cmath>
+#include <iostream>
+#include <string>
 
 //	Default		constructor
 //
@@ -23,7 +27,7 @@ class Fixed
 {
   private:
 	int				 value_;
-	static const int fractional_bits__ = 8; // always equal to 8
+	static const int fractional_bits_ = 8; // always equal to 8
 
   public:
 	Fixed();
@@ -35,6 +39,14 @@ class Fixed
 
 	int	 getRawBits() const;
 	void setRawBits(int raw);
+
+	Fixed(const int int_nbr);
+	Fixed(const float float_nbr);
+
+	float toFloat() const;
+	int	  toInt() const;
 };
+
+std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
 
 #endif
