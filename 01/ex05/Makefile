@@ -70,7 +70,7 @@ $(BUILD_DIR)/%.o: /%.cpp
 clean:
 	@\
 	$(RM) -r $(BUILD_DIR)												;	\
-	rm -fr *.o *.gch 							 						;	\
+	rm -fr *.o *.gch													;	\
 	echo "$(GRAY)Files cleaned.$(COR)"
 
 fclean: clean
