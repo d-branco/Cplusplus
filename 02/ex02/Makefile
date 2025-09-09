@@ -17,10 +17,10 @@ FORMATABLE		= $(HEADERS) Fixed.cpp
 
 TEST_RUN		:= $(NAME)
 ########################################################## Objects and Headers #
-HEADERS			:= \
+HEADERS			:=															\
 	Fixed.hpp
 
-SRCS			:=	\
+SRCS			:=															\
 	Fixed.cpp																\
 	\
 	main.cpp
@@ -30,7 +30,8 @@ OBJS			:= $(SRCS:/%.cpp=$(BUILD_DIR)/%.o)
 #
 #OBJS-BONUS		:= $(SRCS-BONUS:/%.cpp=$(BUILD_DIR)/%.o)
 
-INCLUDES		:= -I./include
+#INCLUDES		:= -I./include
+
 BUILD_DIR		:= build
 ##################################################################### Compiler #
 CC				:= c++

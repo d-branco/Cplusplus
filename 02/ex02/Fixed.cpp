@@ -11,7 +11,7 @@
 
 #include "Fixed.hpp"
 
-// ex00
+//////////////////////////////////////////////////////////////////////// ex00 //
 Fixed::Fixed()
 {
 	std::cout << "Default constructor called\n";
@@ -51,7 +51,7 @@ void Fixed::setRawBits(int const raw)
 	this->value_ = raw;
 }
 
-// ex01
+//////////////////////////////////////////////////////////////////////// ex01 //
 Fixed::Fixed(const int int_nbr)
 {
 	std::cout << "Int constructor called\n";
@@ -79,3 +79,80 @@ std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
 	out << fixed.toFloat();
 	return (out);
 }
+
+//////////////////////////////////////////////////////////////////////// ex02 //
+Fixed &Fixed::operator>(const Fixed &other)
+{
+}
+
+Fixed &Fixed::operator>=(const Fixed &other)
+{
+}
+
+Fixed &Fixed::operator<(const Fixed &other)
+{
+}
+
+Fixed &Fixed::operator<=(const Fixed &other)
+{
+}
+
+Fixed &Fixed::operator==(const Fixed &other)
+{
+}
+
+Fixed &Fixed::operator!=(const Fixed &other)
+{
+}
+
+
+Fixed &Fixed::operator+(const Fixed &other)
+{
+}
+
+Fixed &Fixed::operator-(const Fixed &other)
+{
+}
+
+Fixed &Fixed::operator*(const Fixed &other)
+{
+}
+
+Fixed &Fixed::operator/(const Fixed &other)
+{
+}
+
+
+Fixed &Fixed::operator++(int)		// Increments before
+{
+}
+		
+Fixed Fixed::operator++()			// Increments after
+{
+}
+				
+Fixed &Fixed::operator--(int)		// Decrements before
+{
+}
+		
+Fixed Fixed::operator--()			// Decrements after
+{
+}
+
+
+Fixed &Fixed::min(Fixed &first, Fixed &second)
+{
+}
+
+Fixed &Fixed::min(const Fixed &first, const Fixed &second)
+{
+}
+
+Fixed &Fixed::max(Fixed &first, Fixed &second)
+{
+}
+
+Fixed &Fixed::max(const Fixed &first, const Fixed &second)
+{
+}
+
