@@ -81,28 +81,34 @@ std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
 }
 
 //////////////////////////////////////////////////////////////////////// ex02 //
-Fixed &Fixed::operator>(const Fixed &other)
+bool	Fixed::operator>(const Fixed &other) const
 {
+	return (this->value_ > other.getRawBits());
 }
 
-Fixed &Fixed::operator>=(const Fixed &other)
+bool	Fixed::operator>=(const Fixed &other) const
 {
+	return (this->value_ >= other.getRawBits());
 }
 
-Fixed &Fixed::operator<(const Fixed &other)
+bool	Fixed::operator<(const Fixed &other) const
 {
+	return (this->value_ < other.getRawBits());
 }
 
-Fixed &Fixed::operator<=(const Fixed &other)
+bool	Fixed::operator<=(const Fixed &other) const
 {
+	return (this->value_ <= other.getRawBits());
 }
 
-Fixed &Fixed::operator==(const Fixed &other)
+bool	Fixed::operator==(const Fixed &other) const
 {
+	return (this->value_ == other.getRawBits());
 }
 
-Fixed &Fixed::operator!=(const Fixed &other)
+bool	Fixed::operator!=(const Fixed &other) const
 {
+	return (this->value_ != other.getRawBits());
 }
 
 
