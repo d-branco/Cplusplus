@@ -145,17 +145,22 @@ Fixed &Fixed::operator++()		// Increments before
 
 Fixed Fixed::operator++(int)	// Increments after
 {
-
+	Fixed	temp = *this;
+	Fixed::operator++();
+	return (temp);
 }
 
 Fixed &Fixed::operator--()		// Decrements before
 {
-
+	this->value_--;
+	return(*this);
 }
 
 Fixed Fixed::operator--(int)	// Decrements after
 {
-
+	Fixed	temp = *this;
+	Fixed::operator--();
+	return (temp);
 }
 
 
