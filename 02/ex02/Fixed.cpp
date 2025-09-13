@@ -14,19 +14,19 @@
 //////////////////////////////////////////////////////////////////////// ex00 //
 Fixed::Fixed()
 {
-	std::cout << "Default constructor called\n";
+	//std::cout << "Default constructor called\n";
 	value_ = 0;
 }
 
 Fixed::Fixed(const Fixed &other)
 {
-	std::cout << "Copy constructor called\n";
+	//std::cout << "Copy constructor called\n";
 	this->value_ = other.getRawBits();
 }
 
 Fixed &Fixed::operator=(const Fixed &other)
 {
-	std::cout << "Copy assignment operator called\n";
+	//std::cout << "Copy assignment operator called\n";
 	if (this != &other)
 	{
 		this->value_ = other.value_;
@@ -36,31 +36,31 @@ Fixed &Fixed::operator=(const Fixed &other)
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called\n";
+	//std::cout << "Destructor called\n";
 }
 
 int Fixed::getRawBits() const
 {
-	std::cout << "getRawBits member function called\n";
+	//std::cout << "getRawBits member function called\n";
 	return (value_);
 }
 
 void Fixed::setRawBits(int const raw)
 {
-	std::cout << "setRawBits member function called\n";
+	//std::cout << "setRawBits member function called\n";
 	this->value_ = raw;
 }
 
 //////////////////////////////////////////////////////////////////////// ex01 //
 Fixed::Fixed(const int int_nbr)
 {
-	std::cout << "Int constructor called\n";
+	//std::cout << "Int constructor called\n";
 	value_ = int_nbr << fractional_bits_;
 }
 
 Fixed::Fixed(const float float_nbr)
 {
-	std::cout << "Float constructor called\n";
+	//std::cout << "Float constructor called\n";
 	value_ = roundf(float_nbr * (1 << fractional_bits_));
 }
 
@@ -114,25 +114,21 @@ bool	Fixed::operator!=(const Fixed &other) const
 
 Fixed Fixed::operator+(const Fixed &other)
 {
-	this->setRawBits(this->getRawBits() + other.getRawBits());
 	return (Fixed(this->toFloat() + other.toFloat()));
 }
 
 Fixed Fixed::operator-(const Fixed &other)
 {
-	this->setRawBits(this->getRawBits() + other.getRawBits());
 	return (Fixed(this->toFloat() - other.toFloat()));
 }
 
 Fixed Fixed::operator*(const Fixed &other)
 {
-	this->setRawBits(this->getRawBits() + other.getRawBits());
 	return (Fixed(this->toFloat() * other.toFloat()));
 }
 
 Fixed Fixed::operator/(const Fixed &other)
 {
-	this->setRawBits(this->getRawBits() + other.getRawBits());
 	return (Fixed(this->toFloat() / other.toFloat()));
 }
 
