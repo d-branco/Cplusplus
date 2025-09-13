@@ -137,21 +137,27 @@ Fixed Fixed::operator/(const Fixed &other)
 }
 
 
-Fixed &Fixed::operator++(int)		// Increments before
+Fixed &Fixed::operator++()		// Increments before
 {
+	this->value_++;
+	return(*this);
 }
-		
-Fixed Fixed::operator++()			// Increments after
+
+Fixed Fixed::operator++(int)	// Increments after
 {
+
 }
-				
-Fixed &Fixed::operator--(int)		// Decrements before
+
+Fixed &Fixed::operator--()		// Decrements before
 {
+
 }
-		
-Fixed Fixed::operator--()			// Decrements after
+
+Fixed Fixed::operator--(int)	// Decrements after
 {
+
 }
+
 
 
 Fixed &Fixed::min(Fixed &first, Fixed &second)

@@ -59,10 +59,10 @@ class Fixed
 	Fixed operator*(const Fixed &other);
 	Fixed operator/(const Fixed &other);
 
-	Fixed &operator++(int);	// Increments before
-	Fixed operator++();		// Increments after
-	Fixed &operator--(int);	// Decrements before
-	Fixed operator--();		// Decrements after
+	Fixed &operator++();		// Increments before
+	Fixed operator++(int);		// Increments after
+	Fixed &operator--();		// Decrements before
+	Fixed operator--(int);		// Decrements after
 
 	static Fixed &min(Fixed &first, Fixed &second);
 	static Fixed &min(const Fixed &first, const Fixed &second);
