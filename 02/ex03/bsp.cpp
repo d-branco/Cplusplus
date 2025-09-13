@@ -8,3 +8,11 @@
 /*   Updated: 2025/09/13 16:27:35     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
+
+// Binary Space Partitioning
+
+#include "Point.hpp"
+
+bool		bsp(Point const a, Point const b, Point const c, Point const point)
+{
+}
