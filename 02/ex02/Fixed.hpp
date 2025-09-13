@@ -65,9 +65,9 @@ class Fixed
 	Fixed operator--(int);		// Decrements after
 
 	static Fixed &min(Fixed &first, Fixed &second);
-	static Fixed &min(const Fixed &first, const Fixed &second);
+	const static Fixed &min(const Fixed &first, const Fixed &second);
 	static Fixed &max(Fixed &first, Fixed &second);
-	static Fixed &max(const Fixed &first, const Fixed &second);
+	const static Fixed &max(const Fixed &first, const Fixed &second);
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
