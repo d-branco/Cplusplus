@@ -54,10 +54,10 @@ class Fixed
 	bool operator==(const Fixed &other) const;
 	bool operator!=(const Fixed &other) const;
 
-	Fixed &operator+(const Fixed &other);
-	Fixed &operator-(const Fixed &other);
-	Fixed &operator*(const Fixed &other);
-	Fixed &operator/(const Fixed &other);
+	Fixed operator+(const Fixed &other);
+	Fixed operator-(const Fixed &other);
+	Fixed operator*(const Fixed &other);
+	Fixed operator/(const Fixed &other);
 
 	Fixed &operator++(int);	// Increments before
 	Fixed operator++();		// Increments after
