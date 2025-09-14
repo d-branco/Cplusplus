@@ -13,48 +13,36 @@
 
 Point::Point()
 {
-
 }
 
 Point::Point(float x, float y)
 {
-
 }
-
 
 Point::Point(const Point &other)
 {
-
 }
 
 Point &Point::operator=(const Point &other)
 {
-
 }
-
 
 Point::~Point()
 {
-
 }
 
-
-Point	Point::get_x() const
+Point Point::get_x() const
 {
-
 }
 
-Point	Point::get_y() const
+Point Point::get_y() const
 {
-
 }
 
-void	Point::set_x(Fixed fix_nbr)
+void Point::set_x(Fixed fix_nbr)
 {
-
 }
 
-void	Point::set_y(Fixed fix_nbr)
+void Point::set_y(Fixed fix_nbr)
 {
-
 }

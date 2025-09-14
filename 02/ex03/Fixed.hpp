@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/13 16:26:39      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/13 16:27:48     #########  #########  ###      ###      */
+/*   Created: 2025/09/13 18:49:24      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/14 08:03:45     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -43,30 +43,30 @@ class Fixed
 	Fixed(const int int_nbr);
 	Fixed(const float float_nbr);
 
-	float toFloat() const;
-	int	  toInt() const;
+	float				toFloat() const;
+	int					toInt() const;
 
-	//ex02
-	bool operator>(const Fixed &other) const;
-	bool operator>=(const Fixed &other) const;
-	bool operator<(const Fixed &other) const;
-	bool operator<=(const Fixed &other) const;
-	bool operator==(const Fixed &other) const;
-	bool operator!=(const Fixed &other) const;
+	// ex02
+	bool				operator>(const Fixed &other) const;
+	bool				operator>=(const Fixed &other) const;
+	bool				operator<(const Fixed &other) const;
+	bool				operator<=(const Fixed &other) const;
+	bool				operator==(const Fixed &other) const;
+	bool				operator!=(const Fixed &other) const;
 
-	Fixed operator+(const Fixed &other);
-	Fixed operator-(const Fixed &other);
-	Fixed operator*(const Fixed &other);
-	Fixed operator/(const Fixed &other);
+	Fixed				operator+(const Fixed &other) const;
+	Fixed				operator-(const Fixed &other) const;
+	Fixed				operator*(const Fixed &other) const;
+	Fixed				operator/(const Fixed &other) const;
 
-	Fixed &operator++();		// Increments before
-	Fixed operator++(int);		// Increments after
-	Fixed &operator--();		// Decrements before
-	Fixed operator--(int);		// Decrements after
+	Fixed			   &operator++();	 // Increments before
+	Fixed				operator++(int); // Increments after
+	Fixed			   &operator--();	 // Decrements before
+	Fixed				operator--(int); // Decrements after
 
-	static Fixed &min(Fixed &first, Fixed &second);
+	static Fixed	   &min(Fixed &first, Fixed &second);
 	const static Fixed &min(const Fixed &first, const Fixed &second);
-	static Fixed &max(Fixed &first, Fixed &second);
+	static Fixed	   &max(Fixed &first, Fixed &second);
 	const static Fixed &max(const Fixed &first, const Fixed &second);
 };
 
