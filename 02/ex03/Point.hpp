@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/13 16:26:39      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/13 16:28:27     #########  #########  ###      ###      */
+/*   Created: 2025/09/13 18:49:24      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/14 11:43:47     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 class Point
 {
   private:
-	const Fixed x;
-	const Fixed y;
+	Fixed x;
+	Fixed y;
 	// anything else useful
 
   public:
@@ -28,8 +28,8 @@ class Point
 
 	~Point();
 
-	Point get_x() const;
-	Point get_y() const;
+	Fixed get_x() const;
+	Fixed get_y() const;
 	void  set_x(Fixed fix_nbr);
 	void  set_y(Fixed fix_nbr);
 };
