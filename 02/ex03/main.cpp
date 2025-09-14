@@ -22,14 +22,43 @@ int	 main(void)
 	Point c(2,4);
 
 	Point p(1,1);
-
 	if (bsp(a, b, c, p) == true)
 	{
-		std::cout << "Funciona!\n";
+		std::cout << "Point in the interior: True\n";
 	}
 	else
 	{
-		std::cout << "Nao funciona correctamente!\n";
+		std::cout << "Point in the interior: False\n";
+	}
+
+	Point q(2,1);
+	if (bsp(a, b, c, q) == true)
+	{
+		std::cout << "Point in the edge: True\n";
+	}
+	else
+	{
+		std::cout << "Point in the edge: False\n";
+	}
+
+	Point r(0,0);
+	if (bsp(a, b, c, r) == true)
+	{
+		std::cout << "Point in the vertice: True\n";
+	}
+	else
+	{
+		std::cout << "Point in the vertice: False\n";
+	}
+
+	Point s(42, 42);
+	if (bsp(a, b, c, s) == true)
+	{
+		std::cout << "Point in the exterior: True\n";
+	}
+	else
+	{
+		std::cout << "Point in the exterior: False\n";
 	}
 
 	return (0);
