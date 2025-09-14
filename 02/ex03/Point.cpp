@@ -25,8 +25,7 @@ Point::Point(const Point &other) : x(other.x), y(other.y)
 
 Point &Point::operator=(const Point &other)
 {
-	this->x = other.x;
-	this->y = other.y;
+	(void) &other;
 	return (*this);
 }
 
@@ -34,22 +33,13 @@ Point::~Point()
 {
 }
 
-Fixed Point::get_x() const
+const Fixed Point::get_x() const
 {
 	return (x);
 }
 
-Fixed Point::get_y() const
+const Fixed Point::get_y() const
 {
 	return (y);
 }
 
-void Point::set_x(Fixed fix_nbr)
-{
-	this->x = fix_nbr;
-}
-
-void Point::set_y(Fixed fix_nbr)
-{
-	this->y = fix_nbr;
-}

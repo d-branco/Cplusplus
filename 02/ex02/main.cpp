@@ -26,6 +26,23 @@ int main( void )
 	std::cout << b << std::endl;
 
 	std::cout << Fixed::max( a, b ) << std::endl;
-	
+
+	// std::cout << "\n";
+	// std::cout << Fixed::min( a, b ) << std::endl;
+
+	// std::cout << "\n";
+	// std::cout << (a > b) << "\n";
+	// std::cout << (a >= b) << "\n";
+	// std::cout << (a < b) << "\n";
+	// std::cout << (a <= b) << "\n";
+	// std::cout << (a == b) << "\n";
+	// std::cout << (a != b) << "\n";
+
+	// std::cout << "\n";
+	// std::cout << (1 + 1) << "\n";
+	// std::cout << (4 - 2) << "\n";
+	// std::cout << (4.2 * 4.2) << "\n";
+	// std::cout << (20.25 / 9) << "\n";
+
 	return 0;
 }

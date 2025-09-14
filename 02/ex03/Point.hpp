@@ -15,21 +15,19 @@
 class Point
 {
   private:
-	Fixed x;
-	Fixed y;
+	const Fixed x;
+	const Fixed y;
 	// anything else useful
+	Point &operator=(const Point &other);
 
   public:
 	Point();
-	Point(float x, float y);
+	Point(const float x, const float y);
 
-	Point(const Point &other);
-	Point &operator=(const Point &other);
+	Point(const Point &other);	
 
 	~Point();
 
-	Fixed get_x() const;
-	Fixed get_y() const;
-	void  set_x(Fixed fix_nbr);
-	void  set_y(Fixed fix_nbr);
+	const Fixed get_x() const;
+	const Fixed get_y() const;
 };
