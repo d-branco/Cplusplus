@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/09/14 13:11:05     #########  #########  ###      ###       #
+#    Updated: 2025/09/14 14:53:06     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -19,8 +19,8 @@ TEST_RUN		:= $(NAME)
 HEADERS			:=															\
 	ClapTrap.hpp
 
-SRCS			:=\
-	ClapTrap.cpp\
+SRCS			:=															\
+	ClapTrap.cpp															\
 	\
 	main.cpp
 
@@ -162,7 +162,10 @@ style: .clang-format
 	  -modernize-use-trailing-return-type,\n\
 	  cppcoreguidelines-*\n\
 	  -cppcoreguidelines-pro-type-member-init,\n\
-	  -cppcoreguidelines-avoid-magic-numbers\n\
+	  -cppcoreguidelines-avoid-magic-numbers,\n\
+	  misc-unused-parameters,\n\
+	  performance-*,\n\
+	  -performance-avoid-endl,\n\
 	\n\
 	CheckOptions:\n\
 	  - key:   readability-identifier-naming.ClassCase\n\
@@ -172,7 +175,6 @@ style: .clang-format
 	  - key:   readability-identifier-naming.PrivateMemberSuffix\n\
 	    value: '_'\n\
 	\n\
-	HeaderFilterRegex: '.*'\n\
 	" > .clang-tidy														;	\
 	clang-tidy --quiet -extra-arg=-std=c++98 $(FORMATABLE)					\
 	-- $(CFLAGS)														;	\
