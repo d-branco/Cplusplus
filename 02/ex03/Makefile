@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/09/13 16:27:59     #########  #########  ###      ###       #
+#    Updated: 2025/09/14 13:11:05     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -120,6 +120,7 @@ re: fclean all
 	BinPackArguments: false\n\
 	BinPackParameters: false\n\
 	BreakBeforeBraces: Allman\n\
+	BreakBeforeBinaryOperators: All\n\
 	BreakBeforeTernaryOperators: false\n\
 	BreakConstructorInitializers: AfterColon\n\
 	PackConstructorInitializers: CurrentLine\n\

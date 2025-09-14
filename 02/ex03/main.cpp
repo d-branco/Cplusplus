@@ -17,11 +17,11 @@ bool bsp(Point const a, Point const b, Point const c, Point const point);
 
 int	 main(void)
 {
-	Point a(0,0);
-	Point b(4,2);
-	Point c(2,4);
+	Point a(0, 0);
+	Point b(4, 2);
+	Point c(2, 4);
 
-	Point p(1,1);
+	Point p(1, 1);
 	if (bsp(a, b, c, p) == true)
 	{
 		std::cout << "Point in the interior: True\n";
@@ -31,7 +31,7 @@ int	 main(void)
 		std::cout << "Point in the interior: False\n";
 	}
 
-	Point q(2,1);
+	Point q(2, 1);
 	if (bsp(a, b, c, q) == true)
 	{
 		std::cout << "Point in the edge: True\n";
@@ -41,7 +41,7 @@ int	 main(void)
 		std::cout << "Point in the edge: False\n";
 	}
 
-	Point r(0,0);
+	Point r(0, 0);
 	if (bsp(a, b, c, r) == true)
 	{
 		std::cout << "Point in the vertice: True\n";
