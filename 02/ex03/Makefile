@@ -20,9 +20,10 @@ HEADERS			:=															\
 	Fixed.hpp\
 	Point.hpp
 
-SRCS			:=															\
-	Fixed.cpp																\
-	Point.cpp																\
+SRCS			:=\
+	Fixed.cpp\
+	Point.cpp\
+	bsp.cpp\
 	\
 	main.cpp
 
