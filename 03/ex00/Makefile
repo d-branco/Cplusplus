@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/09/15 14:23:01     #########  #########  ###      ###       #
+#    Updated: 2025/09/15 16:26:36     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -86,7 +86,7 @@ re: fclean all
 	@echo "$(GRAY)redone$(COR)"
 
 .PHONY: all clean fclean re
-####################################################################### linter #
+####################################################################### format #
 .clang-format:
 	@echo "\
 	Language: Cpp\n\
@@ -147,10 +147,8 @@ re: fclean all
 
 # Consider removing
 #	  -cppcoreguidelines-avoid-magic-numbers
-style: .clang-format
+.clang-tidy:
 	@\
-	clang-format --verbose --dry-run $(FORMATABLE)						;	\
-	rm -f .clang-format													;	\
 	echo "\
 	Checks: |\n\
 	  readability-*,\n\
@@ -173,10 +171,15 @@ style: .clang-format
 	    value: '_'\n\
 	\n\
 	HeaderFilterRegex: '.*'\n\
-	" > .clang-tidy														;	\
+	" > .clang-tidy
+
+style: .clang-format .clang-tidy
+	@\
+	make check-guards --silent											;	\
+	clang-format --verbose --dry-run $(FORMATABLE)						;	\
 	clang-tidy --quiet -extra-arg=-std=c++98 $(FORMATABLE)					\
 	-- $(CFLAGS)														;	\
-	rm -f .clang-tidy
+	rm -f .clang-format .clang-tidy
 
 format: .clang-format
 	@\
@@ -184,6 +187,17 @@ format: .clang-format
 	echo "formatted"													;	\
 	rm -f .clang-format
 
+check-guards:
+	@fail=0; \
+	for file in $$(find . -name "*.hpp"); do \
+		filename=$$(basename $$file); \
+		guard=$$(echo $$filename | tr 'a-z' 'A-Z' | sed 's/\./_/g'); \
+		if ! grep -q "#ifndef $$guard" $$file\
+			|| ! grep -q "#define $$guard" $$file; then \
+			echo "$(YELLOW)$$file  is missing header guard:$(COR)    $$guard"; \
+			fail=1; \
+		fi; \
+	done;
 ####################################################################### Colors #
 COR		:= \033[0m# COlor Remove
 PURPLE	:= \033[1;35m# purple
