@@ -2,17 +2,18 @@
 .idea/
 .vscode/
 scripts/
-/*/docs/
+docs
 *subject.pdf
 build/
 log/
-tour/
 *ignoreme*
-*ignoreme*.*
-*ignoreme*/
+
+#Media files
 *.mp4
 *.m4a
 *.wav
+
+#Notes and references
 *.txt
 *.html
 
