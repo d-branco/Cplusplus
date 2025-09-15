@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/15 16:31:42      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/15 17:15:57     #########  #########  ###      ###      */
+/*   Updated: 2025/09/15 17:59:47     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int main()
 	treta.beRepaired(1);
 	std::cout << "\n";
 
-	std::cout << "Time passes.\nMetal rusts.\n";
+	std::cout << "Time passes. Metal rusts.\n";
 	tagarela.takeDamage(10);
 	treta.takeDamage(10);
 	std::cout << "\n";
@@ -40,7 +40,16 @@ int main()
 
 	tagarela.beRepaired(1);
 	treta.beRepaired(1);
-
 	std::cout << "\n";
+
+	treta.guardGate();
+	std::cout << "\n";
+
+	std::cout << "Time passes. Metal rusts.\n";
+	treta.guardGate();
+	tagarela.takeDamage(10);
+	treta.takeDamage(10);
+	std::cout << "\n";
+
 	return (EXIT_SUCCESS);
 }

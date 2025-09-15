@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/15 16:33:56      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/15 17:26:57     #########  #########  ###      ###      */
+/*   Updated: 2025/09/15 17:45:47     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -16,15 +16,18 @@
 
 class ScavTrap : public ClapTrap
 {
-	private:
-		int	mode_;
+  private:
+	int mode_;
 
-	public:
-		ScavTrap(std::string name_);
+  public:
+	ScavTrap(std::string name_);
 
-		virtual ~ScavTrap();
+	ScavTrap(const ScavTrap &other);
+	ScavTrap &operator=(const ScavTrap &other);
 
-		void guardGate();
+	virtual ~ScavTrap();
+
+	void guardGate();
 };
 
 #endif

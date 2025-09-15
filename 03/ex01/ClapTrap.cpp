@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/15 16:31:42      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/15 17:19:22     #########  #########  ###      ###      */
+/*   Updated: 2025/09/15 17:48:14     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -31,10 +31,13 @@ ClapTrap::ClapTrap(const ClapTrap &other) :
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &other)
 {
-	this->name_	  = other.name_;
-	this->hit_	  = other.hit_;
-	this->energy_ = other.energy_;
-	this->attack_ = other.attack_;
+	if (this != &other)
+	{
+		this->name_	  = other.name_;
+		this->hit_	  = other.hit_;
+		this->energy_ = other.energy_;
+		this->attack_ = other.attack_;
+	}
 
 	std::cout << this->name_ << " online.\n";
 
