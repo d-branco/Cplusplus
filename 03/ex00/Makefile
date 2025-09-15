@@ -5,11 +5,11 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/09/14 13:11:05     #########  #########  ###      ###       #
+#    Updated: 2025/09/15 14:04:08     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
-NAME			:= cl4p-tp.exe
+NAME			:= cl4p-tp.out
 #NAME-BONUS		:= $(NAME)_bonus
 
 FORMATABLE		= $(HEADERS) $(SRCS)
@@ -19,8 +19,8 @@ TEST_RUN		:= $(NAME)
 HEADERS			:=															\
 	ClapTrap.hpp
 
-SRCS			:=\
-	ClapTrap.cpp\
+SRCS			:=															\
+	ClapTrap.cpp															\
 	\
 	main.cpp
 
