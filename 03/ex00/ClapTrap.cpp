@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/15 15:12:35      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/15 15:18:05     #########  #########  ###      ###      */
+/*   Created: 2025/09/15 15:34:55      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/15 16:07:02     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -58,9 +58,10 @@ unsigned int ClapTrap::get_hit()
 
 void ClapTrap::increment_hit(int change)
 {
-	if (-change > (int) this->hit_)
+	if (-change >= ((int) this->hit_))
 	{
 		this->hit_ = 0;
+		return;
 	}
 	this->hit_ += change;
 }
@@ -72,9 +73,10 @@ void ClapTrap::attack(const std::string &target)
 		std::cout << this->name_ << " stays still.\n";
 		return;
 	}
-	std::cout << this->name_ << " attacks " << target << " dealing "
-			  << this->attack_ << " damage!\n";
 	this->energy_--;
+	std::cout << this->name_ << " attacks " << target << " dealing "
+			  << this->attack_ << " damage! Has " << this->energy_
+			  << " energy remaning.\n";
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
@@ -83,8 +85,17 @@ void ClapTrap::takeDamage(unsigned int amount)
 	{
 		std::cout << this->name_ << " remains immovable.\n";
 	}
-	std::cout << this->name_ << " takes " << amount << "damage!\n";
-	ClapTrap::increment_hit(-amount);
+	ClapTrap::increment_hit(-((int) amount));
+	if (this->hit_ > 0)
+	{
+		std::cout << this->name_ << " takes " << ((int) amount)
+				  << " damage! Has " << (int) this->hit_ << " hit points.\n";
+	}
+	else
+	{
+		std::cout << this->name_ << " can't take it anymore. Has "
+				  << (int) this->hit_ << " hit points.\n";
+	}
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
@@ -92,9 +103,11 @@ void ClapTrap::beRepaired(unsigned int amount)
 	if ((this->hit_ == 0) || (this->energy_ == 0))
 	{
 		std::cout << this->name_ << " stays still.\n";
+		return;
 	}
 	this->energy_--;
 	ClapTrap::increment_hit(amount);
-	std::cout << this->name_ << " recovers " << amount << " hit points. Has "
-			  << this->hit_ << " total.\n";
+	std::cout << this->name_ << " recovers " << (int) amount
+			  << " hit points. Has " << this->hit_ << " total. Has "
+			  << this->energy_ << " energy remaning.\n";
 }
