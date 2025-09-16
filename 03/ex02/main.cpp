@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 05:57:08      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 05:58:28     #########  #########  ###      ###      */
+/*   Created: 2025/09/16 05:59:47      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/16 06:08:58     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -50,6 +50,13 @@ int main()
 	treta.guardGate();
 	tagarela.takeDamage(10);
 	treta.takeDamage(10);
+	std::cout << "\n";
+
+	FragTrap bot("Jolt");
+	bot.highFivesGuys();
+	std::cout << "\n";
+
+	treta.guardGate();
 	std::cout << "\n";
 
 	return (EXIT_SUCCESS);
