@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                          ::::::::    ::::::::   :::::::::  */
-/*   FragTrap.hpp                         :+:    :+:  :+:    :+:  :+:         */
+/*   ScavTrap.hpp                         :+:    :+:  :+:    :+:  :+:         */
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 05:57:56      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 06:24:50     #########  #########  ###      ###      */
+/*   Created: 2025/09/15 16:33:56      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/15 17:45:47     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-#define FRAGTRAP_HPP
+#ifndef SCAVTRAP_HPP
+#define SCAVTRAP_HPP
 
 #include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class ScavTrap : public ClapTrap
 {
   private:
 	int mode_;
 
   public:
-	FragTrap(std::string name_);
+	ScavTrap(std::string name_);
 
-	FragTrap(const FragTrap &other);
-	FragTrap &operator=(const FragTrap &other);
+	ScavTrap(const ScavTrap &other);
+	ScavTrap &operator=(const ScavTrap &other);
 
-	virtual ~FragTrap();
+	virtual ~ScavTrap();
 
-	void highFivesGuys(void);
+	void guardGate();
 };
 
 #endif
