@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 17:20:42      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 17:23:08     #########  #########  ###      ###      */
+/*   Created: 2025/09/16 17:45:30      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/16 17:55:06     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -17,15 +17,24 @@ Brain::Brain() : ideas_(new std::string[100])
 	std::cout << "  └── Brain constructed. Memory for 100 strings allocated.\n";
 }
 
-Brain::Brain(const Brain &other)
+Brain::Brain(const Brain &other) : ideas_(new std::string[100])
 {
-	*this = other;
+	std::cout << "  └── Brain copy constructed. "
+			  << "Memory for 100 strings allocated.\n";
+	for (size_t i = 0; i < 100; ++i)
+	{
+		ideas_[i] = other.ideas_[i];
+	}
 }
 
 Brain &Brain::operator=(const Brain &other)
 {
 	if (this != &other)
 	{
+		delete[] ideas_;
+		ideas_ = new std::string[100];
+		std::cout << "  └── Brain copy operator constructed. "
+			  << "Memory for 100 strings allocated.\n";
 		for (size_t i = 0; i < 100; ++i)
 		{
 			ideas_[i] = other.ideas_[i];
