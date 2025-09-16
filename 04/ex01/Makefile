@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/09/16 14:21:42     #########  #########  ###      ###       #
+#    Updated: 2025/09/16 15:51:47     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -22,6 +22,7 @@ HEADERS			:=															\
 	Dog.hpp																	\
 	WrongAnimal.hpp															\
 	WrongCat.hpp															\
+	Brain.hpp																\
 
 SRCS			:=															\
 	Animal.cpp																\
@@ -29,6 +30,7 @@ SRCS			:=															\
 	Cat.cpp																	\
 	WrongAnimal.cpp															\
 	WrongCat.cpp															\
+	Brain.cpp																\
 	\
 	main.cpp
 

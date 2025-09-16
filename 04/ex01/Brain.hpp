@@ -4,23 +4,23 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 14:27:25      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 14:35:27     #########  #########  ###      ###      */
+/*   Created: 2025/09/16 15:56:45      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/16 16:01:47     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #ifndef BRAIN_HPP
 #define BRAIN_HPP
 
-#include <string>
 #include <iostream>
+#include <string>
 
 class Brain
 {
-	private:
-		std::string *ideias;
+  private:
+	std::string *ideas_;
 
-	  public:
+  public:
 	///////////////////////////////////////////////// Canonical Orthodox Form //
 	Brain();
 
@@ -28,6 +28,10 @@ class Brain
 	Brain &operator=(const Brain &other);
 
 	virtual ~Brain();
+
+	/////////////////////////////////////////////////////////////// Functions //
+	std::string		  &operator[](size_t index);
+	const std::string &operator[](size_t index) const;
 };
 
 #endif
