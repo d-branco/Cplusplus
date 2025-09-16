@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/09/16 06:22:42     #########  #########  ###      ###       #
+#    Updated: 2025/09/16 07:13:05     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -43,7 +43,7 @@ CC				:= c++
 CFLAGS			+= -std=c++98
 CFLAGS			+= -Wall -Wextra
 CFLAGS			+= -Werror
-CFLAGS			+= -Wshadow
+#CFLAGS			+= -Wshadow
 #CFLAGS			+= -Wno-shadow
 
 GPROF_FLAGS		+= -pg

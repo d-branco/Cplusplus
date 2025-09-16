@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 06:19:58      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 06:23:50     #########  #########  ###      ###      */
+/*   Created: 2025/09/16 06:40:35      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/16 07:31:33     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -13,9 +13,9 @@
 #include <iostream>
 
 #include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
-#include "FragTrap.hpp"
 #include "DiamondTrap.hpp"
+#include "FragTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main()
 {
@@ -58,6 +58,13 @@ int main()
 	std::cout << "\n";
 
 	treta.guardGate();
+	std::cout << "\n";
+
+	DiamondTrap pink("Floyd");
+	std::cout << "\n";
+
+	pink.whoAmI();
+	pink.attack(treta.get_name());
 	std::cout << "\n";
 
 	return (EXIT_SUCCESS);

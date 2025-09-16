@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/16 06:14:48      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 06:24:21     #########  #########  ###      ###      */
+/*   Updated: 2025/09/16 07:15:31     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -14,14 +14,8 @@
 
 #include "ClapTrap.hpp"
 
-#include <iostream>
-#include <string>
-
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
-  private:
-	int mode_;
-
   public:
 	FragTrap(std::string name_);
 

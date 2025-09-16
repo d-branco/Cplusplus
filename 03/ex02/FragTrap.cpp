@@ -4,15 +4,15 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 05:58:05      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 06:06:27     #########  #########  ###      ###      */
+/*   Created: 2025/09/16 06:16:33      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/16 06:34:06     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
 ///////////////////////////////////////////////////// Canonical Orthodox Form //
-FragTrap::FragTrap(std::string name_) : ClapTrap(name_), mode_(0)
+FragTrap::FragTrap(std::string name_) : ClapTrap(name_)
 {
 	hit_	= 100;
 	energy_ = 100;
@@ -20,7 +20,7 @@ FragTrap::FragTrap(std::string name_) : ClapTrap(name_), mode_(0)
 	std::cout << this->name_ << " starts running.\n";
 }
 
-FragTrap::FragTrap(const FragTrap &other) : ClapTrap(name_), mode_(0)
+FragTrap::FragTrap(const FragTrap &other) : ClapTrap(name_)
 {
 	*this = other;
 	std::cout << this->name_ << " starts running.\n";
