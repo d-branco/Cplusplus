@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 11:51:40      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 13:36:46     #########  #########  ###      ###      */
+/*   Created: 2025/09/16 17:20:42      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/16 17:21:46     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ Dog &Dog::operator=(const Dog &other)
 	if (this != &other)
 	{
 		this->type_ = other.type_;
-		std::cout << "It's similar to a previous " << type_ << ".\n";
+		std::cout << "  └── It's similar to a previous " << type_ << ".\n";
 	}
 	return (*this);
 }

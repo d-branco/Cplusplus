@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 16:40:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 16:40:38     #########  #########  ###      ###      */
+/*   Created: 2025/09/16 17:20:42      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/16 17:23:35     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ Cat &Cat::operator=(const Cat &other)
 	if (this != &other)
 	{
 		this->type_ = other.type_;
-		std::cout << "It's similar to a previous " << type_ << ".\n";
+		std::cout << "  └── It's similar to a previous " << type_ << ".\n";
 	}
 	return (*this);
 }

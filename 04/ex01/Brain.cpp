@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 15:56:45      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 16:42:45     #########  #########  ###      ###      */
+/*   Created: 2025/09/16 17:20:42      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/16 17:23:08     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 ///////////////////////////////////////////////////// Canonical Orthodox Form //
 Brain::Brain() : ideas_(new std::string[100])
 {
-	std::cout << "  Brain constructed. Memory for 100 strings allocated.\n";
+	std::cout << "  └── Brain constructed. Memory for 100 strings allocated.\n";
 }
 
 Brain::Brain(const Brain &other)
@@ -37,7 +37,7 @@ Brain &Brain::operator=(const Brain &other)
 Brain::~Brain()
 {
 	delete[] this->ideas_;
-	std::cout << "  100 strinds deleted. Brain to be desconstructing.\n";
+	std::cout << "  ┌── 100 strinds deleted. Brain to be desconstructed.\n";
 }
 
 /////////////////////////////////////////////////////////////////// Functions //
