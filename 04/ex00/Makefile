@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/09/16 11:52:50     #########  #########  ###      ###       #
+#    Updated: 2025/09/16 13:46:41     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -18,13 +18,18 @@ TEST_RUN		:= $(NAME)
 ########################################################## Objects and Headers #
 HEADERS			:=															\
 	Animal.hpp																\
-	Dog.hpp																	\
 	Cat.hpp																	\
+	Dog.hpp																	\
+	WrongAnimal.hpp															\
+	WrongCat.hpp															\
+
 
 SRCS			:=															\
 	Animal.cpp																\
 	Dog.cpp																	\
 	Cat.cpp																	\
+	WrongAnimal.cpp															\
+	WrongCat.cpp															\
 	\
 	main.cpp
 

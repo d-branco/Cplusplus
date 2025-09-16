@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 13:05:33      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 13:19:39     #########  #########  ###      ###      */
+/*   Created: 2025/09/16 14:02:33      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/16 14:03:37     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 #include <cstdlib>
 #include <iostream>
@@ -40,5 +42,18 @@ int main()
 	delete (i);
 	delete (j);
 
+	// std::cout << "\n";
+	// const WrongAnimal *alem = new WrongAnimal();
+	// const WrongAnimal *k	= new WrongCat();
+	// const WrongCat	  *l	= new WrongCat();
+	// std::cout << k->getType() << " " << std::endl;
+	// k->makeSound();
+	// l->makeSound();
+	// alem->makeSound();
+	// delete (alem);
+	// delete (k);
+	// delete (l);
+
+	// std::cout << "\n";
 	return (EXIT_SUCCESS);
 }
