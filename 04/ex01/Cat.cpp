@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/16 17:20:42      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 17:23:35     #########  #########  ###      ###      */
+/*   Updated: 2025/09/16 18:31:12     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 ///////////////////////////////////////////////////// Canonical Orthodox Form //
 Cat::Cat() : Animal("Cat")
 {
-	this->type_ = "Cat";
+	this->type_		 = "Cat";
+	this->cat_brain_ = new Brain;
 }
 
 Cat::Cat(std::string type) : Animal(type)
 {
+	this->cat_brain_ = new Brain;
 }
 
 Cat::Cat(const Cat &other) : Animal(other.type_)
@@ -38,6 +40,7 @@ Cat &Cat::operator=(const Cat &other)
 
 Cat::~Cat()
 {
+	delete (cat_brain_);
 }
 
 /////////////////////////////////////////////////////////////////// Functions //

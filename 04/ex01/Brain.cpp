@@ -34,7 +34,7 @@ Brain &Brain::operator=(const Brain &other)
 		delete[] ideas_;
 		ideas_ = new std::string[100];
 		std::cout << "  └── Brain copy operator constructed. "
-			  << "Memory for 100 strings allocated.\n";
+				  << "Memory for 100 strings allocated.\n";
 		for (size_t i = 0; i < 100; ++i)
 		{
 			ideas_[i] = other.ideas_[i];
