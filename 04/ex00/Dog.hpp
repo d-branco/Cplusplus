@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 11:51:45      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 12:50:32     #########  #########  ###      ###      */
+/*   Created: 2025/09/16 12:50:33      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/16 13:31:38     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@
 class Dog : virtual public Animal
 {
   public:
+	Dog();
 	Dog(std::string type_);
 
 	Dog(const Dog &other);
 	Dog &operator=(const Dog &other);
 
 	virtual ~Dog();
+
+	void makeSound() const;
 };
 
 #endif

@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 12:14:14      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 12:51:58     #########  #########  ###      ###      */
+/*   Created: 2025/09/16 13:05:33      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/16 13:19:39     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -21,10 +21,24 @@
 
 int main()
 {
-	Dog canine("Dog");
-	Cat feline("Cat");
-	Dog canis(canine);
-	Cat felix(feline);
+	// Dog canine("Dog");
+	// Cat feline("Cat");
+	// Dog canis(canine);
+	// Cat felix(feline);
+	// std::cout << "\n";
+
+	const Animal *meta = new Animal();
+	const Animal *j	   = new Dog();
+	const Animal *i	   = new Cat();
+	std::cout << j->getType() << " " << std::endl;
+	std::cout << i->getType() << " " << std::endl;
+	i->makeSound(); // will output the cat sound!
+	j->makeSound();
+	meta->makeSound();
+
+	delete (meta);
+	delete (i);
+	delete (j);
 
 	return (EXIT_SUCCESS);
 }

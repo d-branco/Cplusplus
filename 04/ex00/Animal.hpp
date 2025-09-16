@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 11:16:56      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 11:31:26     #########  #########  ###      ###      */
+/*   Created: 2025/09/16 13:33:00      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/16 13:35:14     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -21,13 +21,20 @@ class Animal
 	std::string type_;
 
   public:
-	///////////////////////////////////////////// Canonical Orthodox Form //
+	///////////////////////////////////////////////// Canonical Orthodox Form //
+	Animal();
 	Animal(std::string type);
 
 	Animal(const Animal &other);
 	Animal &operator=(const Animal &other);
 
 	virtual ~Animal();
+
+	///////////////////////////////////////////////////////////////// Getters //
+	std::string	 getType() const;
+
+	/////////////////////////////////////////////////////////////// Functions //
+	virtual void makeSound() const;
 };
 
 #endif
