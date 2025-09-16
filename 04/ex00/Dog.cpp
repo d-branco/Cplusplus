@@ -1,29 +1,12 @@
 /* ************************************************************************** */
 /*                                          ::::::::    ::::::::   :::::::::  */
-/*   main.cpp                             :+:    :+:  :+:    :+:  :+:         */
+/*   Dog.cpp                              :+:    :+:  :+:    :+:  :+:         */
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 12:01:22      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 12:09:45     #########  #########  ###      ###      */
+/*   Created: 2025/09/16 11:51:40      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/16 11:54:18     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
-// Remember to make "the most complete tests"!
-
-#include "Animal.hpp"
-#include "Cat.hpp"
 #include "Dog.hpp"
-
-#include <cstdlib>
-#include <iostream>
-#include <string>
-
-int main()
-{
-	// Dog	   canine("Dog");
-	Cat feline("Cat");
-	Cat felix(feline);
-
-	return (EXIT_SUCCESS);
-}

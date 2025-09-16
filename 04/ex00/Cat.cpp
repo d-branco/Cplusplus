@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                          ::::::::    ::::::::   :::::::::  */
-/*   Animal.cpp                           :+:    :+:  :+:    :+:  :+:         */
+/*   Cat.cpp                              :+:    :+:  :+:    :+:  :+:         */
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 12:14:14      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 12:39:30     #########  #########  ###      ###      */
+/*   Created: 2025/09/16 12:31:03      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/16 12:40:48     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "Cat.hpp"
 
-///////////////////////////////////////////////////// Canonical Orthodox Form //
-Animal::Animal(std::string type) : type_(type)
+Cat::Cat(std::string type) : Animal(type)
 {
-	std::cout << "A wild anima appears! It's a " << type_ << "!\n";
 }
 
-Animal::Animal(const Animal &other)
+Cat::Cat(const Cat &other) : Animal(other.type_)
 {
 	*this = other;
 }
 
-Animal &Animal::operator=(const Animal &other)
+Cat &Cat::operator=(const Cat &other)
 {
 	if (this != &other)
 	{
 		this->type_ = other.type_;
-		std::cout << "Another " << type_ << " appears!\n";
+		std::cout << "It's similar to the previous " << type_ << ".\n";
 	}
 	return (*this);
 }
 
-Animal::~Animal()
+Cat::~Cat()
 {
-	std::cout << "Wild " << type_ << " fled!\n";
+	// std::cout << "Wild " << type_ << " fled!\n";
 }

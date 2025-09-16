@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                          ::::::::    ::::::::   :::::::::  */
-/*   Animal.hpp                           :+:    :+:  :+:    :+:  :+:         */
+/*   Cat.hpp                              :+:    :+:  :+:    :+:  :+:         */
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 11:16:56      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 11:31:26     #########  #########  ###      ###      */
+/*   Created: 2025/09/16 12:31:03      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/16 12:37:40     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#ifndef CAT_HPP
+#define CAT_HPP
 
-#include <iostream>
-#include <string>
+#include "Animal.hpp"
 
-class Animal
+class Cat : public Animal
 {
-  protected:
-	std::string type_;
-
   public:
-	///////////////////////////////////////////// Canonical Orthodox Form //
-	Animal(std::string type);
+	Cat(std::string type);
 
-	Animal(const Animal &other);
-	Animal &operator=(const Animal &other);
+	Cat(const Cat &other);
+	Cat &operator=(const Cat &other);
 
-	virtual ~Animal();
+	virtual ~Cat();
 };
 
 #endif
