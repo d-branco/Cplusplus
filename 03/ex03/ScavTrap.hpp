@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 06:14:48      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 08:27:48     #########  #########  ###      ###      */
+/*   Created: 2025/09/16 09:19:01      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/16 09:23:36     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ class ScavTrap : virtual public ClapTrap
   private:
 	int mode_;
 
+  protected:
+	static const unsigned int initial_energy = 50;
+
   public:
-	ScavTrap(std::string name_);
+	ScavTrap(std::string name_ST);
 
 	ScavTrap(const ScavTrap &other);
 	ScavTrap &operator=(const ScavTrap &other);

@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/15 17:50:28      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/15 17:54:48     #########  #########  ###      ###      */
+/*   Updated: 2025/09/16 09:54:03     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -45,6 +45,18 @@ ScavTrap::~ScavTrap()
 }
 
 /////////////////////////////////////////////////////////////////// Functions //
+void ScavTrap::attack(const std::string &target)
+{
+	if ((this->hit_ == 0) || (this->energy_ == 0))
+	{
+		std::cout << this->name_ << " remains immovable.\n";
+		return;
+	}
+	this->energy_--;
+	std::cout << this->name_ << " deals " << this->attack_ << " to " << target
+			  << " Still has " << this->energy_ << " energy.\n";
+}
+
 void ScavTrap::guardGate()
 {
 	if (this->mode_ == 0)

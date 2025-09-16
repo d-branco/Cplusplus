@@ -5,14 +5,14 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/16 06:16:39      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 07:44:22     #########  #########  ###      ###      */
+/*   Updated: 2025/09/16 09:13:44     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
 ///////////////////////////////////////////////////// Canonical Orthodox Form //
-FragTrap::FragTrap(std::string name_) : ClapTrap(name_)
+FragTrap::FragTrap(std::string name_FT) : ClapTrap(name_FT)
 {
 	hit_	= 100;
 	energy_ = 100;

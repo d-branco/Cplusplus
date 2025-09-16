@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 07:40:37      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 08:21:01     #########  #########  ###      ###      */
+/*   Created: 2025/09/16 09:33:28      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/16 10:13:24     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ DiamondTrap::DiamondTrap(std::string name) :
 	FragTrap(name)
 {
 	name_	= name;
-	hit_	= FragTrap::hit_;
-	energy_ = ScavTrap::energy_;
-	attack_ = FragTrap::attack_;
+	//hit_	= FragTrap::hit_;
+	energy_ = ScavTrap::initial_energy;
+	//attack_ = FragTrap::attack_;
 	std::cout << this->name_ << " suddenly shines.\n";
 
 	std::cout << this->name_ << " has:\n    " << this->hit_

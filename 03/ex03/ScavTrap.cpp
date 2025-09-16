@@ -4,20 +4,18 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 08:21:11      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 08:27:40     #########  #########  ###      ###      */
+/*   Created: 2025/09/16 09:05:32      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/16 09:22:15     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
 ///////////////////////////////////////////////////// Canonical Orthodox Form //
-ScavTrap::ScavTrap(std::string name_) :
-	ClapTrap(name_),
-	mode_(0)
+ScavTrap::ScavTrap(std::string name_ST) : ClapTrap(name_ST), mode_(0)
 {
 	hit_	= 100;
-	energy_ = 50;
+	energy_ = initial_energy;
 	attack_ = 20;
 	std::cout << this->name_ << " booting up.\n";
 }

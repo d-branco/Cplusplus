@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/16 06:14:48      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 07:15:31     #########  #########  ###      ###      */
+/*   Updated: 2025/09/16 09:13:48     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 class FragTrap : virtual public ClapTrap
 {
   public:
-	FragTrap(std::string name_);
+	FragTrap(std::string name_FT);
 
 	FragTrap(const FragTrap &other);
 	FragTrap &operator=(const FragTrap &other);
