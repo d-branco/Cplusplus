@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/16 12:31:03      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 13:36:35     #########  #########  ###      ###      */
+/*   Updated: 2025/09/17 15:20:55     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -28,11 +28,14 @@ Cat::Cat(const Cat &other) : Animal(other.type_)
 
 Cat &Cat::operator=(const Cat &other)
 {
-	if (this != &other)
+	if (this == &other)
 	{
-		this->type_ = other.type_;
-		std::cout << "It's similar to a previous " << type_ << ".\n";
+		return (*this);
 	}
+
+	this->type_ = other.type_;
+	std::cout << "It's similar to a previous " << type_ << ".\n";
+
 	return (*this);
 }
 

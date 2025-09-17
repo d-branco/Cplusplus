@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 18:21:35      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 19:16:18     #########  #########  ###      ###      */
+/*   Created: 2025/09/16 19:16:27      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/17 13:57:28     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -24,30 +24,51 @@
 
 int main()
 {
-	const Animal *j = new Dog();
-	const Animal *i = new Cat();
-	delete j; // should not create a leak
-	delete i;
+    // std::cout << "\n";
 
-	std::cout << "\n";
-	Animal *array[6];
-	for (size_t k = 0; k < 6; k++)
-	{
-		if (k % 2 == 0)
-		{
-			array[k] = new Dog();
-		}
-		else
-		{
-			array[k] = new Cat();
-		}
-	}
-	std::cout << "\n";
-	for (size_t k = 0; k < 6; k++)
-	{
-		delete array[k];
-	}
-	std::cout << "\n";
+    // const Animal *j = new Dog();
+    // const Animal *i = new Cat();
+    // delete j; // should not create a leak
+    // delete i;
 
-	return (EXIT_SUCCESS);
+    // std::cout << "\n";
+    // Animal *array[6];
+    // for (size_t k = 0; k < 6; k++)
+    // {
+    // 	if (k % 2 == 0)
+    // 	{
+    // 		array[k] = new Dog();
+    // 	}
+    // 	else
+    // 	{
+    // 		array[k] = new Cat();
+    // 	}
+    // }
+    // std::cout << "\n";
+    // for (size_t k = 0; k < 6; k++)
+    // {
+    // 	delete array[k];
+    // }
+    // std::cout << "\n";
+
+    int  one;
+    int &ref_one = one;
+
+    one = 3;
+
+    std::cout << one << "\n";
+    std::cout << ref_one << "\n";
+
+    one++;
+    std::cout << one << "\n";
+    std::cout << ref_one << "\n";
+
+    ref_one++;
+    std::cout << one << "\n";
+    std::cout << ref_one << "\n";
+
+    std::cout << &one << "\n";
+    std::cout << &ref_one << "\n";
+
+    return (EXIT_SUCCESS);
 }

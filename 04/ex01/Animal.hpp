@@ -18,23 +18,23 @@
 class Animal
 {
   protected:
-	std::string type_;
+    std::string type_;
 
   public:
-	///////////////////////////////////////////////// Canonical Orthodox Form //
-	Animal();
-	Animal(std::string type);
+    ///////////////////////////////////////////////// Canonical Orthodox Form //
+    Animal();
+    Animal(std::string type);
 
-	Animal(const Animal &other);
-	Animal &operator=(const Animal &other);
+    Animal(const Animal &other);
+    Animal &operator=(const Animal &other);
 
-	virtual ~Animal();
+    virtual ~Animal();
 
-	///////////////////////////////////////////////////////////////// Getters //
-	std::string	 getType() const;
+    ///////////////////////////////////////////////////////////////// Getters //
+    std::string  getType() const;
 
-	/////////////////////////////////////////////////////////////// Functions //
-	virtual void makeSound() const;
+    /////////////////////////////////////////////////////////////// Functions //
+    virtual void makeSound() const;
 };
 
 #endif

@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/16 13:25:45      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 13:33:55     #########  #########  ###      ###      */
+/*   Updated: 2025/09/17 15:20:55     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -34,11 +34,14 @@ Animal::Animal(const Animal &other)
 
 Animal &Animal::operator=(const Animal &other)
 {
-	if (this != &other)
+	if (this == &other)
 	{
-		this->type_ = other.type_;
-		std::cout << "Another " << type_ << " appears!\n";
+		return (*this);
 	}
+
+	this->type_ = other.type_;
+	std::cout << "Another " << type_ << " appears!\n";
+
 	return (*this);
 }
 

@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/16 13:40:05      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 13:55:05     #########  #########  ###      ###      */
+/*   Updated: 2025/09/17 15:20:22     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -28,11 +28,14 @@ WrongCat::WrongCat(const WrongCat &other) : WrongAnimal(other.type_)
 
 WrongCat &WrongCat::operator=(const WrongCat &other)
 {
-	if (this != &other)
+	if (this == &other)
 	{
-		this->type_ = other.type_;
-		std::cout << "It's similar to a previous " << type_ << ".\n";
+		return (*this);
 	}
+
+	this->type_ = other.type_;
+	std::cout << "It's similar to a previous " << type_ << ".\n";
+
 	return (*this);
 }
 

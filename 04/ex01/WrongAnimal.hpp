@@ -18,23 +18,23 @@
 class WrongAnimal
 {
   protected:
-	std::string type_;
+    std::string type_;
 
   public:
-	///////////////////////////////////////////////// Canonical Orthodox Form //
-	WrongAnimal();
-	WrongAnimal(std::string type);
+    ///////////////////////////////////////////////// Canonical Orthodox Form //
+    WrongAnimal();
+    WrongAnimal(std::string type);
 
-	WrongAnimal(const WrongAnimal &other);
-	WrongAnimal &operator=(const WrongAnimal &other);
+    WrongAnimal(const WrongAnimal &other);
+    WrongAnimal &operator=(const WrongAnimal &other);
 
-	virtual ~WrongAnimal();
+    virtual ~WrongAnimal();
 
-	///////////////////////////////////////////////////////////////// Getters //
-	std::string getType() const;
+    ///////////////////////////////////////////////////////////////// Getters //
+    std::string getType() const;
 
-	/////////////////////////////////////////////////////////////// Functions //
-	void		makeSound() const;
+    /////////////////////////////////////////////////////////////// Functions //
+    void        makeSound() const;
 };
 
 #endif

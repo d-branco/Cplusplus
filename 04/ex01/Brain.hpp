@@ -18,24 +18,24 @@
 class Brain
 {
   private:
-	std::string *ideas_;
+    std::string *ideas_;
 
   public:
-	///////////////////////////////////////////////// Canonical Orthodox Form //
-	Brain();
+    ///////////////////////////////////////////////// Canonical Orthodox Form //
+    Brain();
 
-	Brain(const Brain &other);
-	Brain &operator=(const Brain &other);
+    Brain(const Brain &other);
+    Brain &operator=(const Brain &other);
 
-	virtual ~Brain();
+    virtual ~Brain();
 
-	///////////////////////////////////////////////////////////////// Getters //
-	Brain			  &getBrain();
-	const Brain		  &getBrain() const;
+    ///////////////////////////////////////////////////////////////// Getters //
+    Brain             &getBrain();
+    const Brain       &getBrain() const;
 
-	/////////////////////////////////////////////////////////////// Functions //
-	std::string		  &operator[](size_t index);
-	const std::string &operator[](size_t index) const;
+    /////////////////////////////////////////////////////////////// Functions //
+    std::string       &operator[](size_t index);
+    const std::string &operator[](size_t index) const;
 };
 
 #endif

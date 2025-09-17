@@ -18,18 +18,18 @@
 class Cat : public Animal
 {
   private:
-	Brain *cat_brain_;
+    Brain *cat_brain_;
 
   public:
-	Cat();
-	Cat(std::string type);
+    Cat();
+    Cat(std::string type);
 
-	Cat(const Cat &other);
-	Cat &operator=(const Cat &other);
+    Cat(const Cat &other);
+    Cat &operator=(const Cat &other);
 
-	virtual ~Cat();
+    virtual ~Cat();
 
-	void makeSound() const;
+    void makeSound() const;
 };
 
 #endif

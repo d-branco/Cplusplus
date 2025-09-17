@@ -18,18 +18,18 @@
 class Dog : virtual public Animal
 {
   private:
-	Brain *dog_brain_;
+    Brain *dog_brain_;
 
   public:
-	Dog();
-	Dog(std::string type_);
+    Dog();
+    Dog(std::string type_);
 
-	Dog(const Dog &other);
-	Dog &operator=(const Dog &other);
+    Dog(const Dog &other);
+    Dog &operator=(const Dog &other);
 
-	virtual ~Dog();
+    virtual ~Dog();
 
-	void makeSound() const;
+    void makeSound() const;
 };
 
 #endif

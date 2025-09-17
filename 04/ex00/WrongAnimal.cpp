@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/16 13:43:25      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 13:52:39     #########  #########  ###      ###      */
+/*   Updated: 2025/09/17 15:20:55     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -34,11 +34,14 @@ WrongAnimal::WrongAnimal(const WrongAnimal &other)
 
 WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other)
 {
-	if (this != &other)
+	if (this == &other)
 	{
-		this->type_ = other.type_;
-		std::cout << "Another " << type_ << " appears!\n";
+		return (*this);
 	}
+
+	this->type_ = other.type_;
+	std::cout << "Another " << type_ << " appears!\n";
+
 	return (*this);
 }
 
