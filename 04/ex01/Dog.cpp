@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/18 08:09:18      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/18 08:19:49     #########  #########  ###      ###      */
+/*   Updated: 2025/09/18 08:58:36     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -52,11 +52,21 @@ Dog::~Dog()
 {
     std::cout << "Dog: Deconstructor.\n";
     delete (dog_brain_);
-    std::cout << " └─ ";
+    std::cout << " └───── ";
 }
 
 /////////////////////////////////////////////////////////////////// Functions //
 void Dog::makeSound() const
 {
     std::cout << "The Dog barks. It's not very effective\n";
+}
+
+std::string             Dog::get_brain_idea(size_t index)
+{
+	return ((*dog_brain_)[index]);
+}
+
+const std::string       Dog::get_brain_idea(size_t index) const
+{
+	return ((*dog_brain_)[index]);
 }

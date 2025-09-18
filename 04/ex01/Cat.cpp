@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/18 08:10:08      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/18 08:19:35     #########  #########  ###      ###      */
+/*   Updated: 2025/09/18 08:44:25     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ Cat::Cat(const Cat &other) : Animal(other.type_)
 {
     std::cout << " └─ Cat: Copy Constructor.\n";
     cat_brain_ = new Brain(*(other.cat_brain_));
-    *this      = other;
+	std::cout << "Cat copy constructor called" << std::endl;
 }
 
 Cat &Cat::operator=(const Cat &other)
 {
-    std::cout << "└── Cat: Copy Operator= Constructor: ";
+    std::cout << " └─ Cat: Copy Operator= Constructor: ";
     if (this == &other)
     {
         return (*this);
@@ -53,7 +53,7 @@ Cat::~Cat()
 {
     std::cout << "Cat: Deconstructor.\n";
     delete (cat_brain_);
-    std::cout << " └─ ";
+    std::cout << " └───── ";
 }
 
 /////////////////////////////////////////////////////////////////// Functions //

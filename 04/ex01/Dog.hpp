@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 16:40:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 18:12:33     #########  #########  ###      ###      */
+/*   Created: 2025/09/18 07:40:41      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/18 08:57:13     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ class Dog : virtual public Animal
     virtual ~Dog();
 
     void makeSound() const;
+	
+    std::string             get_brain_idea(size_t index);
+    const std::string       get_brain_idea(size_t index) const;
 };
 
 #endif
