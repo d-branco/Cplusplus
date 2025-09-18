@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 09:33:28      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 10:13:24     #########  #########  ###      ###      */
+/*   Created: 2025/09/18 13:27:02      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/18 14:37:17     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ DiamondTrap::DiamondTrap(std::string name) :
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &other) :
-	ClapTrap(name_),
-	ScavTrap(name_),
-	FragTrap(name_)
+	ClapTrap(""),
+	ScavTrap(""),
+	FragTrap("")
 {
 	*this = other;
 	std::cout << this->name_ << " suddenly shines too.\n";

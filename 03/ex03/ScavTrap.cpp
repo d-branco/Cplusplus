@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/16 09:05:32      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 09:22:15     #########  #########  ###      ###      */
+/*   Updated: 2025/09/18 14:24:57     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ ScavTrap::ScavTrap(std::string name_ST) : ClapTrap(name_ST), mode_(0)
 	std::cout << this->name_ << " booting up.\n";
 }
 
-ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(name_), mode_(0)
+ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(""), mode_(0)
 {
 	*this = other;
 	std::cout << this->name_ << " booting up.\n";

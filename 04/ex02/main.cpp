@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/18 13:59:05      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/18 13:59:23     #########  #########  ###      ###      */
+/*   Updated: 2025/09/18 14:06:32     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -59,6 +59,12 @@ int main()
         array[k]->makeSound(); // Polymorphic calls
         delete array[k];
     }
+
+    // Test. Uncommenting any of this ought to give a compiler error:
+    // Animal test;
+    // Animal test("test_type");
+    // Animal *ptr = new Animal();
+    // Animal *ptr = new Animal("test_type");
 
     return (EXIT_SUCCESS);
 }

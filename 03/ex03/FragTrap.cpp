@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/16 06:16:39      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 09:13:44     #########  #########  ###      ###      */
+/*   Updated: 2025/09/18 14:24:52     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ FragTrap::FragTrap(std::string name_FT) : ClapTrap(name_FT)
 	std::cout << this->name_ << " starts running.\n";
 }
 
-FragTrap::FragTrap(const FragTrap &other) : ClapTrap(name_)
+FragTrap::FragTrap(const FragTrap &other) : ClapTrap("")
 {
 	*this = other;
 	std::cout << this->name_ << " starts running.\n";
