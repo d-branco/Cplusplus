@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/17 15:12:24      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/17 15:20:54     #########  #########  ###      ###      */
+/*   Created: 2025/09/18 08:11:59      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/18 08:19:24     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 ///////////////////////////////////////////////////// Canonical Orthodox Form //
 Brain::Brain() : ideas_(new std::string[100])
 {
-    std::cout << "  └── Brain constructed. Memory for 100 strings allocated.\n";
+    std::cout << "     └─ Brain: Default Constructor: Memory for 100 strings "
+                 "allocated.\n";
 }
 
 Brain::Brain(const Brain &other) : ideas_(new std::string[100])
 {
-    std::cout << "  └── Brain copy constructed. "
+    std::cout << "     └─ Brain copy constructed. "
               << "Memory for 100 strings allocated.\n";
     for (size_t i = 0; i < 100; ++i)
     {
@@ -36,7 +37,7 @@ Brain &Brain::operator=(const Brain &other)
 
     delete[] ideas_;
     ideas_ = new std::string[100];
-    std::cout << "  └── Brain copy operator constructed. "
+    std::cout << "     └─ Brain copy operator constructed. "
               << "Memory for 100 strings allocated.\n";
     for (size_t i = 0; i < 100; ++i)
     {
@@ -48,7 +49,7 @@ Brain &Brain::operator=(const Brain &other)
 Brain::~Brain()
 {
     delete[] this->ideas_;
-    std::cout << "  ┌── 100 strinds deleted. Brain to be desconstructed.\n";
+    std::cout << " ├─ Brain: Destructor: 100 strinds deleted.\n";
 }
 
 /////////////////////////////////////////////////////////////////// Functions //

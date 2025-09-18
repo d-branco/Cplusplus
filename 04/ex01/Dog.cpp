@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/17 15:12:24      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/17 15:20:55     #########  #########  ###      ###      */
+/*   Created: 2025/09/18 08:09:18      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/18 08:19:49     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -14,39 +14,45 @@
 ///////////////////////////////////////////////////// Canonical Orthodox Form //
 Dog::Dog() : Animal("Dog")
 {
+    std::cout << " └─ Dog: Default Constructor.\n";
     this->type_      = "Dog";
     this->dog_brain_ = new Brain;
 }
 
 Dog::Dog(std::string type) : Animal(type)
 {
+    std::cout << " └─ Dog: Default Constructor with type argument.\n";
     this->dog_brain_ = new Brain;
 }
 
 Dog::Dog(const Dog &other) : Animal(other.type_)
 {
+    std::cout << " └─ Dog: Copy Constructor.\n";
     dog_brain_ = new Brain(*(other.dog_brain_));
     std::cout << "Dog copy constructor called" << std::endl;
 }
 
 Dog &Dog::operator=(const Dog &other)
 {
+    std::cout << " └─ Dog: Copy Operator= Constructor: ";
     if (this == &other)
     {
         return (*this);
     }
 
-    Animal::operator=(other);
+    this->type_ = other.type_;
     delete dog_brain_;
     dog_brain_ = new Brain(*(other.dog_brain_));
-    std::cout << "  └── It's similar to a previous " << type_ << ".\n";
+    std::cout << " └─ It's similar to a previous " << type_ << ".\n";
 
     return (*this);
 }
 
 Dog::~Dog()
 {
+    std::cout << "Dog: Deconstructor.\n";
     delete (dog_brain_);
+    std::cout << " └─ ";
 }
 
 /////////////////////////////////////////////////////////////////// Functions //

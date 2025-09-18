@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/16 17:20:42      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/17 15:20:54     #########  #########  ###      ###      */
+/*   Created: 2025/09/18 07:47:09      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/18 07:47:49     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 ///////////////////////////////////////////////////// Canonical Orthodox Form //
 Animal::Animal()
 {
-    std::cout << "A wild animal appears!";
+    std::cout << "Animal: Default Constructor: A wild animal appears!";
     if (!type_.empty())
     {
         std::cout << "It's a " << this->type_ << ".";
@@ -24,11 +24,14 @@ Animal::Animal()
 
 Animal::Animal(std::string type) : type_(type)
 {
-    std::cout << "A wild animal appears! It's a " << type_ << "!\n";
+    std::cout << "Animal: Constructor with type argument: "
+                 "A wild animal appears! It's a "
+              << type_ << "!\n";
 }
 
 Animal::Animal(const Animal &other)
 {
+    std::cout << "Animal: Copy Constructor\n";
     *this = other;
 }
 
@@ -40,14 +43,16 @@ Animal &Animal::operator=(const Animal &other)
     }
 
     this->type_ = other.type_;
-    std::cout << "Another " << type_ << " appears!\n";
+    std::cout << "Animal: Copy Operator= Constructor: "
+                 "Another "
+              << type_ << " appears!\n";
 
     return (*this);
 }
 
 Animal::~Animal()
 {
-    std::cout << "Wild ";
+    std::cout << "Animal: Destructor: Wild ";
     if (!this->type_.empty())
     {
         std::cout << this->type_;
@@ -68,5 +73,5 @@ std::string Animal::getType() const
 /////////////////////////////////////////////////////////////////// Functions //
 void Animal::makeSound() const
 {
-    std::cout << "A wild animal made a sound.\n";
+    std::cout << "Animal: A wild animal made a sound.\n";
 }
