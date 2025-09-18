@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/18 08:06:43      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/18 09:00:07     #########  #########  ###      ###      */
+/*   Updated: 2025/09/18 09:32:38     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -53,8 +53,14 @@ int main()
     std::cout << "\n";
 
 	Dog wolf;
+	std::cout << "\n";
 	std::cout << wolf.get_brain_idea(0);
 	std::cout << wolf.get_brain_idea(1);
-
+	wolf.set_brain_idea(1, "Do virtual creations exit?\n");
+	std::cout << wolf.get_brain_idea(1);
+	std::cout << "\n";
+	Dog wolfie = wolf;
+	std::cout << wolf.get_brain_idea(1);
+	std::cout << "\n";
     return (EXIT_SUCCESS);
 }

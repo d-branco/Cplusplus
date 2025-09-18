@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/18 08:09:18      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/18 08:58:36     #########  #########  ###      ###      */
+/*   Updated: 2025/09/18 09:33:49     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ Dog::Dog(const Dog &other) : Animal(other.type_)
 {
     std::cout << " └─ Dog: Copy Constructor.\n";
     dog_brain_ = new Brain(*(other.dog_brain_));
-    std::cout << "Dog copy constructor called" << std::endl;
 }
 
 Dog &Dog::operator=(const Dog &other)
@@ -69,4 +68,9 @@ std::string             Dog::get_brain_idea(size_t index)
 const std::string       Dog::get_brain_idea(size_t index) const
 {
 	return ((*dog_brain_)[index]);
+}
+
+void             Dog::set_brain_idea(size_t index, std::string str)
+{
+	(*dog_brain_)[index] = str;
 }

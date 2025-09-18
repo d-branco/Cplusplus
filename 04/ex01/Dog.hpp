@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/18 07:40:41      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/18 08:57:13     #########  #########  ###      ###      */
+/*   Updated: 2025/09/18 09:21:24     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ class Dog : virtual public Animal
     virtual ~Dog();
 
     void makeSound() const;
-	
+
     std::string             get_brain_idea(size_t index);
     const std::string       get_brain_idea(size_t index) const;
+
+	void             set_brain_idea(size_t index, std::string str);
 };
 
 #endif

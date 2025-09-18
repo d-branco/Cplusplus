@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/18 08:10:08      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/18 08:44:25     #########  #########  ###      ###      */
+/*   Updated: 2025/09/18 09:33:57     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ Cat::Cat(const Cat &other) : Animal(other.type_)
 {
     std::cout << " └─ Cat: Copy Constructor.\n";
     cat_brain_ = new Brain(*(other.cat_brain_));
-	std::cout << "Cat copy constructor called" << std::endl;
 }
 
 Cat &Cat::operator=(const Cat &other)
