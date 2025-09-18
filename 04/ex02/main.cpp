@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/18 13:36:50      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/18 13:59:33     #########  #########  ###      ###      */
+/*   Created: 2025/09/18 13:59:05      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/18 13:59:23     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -24,14 +24,21 @@
 
 int main()
 {
-    std::cout << "\n";
-
     const Animal *j = new Dog();
     const Animal *i = new Cat();
+
+    std::cout << "\n";
+
+    j->makeSound();
+    j->makeSound();
+
+    std::cout << "\n";
+
     delete j;
     delete i;
 
-    std::cout << "\n";
+    std::cout << "\n\n";
+
     Animal *array[6];
     for (size_t k = 0; k < 6; k++)
     {
@@ -44,30 +51,14 @@ int main()
             array[k] = new Cat();
         }
     }
+
     std::cout << "\n";
-
-    // Dog wolf;
-    // std::cout << "\n";
-
-    // std::cout << "Wolf: Idea[0]: " << wolf.get_brain_idea(0) << "\n";
-    // std::cout << "Wolf: Idea[1]: " << wolf.get_brain_idea(1) << "\n";
-    // std::cout << "\n";
-
-    // wolf.set_brain_idea(1, "Do virtual creations exit?");
-    // std::cout << "Wolf: Idea[1]: " << wolf.get_brain_idea(1) << "\n";
-    // std::cout << "\n";
-
-    // Dog wolfie = wolf;
-	// std::cout << "\n";
-
-    // std::cout << "Wolfie: Idea[1]: " << wolfie.get_brain_idea(1) << "\n";
-    // std::cout << "\n";
 
     for (size_t k = 0; k < 6; k++)
     {
+        array[k]->makeSound(); // Polymorphic calls
         delete array[k];
     }
-    std::cout << "\n";
 
     return (EXIT_SUCCESS);
 }
