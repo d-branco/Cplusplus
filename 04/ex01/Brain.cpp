@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/18 08:11:59      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/18 08:56:38     #########  #########  ###      ###      */
+/*   Updated: 2025/09/18 13:36:28     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 ///////////////////////////////////////////////////// Canonical Orthodox Form //
 Brain::Brain() : ideas_(new std::string[100])
 {
-	ideas_[0] = "Do I think?\n";
-	for (size_t index = 1; index < 100; index++)
-	{
-		ideas_[index] = "";
-	}
-    std::cout << "     └─ Brain: Default Constructor: Memory for 100 strings "
-                 "allocated.\n";
+    ideas_[0] = "Do I think?";
+    for (size_t index = 1; index < 100; index++)
+    {
+        ideas_[index] = "";
+    }
+    std::cout << "     └─ Brain: Default Constructor: Memory for 100 strings\n";
 }
 
 Brain::Brain(const Brain &other) : ideas_(new std::string[100])
@@ -67,4 +66,3 @@ const std::string &Brain::operator[](size_t index) const
 {
     return this->ideas_[index];
 }
-

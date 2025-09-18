@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/18 08:06:43      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/18 09:32:38     #########  #########  ###      ###      */
+/*   Created: 2025/09/18 13:36:50      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/18 13:38:22     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -52,15 +52,22 @@ int main()
     }
     std::cout << "\n";
 
-	Dog wolf;
+    Dog wolf;
+    std::cout << "\n";
+
+    std::cout << "Wolf: Idea[0]: " << wolf.get_brain_idea(0) << "\n";
+    std::cout << "Wolf: Idea[1]: " << wolf.get_brain_idea(1) << "\n";
+    std::cout << "\n";
+
+    wolf.set_brain_idea(1, "Do virtual creations exit?");
+    std::cout << "Wolf: Idea[1]: " << wolf.get_brain_idea(1) << "\n";
+    std::cout << "\n";
+
+    Dog wolfie = wolf;
 	std::cout << "\n";
-	std::cout << wolf.get_brain_idea(0);
-	std::cout << wolf.get_brain_idea(1);
-	wolf.set_brain_idea(1, "Do virtual creations exit?\n");
-	std::cout << wolf.get_brain_idea(1);
-	std::cout << "\n";
-	Dog wolfie = wolf;
-	std::cout << wolf.get_brain_idea(1);
-	std::cout << "\n";
+
+    std::cout << "Wolfie: Idea[1]: " << wolfie.get_brain_idea(1) << "\n";
+    std::cout << "\n";
+
     return (EXIT_SUCCESS);
 }

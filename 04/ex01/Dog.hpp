@@ -29,12 +29,12 @@ class Dog : virtual public Animal
 
     virtual ~Dog();
 
-    void makeSound() const;
+    void              makeSound() const;
 
-    std::string             get_brain_idea(size_t index);
-    const std::string       get_brain_idea(size_t index) const;
+    std::string       get_brain_idea(size_t index);
+    const std::string get_brain_idea(size_t index) const;
 
-	void             set_brain_idea(size_t index, std::string str);
+    void              set_brain_idea(size_t index, std::string str);
 };
 
 #endif

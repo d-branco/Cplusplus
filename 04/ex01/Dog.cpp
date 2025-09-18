@@ -60,17 +60,17 @@ void Dog::makeSound() const
     std::cout << "The Dog barks. It's not very effective\n";
 }
 
-std::string             Dog::get_brain_idea(size_t index)
+std::string Dog::get_brain_idea(size_t index)
 {
-	return ((*dog_brain_)[index]);
+    return ((*dog_brain_)[index]);
 }
 
-const std::string       Dog::get_brain_idea(size_t index) const
+const std::string Dog::get_brain_idea(size_t index) const
 {
-	return ((*dog_brain_)[index]);
+    return ((*dog_brain_)[index]);
 }
 
-void             Dog::set_brain_idea(size_t index, std::string str)
+void Dog::set_brain_idea(size_t index, std::string str)
 {
-	(*dog_brain_)[index] = str;
+    (*dog_brain_)[index] = str;
 }
