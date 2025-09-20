@@ -13,7 +13,11 @@
 #include <iostream>
 #include <string>
 
-#include "AMateria.hpp"
+// #include "AMateria.hpp"
+
+#ifndef DEBUG
+# define DEBUG false
+#endif
 
 int main()
 {
