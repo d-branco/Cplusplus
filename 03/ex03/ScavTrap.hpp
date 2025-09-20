@@ -5,14 +5,14 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/16 09:19:01      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/16 09:23:36     #########  #########  ###      ###      */
+/*   Updated: 2025/09/20 12:35:16     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #ifndef SCAVTRAP_HPP
-#define SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
-#include "ClapTrap.hpp"
+# include "ClapTrap.hpp"
 
 class ScavTrap : virtual public ClapTrap
 {
@@ -34,3 +34,8 @@ class ScavTrap : virtual public ClapTrap
 };
 
 #endif
+
+int main()
+
+{
+}

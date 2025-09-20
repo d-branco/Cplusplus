@@ -58,7 +58,7 @@ int main()
     // std::cout << "\n";
 
     // Dog wolfie = wolf;
-	// std::cout << "\n";
+    // std::cout << "\n";
 
     // std::cout << "Wolfie: Idea[1]: " << wolfie.get_brain_idea(1) << "\n";
     // std::cout << "\n";

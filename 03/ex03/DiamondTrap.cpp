@@ -17,10 +17,10 @@ DiamondTrap::DiamondTrap(std::string name) :
 	ScavTrap(name),
 	FragTrap(name)
 {
-	name_	= name;
-	//hit_	= FragTrap::hit_;
+	name_ = name;
+	// hit_	= FragTrap::hit_;
 	energy_ = ScavTrap::initial_energy;
-	//attack_ = FragTrap::attack_;
+	// attack_ = FragTrap::attack_;
 	std::cout << this->name_ << " suddenly shines.\n";
 
 	std::cout << this->name_ << " has:\n    " << this->hit_
