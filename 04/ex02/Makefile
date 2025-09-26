@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/09/18 13:47:40     #########  #########  ###      ###       #
+#    Updated: 2025/09/26 09:08:31     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -17,7 +17,7 @@ FORMATABLE		= $(HEADERS) $(SRCS)
 TEST_RUN		:= $(NAME)
 ########################################################## Objects and Headers #
 HEADERS			:=															\
-	Animal.hpp																\
+	AAnimal.hpp																\
 	Cat.hpp																	\
 	Dog.hpp																	\
 	WrongAnimal.hpp															\
@@ -25,7 +25,7 @@ HEADERS			:=															\
 	Brain.hpp																\
 
 SRCS			:=															\
-	Animal.cpp																\
+	AAnimal.cpp																\
 	Dog.cpp																	\
 	Cat.cpp																	\
 	WrongAnimal.cpp															\

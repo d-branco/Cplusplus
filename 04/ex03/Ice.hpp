@@ -5,11 +5,25 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/09/20 16:44:01      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/20 16:45:59     #########  #########  ###      ###      */
+/*   Updated: 2025/09/24 17:30:19     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #ifndef ICE_HPP
 #define ICE_HPP
+
+class Ice
+{
+  private:
+    Ice();
+
+    Ice(const Ice &other);
+    Ice &operator=(const Ice &other);
+
+    virtual ~Ice();
+
+  public:
+
+};
 
 #endif
