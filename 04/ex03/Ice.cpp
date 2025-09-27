@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/20 16:44:06      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/20 16:44:13     #########  #########  ###      ###      */
+/*   Created: 2025/09/27 16:01:11      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/27 16:07:38     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -13,10 +13,10 @@
 
 Ice::Ice() : AMateria("ice")
 {
-    if (DEBUG)
-    {
-        std::cout << "Ice: Default Constructor\n";
-    }
+	if (DEBUG)
+	{
+		std::cout << "Ice: Default Constructor\n";
+	}
 }
 
 // Ice::Ice(std::string const &type)
@@ -27,58 +27,60 @@ Ice::Ice() : AMateria("ice")
 //     }
 // }
 
-Ice::Ice(const Ice &other)
+Ice::Ice(const Ice &other) : AMateria(other.type_)
 {
-    if (DEBUG)
-    {
-        std::cout << "Ice: Copy Constructor\n";
-    }
+	if (DEBUG)
+	{
+		std::cout << "Ice: Copy Constructor\n";
+	}
 
-    *this = other;
+	*this = other;
 }
 
 Ice &Ice::operator=(const Ice &other)
 {
-    if (DEBUG)
-    {
-        std::cout << "Ice: Copy Operator= Constructor\n";
-    }
-    if (this == &other)
-    {
-        if (DEBUG)
-        {
-            std::cout << "     Copying itself!\n";
-        }
-        return (*this);
-    }
+	if (DEBUG)
+	{
+		std::cout << "Ice: Copy Operator= Constructor\n";
+	}
+	if (this == &other)
+	{
+		if (DEBUG)
+		{
+			std::cout << "     Copying itself!\n";
+		}
+		return (*this);
+	}
+
+	return (*this);
 }
 
 Ice::~Ice()
 {
-    if (DEBUG)
-    {
-        std::cout << "Ice: Destructor\n";
-    }
+	if (DEBUG)
+	{
+		std::cout << "Ice: Destructor\n";
+	}
 }
 
 AMateria *Ice::clone() const
 {
-    if (DEBUG)
-    {
-        std::cout << "Ice: Clone()\n";
-    }
+	if (DEBUG)
+	{
+		std::cout << "Ice: Clone()\n";
+	}
 
-    AMateria *clone = new Ice(*this);
+	AMateria *clone = new Ice(*this);
 
-    return (clone);
+	return (clone);
 }
 
 void Ice::use(ICharacter &target)
 {
-    if (DEBUG)
-    {
-        std::cout << "Ice: use()\n";
-    }
+	if (DEBUG)
+	{
+		std::cout << "Ice: use()\n";
+	}
 
-    std::cout << "* shoots an ice bolt at " << target.getName() << " *\n";
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *\n";
 }

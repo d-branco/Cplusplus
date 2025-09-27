@@ -13,67 +13,67 @@
 
 AMateria::AMateria()
 {
-    if (DEBUG)
-    {
-        std::cout << "AMateria: Default Constructor\n";
-    }
-    std::cout << "\nError:\nThis line should not be reached!\n\n";
+	if (DEBUG)
+	{
+		std::cout << "AMateria: Default Constructor\n";
+	}
+	std::cout << "\nError:\nThis line should not be reached!\n\n";
 }
 
 AMateria::AMateria(std::string const &type) : type_(type)
 {
-    if (DEBUG)
-    {
-        std::cout << "AMateria: Parametrized Default Constructor\n";
-        std::cout << "          type_: " << type_ << "\n";
-    }
+	if (DEBUG)
+	{
+		std::cout << "AMateria: Parametrized Default Constructor\n";
+		std::cout << "          type_: " << type_ << "\n";
+	}
 }
 
 AMateria::AMateria(const AMateria &other)
 {
-    if (DEBUG)
-    {
-        std::cout << "AMateria: Copy Constructor\n";
-        std::cout << "          type_: " << other.type_ << "\n";
-    }
+	if (DEBUG)
+	{
+		std::cout << "AMateria: Copy Constructor\n";
+		std::cout << "          type_: " << other.type_ << "\n";
+	}
 }
 
 AMateria &AMateria::operator=(const AMateria &other)
 {
-    if (DEBUG)
-    {
-        std::cout << "AMateria: Copy Operator= Constructor\n";
-        std::cout << "          Copying: " << other.getType() << "\n";
-    }
+	if (DEBUG)
+	{
+		std::cout << "AMateria: Copy Operator= Constructor\n";
+		std::cout << "          Copying: " << other.getType() << "\n";
+	}
 
-    // The subject warns not to do this:
-    // this->type_ = other.type_;
+	// The subject warns not to do this:
+	// this->type_ = other.type_;
 
-    return (*this);
+	return (*this);
 }
 
 AMateria::~AMateria()
 {
-    if (DEBUG)
-    {
-        std::cout << "AMateria: Destructor\n";
-    }
+	if (DEBUG)
+	{
+		std::cout << "AMateria: Destructor\n";
+	}
 }
 
 std::string const &AMateria::getType() const // Returns the materia type
 {
-    if (DEBUG)
-    {
-        std::cout << "AMateria: getType()\n";
-    }
+	if (DEBUG)
+	{
+		std::cout << "AMateria: getType()\n";
+	}
 
-    return (this->type_);
+	return (this->type_);
 }
 
 void AMateria::use(ICharacter &target)
 {
-    if (DEBUG)
-    {
-        std::cout << "AMateria: use(" << target.getName() << ")\n";
-    }
+	if (DEBUG)
+	{
+		std::cout << "AMateria: use(" << target.getName() << ")\n";
+	}
 }

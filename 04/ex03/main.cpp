@@ -30,35 +30,35 @@
 
 int main()
 {
-    // AMateria cannot_create; // for testing purposes only
+	// AMateria cannot_create; // for testing purposes only
 
-    ////////////////////////////////////////////////// Subject example starts //
-    // IMateriaSource* src = new MateriaSource();
-    // src->learnMateria(new Ice());
-    // src->learnMateria(new Cure());
+	////////////////////////////////////////////////// Subject example starts //
+	// IMateriaSource* src = new MateriaSource();
+	// src->learnMateria(new Ice());
+	// src->learnMateria(new Cure());
 
-    // ICharacter* me = new Character("me");
+	// ICharacter* me = new Character("me");
 
-    // AMateria* tmp;
-    // tmp = src->createMateria("ice");
-    // me->equip(tmp);
-    // tmp = src->createMateria("cure");
-    // me->equip(tmp);
+	// AMateria* tmp;
+	// tmp = src->createMateria("ice");
+	// me->equip(tmp);
+	// tmp = src->createMateria("cure");
+	// me->equip(tmp);
 
-    // ICharacter* bob = new Character("bob");
+	// ICharacter* bob = new Character("bob");
 
-    // me->use(0, *bob);
-    // me->use(1, *bob);
+	// me->use(0, *bob);
+	// me->use(1, *bob);
 
-    // delete bob;
-    // delete me;
-    // delete src;
-    //////////////////////////////////////////////////// Subject example ends //
+	// delete bob;
+	// delete me;
+	// delete src;
+	//////////////////////////////////////////////////// Subject example ends //
 
-    if (DEBUG)
-    {
-        std::cout << "Goodbye\n";
-    }
+	if (DEBUG)
+	{
+		std::cout << "Goodbye\n";
+	}
 
-    return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }

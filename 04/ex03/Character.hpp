@@ -26,23 +26,23 @@
 class Character : public ICharacter
 {
   private:
-    std::string name_;
-    AMateria   *inventory_[INVENTORY_SIZE];
+	std::string name_;
+	AMateria   *inventory_[INVENTORY_SIZE];
 
-    Character();
-    void leave_on_the_floor(AMateria *m);
+	Character();
+	void leave_on_the_floor(AMateria *m);
 
   public:
-    Character(const Character &other);
-    Character &operator=(const Character &other);
+	Character(const Character &other);
+	Character &operator=(const Character &other);
 
-    virtual ~Character();
+	virtual ~Character();
 
-    // from ICharacter
-    std::string const &getName() const;
-    void               equip(AMateria *m);
-    void               unequip(int idx);
-    void               use(int idx, ICharacter &target);
+	// from ICharacter
+	std::string const &getName() const;
+	void			   equip(AMateria *m);
+	void			   unequip(int idx);
+	void			   use(int idx, ICharacter &target);
 };
 
 #endif

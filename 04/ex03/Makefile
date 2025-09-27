@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/09/18 17:37:07     #########  #########  ###      ###       #
+#    Updated: 2025/09/27 16:11:17     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -156,7 +156,7 @@ re: fclean all
 	SpacesInParentheses: false\n\
 	SpacesInSquareBrackets: false\n\
 	TabWidth: 4\n\
-	UseTab: Never\n\
+	UseTab: Always\n\
 	" > .clang-format
 
 format: .clang-format

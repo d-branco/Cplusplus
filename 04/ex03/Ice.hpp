@@ -21,18 +21,18 @@
 class Ice : public AMateria
 {
   private:
-    // Ice(std::string const &type);
+	// Ice(std::string const &type);
 
   public:
-    Ice();
+	Ice();
 
-    Ice(const Ice &other);
-    Ice &operator=(const Ice &other);
+	Ice(const Ice &other);
+	Ice &operator=(const Ice &other);
 
-    virtual ~Ice();
+	virtual ~Ice();
 
-    virtual AMateria *clone() const;
-    virtual void      use(ICharacter &target);
+	virtual AMateria *clone() const;
+	virtual void	  use(ICharacter &target);
 };
 
 #endif

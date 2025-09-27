@@ -21,18 +21,18 @@
 class Cure : public AMateria
 {
   private:
-    // Cure(std::string const &type);
+	// Cure(std::string const &type);
 
   public:
-    Cure();
+	Cure();
 
-    Cure(const Cure &other);
-    Cure &operator=(const Cure &other);
+	Cure(const Cure &other);
+	Cure &operator=(const Cure &other);
 
-    virtual ~Cure();
+	virtual ~Cure();
 
-    virtual AMateria *clone() const;
-    virtual void      use(ICharacter &target);
+	virtual AMateria *clone() const;
+	virtual void	  use(ICharacter &target);
 };
 
 #endif

@@ -25,24 +25,24 @@
 class AMateria
 {
   private:
-    AMateria(const AMateria &other);
-    AMateria &operator=(const AMateria &other);
+	AMateria(const AMateria &other);
+	AMateria &operator=(const AMateria &other);
 
   protected:
-    AMateria();
-    const std::string type_;
-    //[...]
+	AMateria();
+	const std::string type_;
+	//[...]
 
   public:
-    AMateria(std::string const &type);
+	AMateria(std::string const &type);
 
-    virtual ~AMateria();
+	virtual ~AMateria();
 
-    //[...]
-    std::string const &getType() const;
+	//[...]
+	std::string const &getType() const;
 
-    virtual AMateria  *clone() const = 0;
-    virtual void       use(ICharacter &target);
+	virtual AMateria  *clone() const = 0;
+	virtual void	   use(ICharacter &target);
 };
 
 #endif
