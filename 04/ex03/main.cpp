@@ -10,13 +10,13 @@
 /* ************************************************************************** */
 
 #include <cstdlib>
-#include <iostream>
-#include <string>
 
 #include "AMateria.hpp"
+#include "Character.hpp"
 #include "Cure.hpp"
-#include "ICharacter.hpp"
 #include "Ice.hpp"
+#include "ICharacter.hpp"
+#include "IMateriaSource.hpp"
 #include "MateriaSource.hpp"
 
 #ifndef DEBUG
@@ -54,6 +54,11 @@ int main()
     // delete me;
     // delete src;
     //////////////////////////////////////////////////// Subject example ends //
+
+    if (DEBUG)
+    {
+        std::cout << "Goodbye\n";
+    }
 
     return (EXIT_SUCCESS);
 }

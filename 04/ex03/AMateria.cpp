@@ -43,6 +43,7 @@ AMateria &AMateria::operator=(const AMateria &other)
     if (DEBUG)
     {
         std::cout << "AMateria: Copy Operator= Constructor\n";
+        std::cout << "          Copying: " << other.getType() << "\n";
     }
 
     // The subject warns not to do this:

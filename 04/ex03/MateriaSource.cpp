@@ -9,9 +9,6 @@
 /*                                                            ########        */
 /* ************************************************************************** */
 
-#ifndef MATERIASOURCE_HPP
-#define MATERIASOURCE_HPP
-
 #include "MateriaSource.hpp"
 
-#endif
+

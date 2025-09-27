@@ -12,16 +12,21 @@
 #ifndef MATERIASOURCE_HPP
 #define MATERIASOURCE_HPP
 
-class MaterialSource
+#include "IMateriaSource.hpp"
+
+class MateriaSource : public IMateriaSource
 {
   private:
-    MaterialSource();
+    MateriaSource();
 
-    MaterialSource(const MaterialSource &other);
-    MaterialSource &operator=(const MaterialSource &other);
+    MateriaSource(const MateriaSource &other);
+    MateriaSource &operator=(const MateriaSource &other);
 
   public:
-    virtual ~MaterialSource();
+    ~MateriaSource();
+
+    void      learnMateria(AMateria *);
+    AMateria *createMateria(std::string const &type);
 };
 
 #endif
