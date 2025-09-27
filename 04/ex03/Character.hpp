@@ -16,34 +16,33 @@
 # define DEBUG false
 #endif
 
-# define INVENTORY_SIZE 4
+#define INVENTORY_SIZE 4
 
-#include "ICharacter.hpp"
 #include "AMateria.hpp"
+#include "ICharacter.hpp"
 
 #include <string>
 
 class Character : public ICharacter
 {
-	private:
-		std::string name_;
-		AMateria	*inventory_[INVENTORY_SIZE];
+  private:
+    std::string name_;
+    AMateria   *inventory_[INVENTORY_SIZE];
 
-		Character();
-		void			leave_on_the_floor(AMateria *m);
-		
-	public:
-      Character(const Character &other);
-   	  Character &operator=(const Character &other);
+    Character();
+    void leave_on_the_floor(AMateria *m);
 
-   	  virtual ~Character();
+  public:
+    Character(const Character &other);
+    Character &operator=(const Character &other);
 
-	// from ICharacter
-	  std::string const &getName() const;
-	  void               equip(AMateria *m);
-	  void               unequip(int idx);
-	  void               use(int idx, ICharacter &target);
+    virtual ~Character();
 
+    // from ICharacter
+    std::string const &getName() const;
+    void               equip(AMateria *m);
+    void               unequip(int idx);
+    void               use(int idx, ICharacter &target);
 };
 
 #endif

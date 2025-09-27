@@ -47,7 +47,7 @@ AMateria &AMateria::operator=(const AMateria &other)
     }
 
     // The subject warns not to do this:
-    //this->type_ = other.type_;
+    // this->type_ = other.type_;
 
     return (*this);
 }

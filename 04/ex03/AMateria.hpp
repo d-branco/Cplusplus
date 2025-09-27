@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/27 11:38:23      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/27 11:38:43     #########  #########  ###      ###      */
+/*   Created: 2025/09/27 15:44:45      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/27 15:47:35     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class AMateria
   private:
     AMateria(const AMateria &other);
     AMateria &operator=(const AMateria &other);
-  
+
   protected:
     AMateria();
     const std::string type_;

@@ -21,8 +21,8 @@
 class Cure : public AMateria
 {
   private:
-    //Cure(std::string const &type);
-  
+    // Cure(std::string const &type);
+
   public:
     Cure();
 
@@ -32,7 +32,7 @@ class Cure : public AMateria
     virtual ~Cure();
 
     virtual AMateria *clone() const;
-    virtual void  use(ICharacter &target);
+    virtual void      use(ICharacter &target);
 };
 
 #endif
