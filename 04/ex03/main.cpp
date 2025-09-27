@@ -15,22 +15,22 @@
 
 #include "AMateria.hpp"
 #include "Cure.hpp"
-#include "Ice.hpp"
 #include "ICharacter.hpp"
+#include "Ice.hpp"
 #include "MateriaSource.hpp"
 
 #ifndef DEBUG
 # define DEBUG false
 #endif
 
-//Notes:
+// Notes:
 
-//Interfaces are... something. That "something" does not exits in C++98.
-//Why is this not a specification on a documentation is the big question.
+// Interfaces are... something. That "something" does not exits in C++98.
+// Why is this not a specification on a documentation is the big question.
 
 int main()
 {
-    //AMateria cannot_create; // for testing purposes only
+    // AMateria cannot_create; // for testing purposes only
 
     return (EXIT_SUCCESS);
 }

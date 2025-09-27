@@ -16,10 +16,10 @@
 
 class Cure : public AMateria
 {
-	private:
-		Cure();
+  private:
+    Cure();
 
-	public:
+  public:
     Cure(std::string const &type);
 
     Cure(const Cure &other);
@@ -27,8 +27,8 @@ class Cure : public AMateria
 
     virtual ~Cure();
 
-    virtual Cure 	 *clone() const;
-    virtual void       use(ICharacter &target);
+    virtual Cure *clone() const;
+    virtual void  use(ICharacter &target);
 };
 
 #endif

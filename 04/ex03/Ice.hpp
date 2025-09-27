@@ -16,10 +16,10 @@
 
 class Ice : public AMateria
 {
-	private:
-		Ice();
+  private:
+    Ice();
 
-	public:
+  public:
     Ice(std::string const &type);
 
     Ice(const Ice &other);
@@ -27,8 +27,8 @@ class Ice : public AMateria
 
     virtual ~Ice();
 
-    virtual Ice 	 *clone() const;
-    virtual void   use(ICharacter &target);
+    virtual Ice *clone() const;
+    virtual void use(ICharacter &target);
 };
 
 #endif

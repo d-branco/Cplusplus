@@ -51,10 +51,10 @@ Ice::~Ice()
     }
 }
 
-void       Ice::use(ICharacter &target)
+void Ice::use(ICharacter &target)
 {
-	if (DEBUG)
-	{
-		std::cout << "Ice: use()\n";
-	}
+    if (DEBUG)
+    {
+        std::cout << "Ice: use()\n";
+    }
 }

@@ -51,11 +51,10 @@ Cure::~Cure()
     }
 }
 
-
-void       Cure::use(ICharacter &target)
+void Cure::use(ICharacter &target)
 {
-	if (DEBUG)
-	{
-		std::cout << "Cure: use()\n";
-	}
+    if (DEBUG)
+    {
+        std::cout << "Cure: use()\n";
+    }
 }

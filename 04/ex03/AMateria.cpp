@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/18 17:34:41      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/18 17:35:15     #########  #########  ###      ###      */
+/*   Created: 2025/09/27 11:38:23      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/27 11:38:39     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ std::string const &AMateria::getType() const // Returns the materia type
     return (this->type_);
 }
 
-void       AMateria::use(ICharacter &target)
+void AMateria::use(ICharacter &target)
 {
-	if (DEBUG)
-	{
-		std::cout << "AMateria: use()\n";
-	}
+    if (DEBUG)
+    {
+        std::cout << "AMateria: use()\n";
+    }
 }

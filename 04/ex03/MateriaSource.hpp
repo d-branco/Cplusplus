@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/20 16:45:03      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/24 17:32:00     #########  #########  ###      ###      */
+/*   Created: 2025/09/27 11:40:20      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/27 11:41:46     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ class MaterialSrouce
     MaterialSrouce(const MaterialSrouce &other);
     MaterialSrouce &operator=(const MaterialSrouce &other);
 
-    virtual ~MaterialSrouce();
-
   public:
-
+    virtual ~MaterialSrouce();
 };
 
 #endif
