@@ -23,8 +23,6 @@ class ICharacter
     ICharacter(const ICharacter &other);
     ICharacter &operator=(const ICharacter &other);
 
-    virtual ~ICharacter();
-
   public:
     virtual ~ICharacter(){};
     virtual std::string const &getName() const                  = 0;

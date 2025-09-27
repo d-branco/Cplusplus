@@ -17,13 +17,15 @@ AMateria::AMateria()
     {
         std::cout << "AMateria: Default Constructor\n";
     }
+    std::cout << "\nError:\nThis line should not be reached!\n\n";
 }
 
-AMateria::AMateria(std::string const &type)
+AMateria::AMateria(std::string const &type) : type_(type)
 {
     if (DEBUG)
     {
         std::cout << "AMateria: Parametrized Default Constructor\n";
+        std::cout << "          type_: " << type_ << "\n";
     }
 }
 
@@ -41,6 +43,11 @@ AMateria &AMateria::operator=(const AMateria &other)
     {
         std::cout << "AMateria: Copy Operator= Constructor\n";
     }
+
+    // The subject warns not to do this:
+    //this->type_ = other.type_;
+
+    return (*this);
 }
 
 AMateria::~AMateria()
@@ -65,6 +72,6 @@ void AMateria::use(ICharacter &target)
 {
     if (DEBUG)
     {
-        std::cout << "AMateria: use()\n";
+        std::cout << "AMateria: use(" << target.getName() << ")\n";
     }
 }

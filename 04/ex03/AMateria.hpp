@@ -24,9 +24,10 @@
 // class "Abstract Materia"
 class AMateria
 {
-  protected:
+  private:
     AMateria();
 
+  protected:
     const std::string type_;
     //[...]
 

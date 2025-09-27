@@ -12,16 +12,16 @@
 #ifndef MATERIASOURCE_HPP
 #define MATERIASOURCE_HPP
 
-class MaterialSrouce
+class MaterialSource
 {
   private:
-    MaterialSrouce();
+    MaterialSource();
 
-    MaterialSrouce(const MaterialSrouce &other);
-    MaterialSrouce &operator=(const MaterialSrouce &other);
+    MaterialSource(const MaterialSource &other);
+    MaterialSource &operator=(const MaterialSource &other);
 
   public:
-    virtual ~MaterialSrouce();
+    virtual ~MaterialSource();
 };
 
 #endif

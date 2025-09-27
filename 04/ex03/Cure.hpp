@@ -12,6 +12,10 @@
 #ifndef CURE_HPP
 #define CURE_HPP
 
+#ifndef DEBUG
+# define DEBUG false
+#endif
+
 #include "AMateria.hpp"
 
 class Cure : public AMateria
@@ -27,7 +31,7 @@ class Cure : public AMateria
 
     virtual ~Cure();
 
-    virtual Cure *clone() const;
+    virtual AMateria *clone() const;
     virtual void  use(ICharacter &target);
 };
 
