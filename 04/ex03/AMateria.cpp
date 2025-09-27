@@ -57,12 +57,14 @@ std::string const &AMateria::getType() const // Returns the materia type
     {
         std::cout << "AMateria: getType()\n";
     }
+
+    return (this->type_);
 }
 
-// virtual void       AMateria::use(ICharacter &target)
-// {
-// 	if (DEBUG)
-// 	{
-// 		std::cout << "AMateria: use()\n";
-// 	}
-// }
+void       AMateria::use(ICharacter &target)
+{
+	if (DEBUG)
+	{
+		std::cout << "AMateria: use()\n";
+	}
+}

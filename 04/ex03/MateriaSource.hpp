@@ -1,6 +1,6 @@
 /* ************************************************************************** */
 /*                                          ::::::::    ::::::::   :::::::::  */
-/*   MateriaSrouce.hpp                    :+:    :+:  :+:    :+:  :+:         */
+/*   MateriaSource.hpp                    :+:    :+:  :+:    :+:  :+:         */
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
@@ -9,8 +9,8 @@
 /*                                                            ########        */
 /* ************************************************************************** */
 
-#ifndef MATERIASROUCE_HPP
-#define MATERIASROUCE_HPP
+#ifndef MATERIASOURCE_HPP
+#define MATERIASOURCE_HPP
 
 class MaterialSrouce
 {

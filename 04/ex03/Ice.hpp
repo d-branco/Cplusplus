@@ -12,18 +12,23 @@
 #ifndef ICE_HPP
 #define ICE_HPP
 
-class Ice
+#include "AMateria.hpp"
+
+class Ice : public AMateria
 {
-  private:
-    Ice();
+	private:
+		Ice();
+
+	public:
+    Ice(std::string const &type);
 
     Ice(const Ice &other);
     Ice &operator=(const Ice &other);
 
     virtual ~Ice();
 
-  public:
-
+    virtual Ice 	 *clone() const;
+    virtual void   use(ICharacter &target);
 };
 
 #endif

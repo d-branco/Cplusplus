@@ -12,4 +12,23 @@
 #ifndef CURE_HPP
 #define CURE_HPP
 
+#include "AMateria.hpp"
+
+class Cure : public AMateria
+{
+	private:
+		Cure();
+
+	public:
+    Cure(std::string const &type);
+
+    Cure(const Cure &other);
+    Cure &operator=(const Cure &other);
+
+    virtual ~Cure();
+
+    virtual Cure 	 *clone() const;
+    virtual void       use(ICharacter &target);
+};
+
 #endif

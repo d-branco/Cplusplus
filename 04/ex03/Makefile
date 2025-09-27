@@ -18,9 +18,21 @@ TEST_RUN		:= $(NAME)
 ########################################################## Objects and Headers #
 HEADERS			:=															\
 	AMateria.hpp															\
+	Character.hpp															\
+	Cure.hpp																\
+	Ice.hpp																	\
+	ICharacter.hpp															\
+	IMateriaSource.hpp														\
+	MateriaSource.hpp														\
 
 SRCS			:=															\
 	AMateria.cpp															\
+	Character.cpp															\
+	Cure.cpp																\
+	Ice.cpp																	\
+	ICharacter.cpp															\
+	IMateriaSource.cpp														\
+	MateriaSource.cpp														\
 	\
 	main.cpp
 
