@@ -11,7 +11,7 @@
 
 #include "Cure.hpp"
 
-Cure::Cure()
+Cure::Cure() : AMateria("cure")
 {
     if (DEBUG)
     {
@@ -19,13 +19,13 @@ Cure::Cure()
     }
 }
 
-Cure::Cure(std::string const &type)
-{
-    if (DEBUG)
-    {
-        std::cout << "Cure: Parametrized Default Constructor\n";
-    }
-}
+// Cure::Cure(std::string const &type)
+// {
+//     if (DEBUG)
+//     {
+//         std::cout << "Cure: Parametrized Default Constructor\n";
+//     }
+// }
 
 Cure::Cure(const Cure &other)
 {
@@ -33,6 +33,8 @@ Cure::Cure(const Cure &other)
     {
         std::cout << "Cure: Copy Constructor\n";
     }
+
+    *this = other;
 }
 
 Cure &Cure::operator=(const Cure &other)
@@ -40,6 +42,14 @@ Cure &Cure::operator=(const Cure &other)
     if (DEBUG)
     {
         std::cout << "Cure: Copy Operator= Constructor\n";
+    }
+    if (this == &other)
+    {
+        if (DEBUG)
+        {
+            std::cout << "      Copying itself!\n";
+        }
+        return (*this);
     }
 }
 
@@ -51,10 +61,24 @@ Cure::~Cure()
     }
 }
 
+AMateria *Cure::clone() const
+{
+    if (DEBUG)
+    {
+        std::cout << "Cure: Clone()\n";
+    }
+
+    AMateria *clone = new Cure(*this);
+
+    return (clone);
+}
+
 void Cure::use(ICharacter &target)
 {
     if (DEBUG)
     {
         std::cout << "Cure: use()\n";
     }
+
+    std::cout << "* heals " << target.getName() << "\'s wouds *\n";
 }

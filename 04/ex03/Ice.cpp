@@ -11,7 +11,7 @@
 
 #include "Ice.hpp"
 
-Ice::Ice()
+Ice::Ice() : AMateria("ice")
 {
     if (DEBUG)
     {
@@ -19,13 +19,13 @@ Ice::Ice()
     }
 }
 
-Ice::Ice(std::string const &type)
-{
-    if (DEBUG)
-    {
-        std::cout << "Ice: Parametrized Default Constructor\n";
-    }
-}
+// Ice::Ice(std::string const &type)
+// {
+//     if (DEBUG)
+//     {
+//         std::cout << "Ice: Parametrized Default Constructor\n";
+//     }
+// }
 
 Ice::Ice(const Ice &other)
 {
@@ -33,6 +33,8 @@ Ice::Ice(const Ice &other)
     {
         std::cout << "Ice: Copy Constructor\n";
     }
+
+    *this = other;
 }
 
 Ice &Ice::operator=(const Ice &other)
@@ -40,6 +42,14 @@ Ice &Ice::operator=(const Ice &other)
     if (DEBUG)
     {
         std::cout << "Ice: Copy Operator= Constructor\n";
+    }
+    if (this == &other)
+    {
+        if (DEBUG)
+        {
+            std::cout << "     Copying itself!\n";
+        }
+        return (*this);
     }
 }
 
@@ -51,10 +61,24 @@ Ice::~Ice()
     }
 }
 
+AMateria *Ice::clone() const
+{
+    if (DEBUG)
+    {
+        std::cout << "Ice: Clone()\n";
+    }
+
+    AMateria *clone = new Ice(*this);
+
+    return (clone);
+}
+
 void Ice::use(ICharacter &target)
 {
     if (DEBUG)
     {
         std::cout << "Ice: use()\n";
     }
+
+    std::cout << "* shoots an ice bolt at " << target.getName() << " *\n";
 }

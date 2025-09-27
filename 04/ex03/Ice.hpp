@@ -21,10 +21,10 @@
 class Ice : public AMateria
 {
   private:
-    Ice();
+    //Ice(std::string const &type);
   
   public:
-    Ice(std::string const &type);
+    Ice();
 
     Ice(const Ice &other);
     Ice &operator=(const Ice &other);
