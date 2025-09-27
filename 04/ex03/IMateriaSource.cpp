@@ -10,3 +10,5 @@
 /* ************************************************************************** */
 
 #include "IMateriaSource.hpp"
+
+// this class is intentionally left blank

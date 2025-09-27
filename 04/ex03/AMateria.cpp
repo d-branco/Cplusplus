@@ -34,6 +34,7 @@ AMateria::AMateria(const AMateria &other)
     if (DEBUG)
     {
         std::cout << "AMateria: Copy Constructor\n";
+        std::cout << "          type_: " << other.type_ << "\n";
     }
 }
 

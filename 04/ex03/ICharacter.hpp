@@ -17,7 +17,7 @@
 
 class ICharacter
 {
-  private:
+  protected:
     ICharacter();
 
     ICharacter(const ICharacter &other);

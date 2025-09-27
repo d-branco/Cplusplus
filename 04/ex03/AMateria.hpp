@@ -25,9 +25,9 @@
 class AMateria
 {
   private:
-    AMateria();
-
+  
   protected:
+    AMateria();
     const std::string type_;
     //[...]
 

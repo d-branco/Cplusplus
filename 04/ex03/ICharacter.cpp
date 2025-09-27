@@ -10,3 +10,5 @@
 /* ************************************************************************** */
 
 #include "ICharacter.hpp"
+
+// this class is intentionally left blank

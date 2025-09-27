@@ -22,7 +22,7 @@ class Ice : public AMateria
 {
   private:
     Ice();
-
+  
   public:
     Ice(std::string const &type);
 
