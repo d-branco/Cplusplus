@@ -14,6 +14,8 @@
 
 #include "IMateriaSource.hpp"
 
+#define INVENTORY_SIZE 4
+
 class MateriaSource : public IMateriaSource
 {
   private:
@@ -21,6 +23,9 @@ class MateriaSource : public IMateriaSource
 
 	MateriaSource(const MateriaSource &other);
 	MateriaSource &operator=(const MateriaSource &other);
+
+
+  AMateria  *inventory_[INVENTORY_SIZE];
 
   public:
 	~MateriaSource();

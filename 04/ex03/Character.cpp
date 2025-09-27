@@ -88,8 +88,8 @@ Character::~Character()
 	{
 		if (this->inventory_[i])
 		{
-			delete inventory_[i];
-			inventory_[i] = NULL;
+			delete this->inventory_[i];
+			this->inventory_[i] = NULL;
 		}
 		i++;
 		if (i >= INVENTORY_SIZE)
