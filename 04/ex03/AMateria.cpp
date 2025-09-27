@@ -60,12 +60,12 @@ AMateria::~AMateria()
 	}
 }
 
-std::string const &AMateria::getType() const // Returns the materia type
+std::string const &AMateria::getType() const
 {
-	if (DEBUG)
-	{
-		std::cout << "AMateria: getType()\n";
-	}
+	//if (DEBUG)
+	//{
+	//	std::cout << "AMateria: getType()\n";
+	//}
 
 	return (this->type_);
 }

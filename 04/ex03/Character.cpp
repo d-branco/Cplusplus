@@ -18,6 +18,37 @@ Character::Character() : name_("Protagonist"), inventory_()
 		std::cout << "Character: Default Constructor\n";
 		std::cout << "           name_:" << this->name_ << "\n";
 	}
+
+	int i = 0;
+	for (;;)
+	{
+		inventory_[i] = NULL;
+		i++;
+		if (i >= INVENTORY_SIZE)
+		{
+			break;
+		}
+	}
+}
+
+Character::Character(std::string const &name) : name_(name)
+{
+	if (DEBUG)
+	{
+		std::cout << "Character: Default Parametrized Constructor\n";
+		std::cout << "           name_:" << this->name_ << "\n";
+	}
+
+	int i = 0;
+	for (;;)
+	{
+		inventory_[i] = NULL;
+		i++;
+		if (i >= INVENTORY_SIZE)
+		{
+			break;
+		}
+	}
 }
 
 Character::Character(const Character &other) : ICharacter(other)
@@ -112,7 +143,8 @@ void Character::equip(AMateria *m)
 {
 	if (DEBUG)
 	{
-		std::cout << "Character: equip(" << m->getType() << ")\n";
+		std::cout << "Character: equip(";
+		std::cout << (m->getType()) << ")\n";
 	}
 	int i = 0;
 	for (;;)
@@ -120,7 +152,7 @@ void Character::equip(AMateria *m)
 		if (this->inventory_[i] == NULL)
 		{
 			inventory_[i] = m;
-			break;
+			return;
 		}
 		i++;
 		if (i >= INVENTORY_SIZE)
@@ -131,6 +163,10 @@ void Character::equip(AMateria *m)
 			}
 			break;
 		}
+	}
+	if (DEBUG)
+	{
+		std::cout << "           Insufficient space in inventory!\n";
 	}
 }
 

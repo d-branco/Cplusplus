@@ -33,6 +33,7 @@ class Character : public ICharacter
 	void leave_on_the_floor(AMateria *m);
 
   public:
+	Character(std::string const &type);
 	Character(const Character &other);
 	Character &operator=(const Character &other);
 

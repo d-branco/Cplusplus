@@ -17,6 +17,8 @@
 #endif
 
 #include "AMateria.hpp"
+#include "iostream"
+#include "string"
 
 class Cure : public AMateria
 {

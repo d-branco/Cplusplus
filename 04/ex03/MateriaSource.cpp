@@ -17,6 +17,17 @@ MateriaSource::MateriaSource()
 	{
 		std::cout << "MateriaSource: Default Constructor\n";
 	}
+
+	int i = 0;
+	for (;;)
+	{
+		inventory_[i] = NULL;
+		i++;
+		if (i >= INVENTORY_SIZE)
+		{
+			break;
+		}
+	}
 }
 
 MateriaSource::MateriaSource(const MateriaSource &other)
@@ -35,6 +46,15 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other)
 	{
 		std::cout << "MateriaSource: Copy Operator= Constructor\n";
 	}
+	if (this == &other)
+	{
+		if (DEBUG)
+		{
+			std::cout << "               Copying itself!\n";
+		}
+		return (*this);
+	}
+
 	if (this == &other)
 	{
 		if (DEBUG)
@@ -100,7 +120,7 @@ void	  MateriaSource::learnMateria(AMateria *new_materia)
 {
 	if (DEBUG)
 	{
-		std::cout << "MaterialSource: learnMateria()\n";
+		std::cout << "MaterialSource: learnMateria(" << new_materia->getType() << ")\n";
 	}
 
 	int i = 0;
@@ -123,13 +143,13 @@ AMateria *MateriaSource::createMateria(std::string const &type)
 {
 	if (DEBUG)
 	{
-		std::cout << "MaterialSource: createMateria()\n";
+		std::cout << "MaterialSource: createMateria(" << type << ")\n";
 	}
 
 	int i = 0;
 	for (;;)
 	{
-		if (inventory_[i] && inventory_[i]->getType() == type)
+		if (inventory_[i] && (inventory_[i]->getType() == type))
 		{
 			if (DEBUG)
 			{

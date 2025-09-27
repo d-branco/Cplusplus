@@ -33,26 +33,35 @@ int main()
 	// AMateria cannot_create; // for testing purposes only
 
 	////////////////////////////////////////////////// Subject example starts //
-	// IMateriaSource* src = new MateriaSource();
-	// src->learnMateria(new Ice());
-	// src->learnMateria(new Cure());
+	IMateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
 
-	// ICharacter* me = new Character("me");
+	ICharacter* me = new Character("me");
 
-	// AMateria* tmp;
-	// tmp = src->createMateria("ice");
-	// me->equip(tmp);
-	// tmp = src->createMateria("cure");
-	// me->equip(tmp);
+	AMateria* tmp;
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+    std::cout << "\nTESTE 2\n\n";///////////////////////////////////////////////
+    if (tmp == NULL)
+        std::cout << "NULL\n";
+    else
+        std::cout << "not NULL\n";
+    me->equip(tmp);
 
-	// ICharacter* bob = new Character("bob");
+    std::cout << "\nTESTE 3\n\n";
+	ICharacter* bob = new Character("bob");
 
-	// me->use(0, *bob);
-	// me->use(1, *bob);
+    std::cout << "\nTESTE 4\n\n";
+	me->use(0, *bob);
+    std::cout << "\nTESTE 5\n\n";
+	me->use(1, *bob);
+    std::cout << "\nTESTE 6\n\n";
 
-	// delete bob;
-	// delete me;
-	// delete src;
+	delete bob;
+	delete me;
+	delete src;
 	//////////////////////////////////////////////////// Subject example ends //
 
 	if (DEBUG)

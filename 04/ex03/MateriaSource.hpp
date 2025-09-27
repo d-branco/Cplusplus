@@ -19,16 +19,15 @@
 class MateriaSource : public IMateriaSource
 {
   private:
+    AMateria  *inventory_[INVENTORY_SIZE];
+
+  public:
 	MateriaSource();
 
 	MateriaSource(const MateriaSource &other);
 	MateriaSource &operator=(const MateriaSource &other);
 
-
-  AMateria  *inventory_[INVENTORY_SIZE];
-
-  public:
-	~MateriaSource();
+  ~MateriaSource();
 
 	void	  learnMateria(AMateria *);
 	AMateria *createMateria(std::string const &type);
