@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/18 17:24:45      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/18 17:35:23     #########  #########  ###      ###      */
+/*   Created: 2025/09/29 07:45:24      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/29 07:45:56     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -33,31 +33,22 @@ int main()
 	// AMateria cannot_create; // for testing purposes only
 
 	////////////////////////////////////////////////// Subject example starts //
-	IMateriaSource* src = new MateriaSource();
+	IMateriaSource *src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
 
-	ICharacter* me = new Character("me");
+	ICharacter *me = new Character("me");
 
-	AMateria* tmp;
+	AMateria   *tmp;
 	tmp = src->createMateria("ice");
 	me->equip(tmp);
 	tmp = src->createMateria("cure");
-    std::cout << "\nTESTE 2\n\n";///////////////////////////////////////////////
-    if (tmp == NULL)
-        std::cout << "NULL\n";
-    else
-        std::cout << "not NULL\n";
-    me->equip(tmp);
+	me->equip(tmp);
 
-    std::cout << "\nTESTE 3\n\n";
-	ICharacter* bob = new Character("bob");
+	ICharacter *bob = new Character("bob");
 
-    std::cout << "\nTESTE 4\n\n";
 	me->use(0, *bob);
-    std::cout << "\nTESTE 5\n\n";
 	me->use(1, *bob);
-    std::cout << "\nTESTE 6\n\n";
 
 	delete bob;
 	delete me;

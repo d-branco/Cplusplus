@@ -62,10 +62,10 @@ AMateria::~AMateria()
 
 std::string const &AMateria::getType() const
 {
-	//if (DEBUG)
+	// if (DEBUG)
 	//{
 	//	std::cout << "AMateria: getType()\n";
-	//}
+	// }
 
 	return (this->type_);
 }

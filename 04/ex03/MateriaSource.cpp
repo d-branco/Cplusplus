@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/20 16:45:11      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/20 16:45:40     #########  #########  ###      ###      */
+/*   Created: 2025/09/27 17:28:15      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/29 07:44:51     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ MateriaSource::MateriaSource()
 			break;
 		}
 	}
+	debug_print_inventory();
 }
 
 MateriaSource::MateriaSource(const MateriaSource &other)
@@ -93,7 +94,6 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other)
 	return (*this);
 }
 
-
 MateriaSource::~MateriaSource()
 {
 	if (DEBUG)
@@ -116,11 +116,12 @@ MateriaSource::~MateriaSource()
 	}
 }
 
-void	  MateriaSource::learnMateria(AMateria *new_materia)
+void MateriaSource::learnMateria(AMateria *new_materia)
 {
 	if (DEBUG)
 	{
-		std::cout << "MaterialSource: learnMateria(" << new_materia->getType() << ")\n";
+		std::cout << "MaterialSource: learnMateria(" << new_materia->getType()
+				  << ")\n";
 	}
 
 	int i = 0;
@@ -129,6 +130,7 @@ void	  MateriaSource::learnMateria(AMateria *new_materia)
 		if (!this->inventory_[i])
 		{
 			this->inventory_[i] = new_materia;
+			break;
 		}
 		i++;
 		if (i >= INVENTORY_SIZE)
@@ -136,7 +138,7 @@ void	  MateriaSource::learnMateria(AMateria *new_materia)
 			break;
 		}
 	}
-
+	debug_print_inventory();
 }
 
 AMateria *MateriaSource::createMateria(std::string const &type)
@@ -153,9 +155,10 @@ AMateria *MateriaSource::createMateria(std::string const &type)
 		{
 			if (DEBUG)
 			{
-				std::cout	<< "                created "
-							<< inventory_[i]->getType() << "\n";
+				std::cout << "                created "
+						  << inventory_[i]->getType() << "\n";
 			}
+			debug_print_inventory();
 			return (inventory_[i]->clone());
 		}
 		i++;
@@ -164,9 +167,38 @@ AMateria *MateriaSource::createMateria(std::string const &type)
 			break;
 		}
 	}
+	debug_print_inventory();
 	if (DEBUG)
 	{
-		std::cout	<< "                unknown type!\n";
+		std::cout << "                unknown type!\n";
 	}
 	return (0);
+}
+
+void MateriaSource::debug_print_inventory()
+{
+	if (!DEBUG)
+		return;
+
+	int i = 0;
+	for (;;)
+	{
+		if (inventory_[i])
+		{
+			if (DEBUG)
+			{
+				std::cout << "    " << i << ": " << inventory_[i]->getType()
+						  << "\n";
+			}
+		}
+		else if (inventory_[i] == NULL)
+		{
+			std::cout << "    " << i << ": NULL\n";
+		}
+		i++;
+		if (i >= INVENTORY_SIZE)
+		{
+			break;
+		}
+	}
 }

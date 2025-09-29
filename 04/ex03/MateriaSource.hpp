@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/27 11:40:20      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/27 11:41:46     #########  #########  ###      ###      */
+/*   Created: 2025/09/27 17:28:15      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/29 07:38:05     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 class MateriaSource : public IMateriaSource
 {
   private:
-    AMateria  *inventory_[INVENTORY_SIZE];
+	AMateria *inventory_[INVENTORY_SIZE];
+
+	void	  debug_print_inventory();
 
   public:
 	MateriaSource();
@@ -27,7 +29,7 @@ class MateriaSource : public IMateriaSource
 	MateriaSource(const MateriaSource &other);
 	MateriaSource &operator=(const MateriaSource &other);
 
-  ~MateriaSource();
+	~MateriaSource();
 
 	void	  learnMateria(AMateria *);
 	AMateria *createMateria(std::string const &type);
