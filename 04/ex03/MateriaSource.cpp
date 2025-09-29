@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/27 17:28:15      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/29 07:44:51     #########  #########  ###      ###      */
+/*   Created: 2025/09/29 07:45:24      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/29 08:03:50     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ MateriaSource::MateriaSource(const MateriaSource &other)
 		std::cout << "MateriaSource: Copy Constructor\n";
 	}
 
+	int i = 0;
+	for (;;)
+	{
+		inventory_[i] = NULL;
+		i++;
+		if (i >= INVENTORY_SIZE)
+		{
+			break;
+		}
+	}
 	*this = other;
 }
 
@@ -53,16 +63,6 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other)
 		{
 			std::cout << "               Copying itself!\n";
 		}
-		return (*this);
-	}
-
-	if (this == &other)
-	{
-		if (DEBUG)
-		{
-			std::cout << "           Copying itself!\n";
-		}
-
 		return (*this);
 	}
 
@@ -98,7 +98,7 @@ MateriaSource::~MateriaSource()
 {
 	if (DEBUG)
 	{
-		std::cout << "MaterialSource: Default Destructor\n";
+		std::cout << "MateriaSource: Default Destructor\n";
 	}
 
 	int i = 0;
@@ -120,7 +120,7 @@ void MateriaSource::learnMateria(AMateria *new_materia)
 {
 	if (DEBUG)
 	{
-		std::cout << "MaterialSource: learnMateria(" << new_materia->getType()
+		std::cout << "MateriaSource: learnMateria(" << new_materia->getType()
 				  << ")\n";
 	}
 
@@ -145,7 +145,7 @@ AMateria *MateriaSource::createMateria(std::string const &type)
 {
 	if (DEBUG)
 	{
-		std::cout << "MaterialSource: createMateria(" << type << ")\n";
+		std::cout << "MateriaSource: createMateria(" << type << ")\n";
 	}
 
 	int i = 0;

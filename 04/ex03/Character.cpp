@@ -4,8 +4,8 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/09/27 16:02:21      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/09/27 16:10:29     #########  #########  ###      ###      */
+/*   Created: 2025/09/29 08:09:30      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/09/29 08:10:48     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -172,6 +172,14 @@ void Character::equip(AMateria *m)
 
 void Character::unequip(int idx)
 {
+	if (idx < 0 || idx >= INVENTORY_SIZE || !inventory_[idx])
+	{
+		if (DEBUG)
+		{
+			std::cout << "Error: idx\n";
+		}
+		return;
+	}
 	if (DEBUG)
 	{
 		std::cout << "Character: unequip(" << inventory_[idx]->getType()
@@ -188,6 +196,14 @@ void Character::leave_on_the_floor(AMateria *m)
 
 void Character::use(int idx, ICharacter &target)
 {
+	if (idx < 0 || idx >= INVENTORY_SIZE || !inventory_[idx])
+	{
+		if (DEBUG)
+		{
+			std::cout << "Error: idx\n";
+		}
+		return;
+	}
 	if (DEBUG)
 	{
 		std::cout << "Character: use(" << inventory_[idx]->getType() << ")\n";
