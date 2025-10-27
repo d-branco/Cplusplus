@@ -9,7 +9,7 @@
 #                                                             ########         #
 #  **************************************************************************  #
 
-NAME			:= interface.out
+NAME			:= bureaucrat.out
 #NAME-BONUS		:= $(NAME)_bonus
 
 FORMATABLE		= $(HEADERS) $(SRCS)
@@ -17,22 +17,10 @@ FORMATABLE		= $(HEADERS) $(SRCS)
 TEST_RUN		:= $(NAME)
 ########################################################## Objects and Headers #
 HEADERS			:=															\
-	AMateria.hpp															\
-	Character.hpp															\
-	Cure.hpp																\
-	Ice.hpp																	\
-	ICharacter.hpp															\
-	IMateriaSource.hpp														\
-	MateriaSource.hpp														\
+	Bureaucrat.hpp															\
 
 SRCS			:=															\
-	AMateria.cpp															\
-	Character.cpp															\
-	Cure.cpp																\
-	Ice.cpp																	\
-	ICharacter.cpp															\
-	IMateriaSource.cpp														\
-	MateriaSource.cpp														\
+	Bureaucrat.cpp															\
 	\
 	main.cpp
 
