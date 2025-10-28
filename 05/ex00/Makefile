@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/10/28 15:03:47     #########  #########  ###      ###       #
+#    Updated: 2025/10/28 16:08:27     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -110,7 +110,7 @@ addendum:
 	"  +#+         +#+              +#+      #" >> temp.txt ; 				\
 				echo "#    Created: $$(date '+%Y/%m/%d %H:%M:%S')      "\
 	"#+#         #+#      +#+        #+#     #" >> temp.txt ; 				\
-				echo "#    Updated: 20XX/XX/XX XX:XX:XX     #"\
+				echo "#    Updated: $$(date '+%Y/%m/%d %H:%M:%S')     #"\
 	"########  #########  ###      ###       #" >> temp.txt ; 				\
 				echo "#                                      "\
 	"                       ########         #" >> temp.txt ; 				\
@@ -119,10 +119,34 @@ addendum:
 				echo "" >> temp.txt ; 										\
 				cat $$file >> temp.txt; 									\
 				cat temp.txt > $$file; 										\
-				rm temp.txt; 												\
+				rm -f temp.txt; 											\
 				echo "    File goten a header:  $$file"; 					\
 			else 															\
 				echo "    $(GRAY)File has header:      $$file$(COR)"; 		\
+																			\
+				header_date=$$(sed -n '8p' "$$file" | 						\
+					sed 's/.*Updated: \([0-9/: ]*\).*/\1/'); 				\
+				echo "        Header date:  $$header_date" ; 				\
+																			\
+																			\
+				header_epoch=$$(date -d "$$header_date" \
+						+%s 2>/dev/null || echo 0); \
+				echo "        Header epoch: $$header_epoch" ; 				\
+																			\
+				file_epoch=$$(stat -c %Y "$$file"); 						\
+				echo "        Update date:  $$file_epoch" ; 				\
+																			\
+				if [ $$file_epoch -gt $$header_epoch ]; then 				\
+					echo "        Updating header date in $$file"; 			\
+					update_date=$$(date '+%Y/%m/%d %H:%M:%S'); 				\
+					sed -i "8s|.*|#    Updated: $$update_date"\
+	"     #########  #########  ###      ###       #|" "$$file"; 			\
+				echo "#    Updated: 20XX/XX/XX XX:XX:XX     #"				\
+					>> temp.txt ; 											\
+				else \
+					echo "        $$file unchanged since last update"; 		\
+				fi; 														\
+																			\
 			fi; 															\
 		fi; 																\
 	done
