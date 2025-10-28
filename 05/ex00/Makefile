@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/10/28 16:58:56     #########  #########  ###      ###       #
+#    Updated: 2025/10/28 18:29:31     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -88,6 +88,85 @@ re: fclean all
 	@echo "$(GRAY)redone$(COR)"
 
 .PHONY: all clean fclean re headers
+######################################################################## Class #
+class: .clang-format
+	@if [ -z "$(NAME)" ]; then 												\
+		echo "Usage: make class NAME=ClassName"; 							\
+		exit 0; 															\
+	fi; 																	\
+	if [ -f $(NAME).hpp ] || [ -f $(NAME).cpp ]; then 						\
+		echo "$(YELLOW)$(NAME).hpp or $(NAME).cpp already exists$(COR)"; 	\
+		exit 0; 															\
+	fi; 																	\
+	if ! echo "$(NAME)" | grep -qE '^[A-Z][a-zA-Z0-9]*$$'; then 			\
+		echo "$(YELLOW)Class name must be in CamelCase$(COR)"; 				\
+		exit 0; 															\
+	fi; 																	\
+																			\
+	echo "#ifndef $(shell echo $(NAME) | tr a-z A-Z)_HPP" 	> $(NAME).hpp; \
+	echo "#define $(shell echo $(NAME) | tr a-z A-Z)_HPP" 	>> $(NAME).hpp; \
+	echo "" 												>> $(NAME).hpp; \
+	echo "class $(NAME)" 									>> $(NAME).hpp; \
+	echo "{" 												>> $(NAME).hpp; \
+	echo "  private:" 										>> $(NAME).hpp; \
+	echo "  public:" 										>> $(NAME).hpp; \
+	echo "" 												>> $(NAME).hpp; \
+	echo "	/////////////////////////////////////////////////"\
+	" Canonical Orthodox Form //"							>> $(NAME).hpp; \
+	echo "	$(NAME)();" 									>> $(NAME).hpp; \
+	echo "	$(NAME)(const $(NAME) &other);" 				>> $(NAME).hpp; \
+	echo "	$(NAME) &operator=(const $(NAME) &other);" 		>> $(NAME).hpp; \
+	echo "	~$(NAME)();" 									>> $(NAME).hpp; \
+	echo "" 												>> $(NAME).hpp; \
+	echo "	/////////////////////////////////////////////////"\
+	"//////////////// Getters //"							>> $(NAME).hpp; \
+	echo "	/////////////////////////////////////////////////"\
+	"//////////////// Setters //"							>> $(NAME).hpp; \
+	echo "	/////////////////////////////////////////////////"\
+	"////////////// Functions //"							>> $(NAME).hpp; \
+	echo "};" 												>> $(NAME).hpp; \
+	echo "" 												>> $(NAME).hpp; \
+	echo "#endif" 											>> $(NAME).hpp; \
+																			\
+	echo "#include \"$(NAME).hpp\"" 						> $(NAME).cpp; \
+	echo "" 												>> $(NAME).cpp; \
+	echo "/////////////////////////////////////////////////////"\
+	" Canonical Orthodox Form //"							>> $(NAME).cpp; \
+	echo "$(NAME)::$(NAME)()" 								>> $(NAME).cpp; \
+	echo "{" 												>> $(NAME).cpp; \
+	echo "}" 												>> $(NAME).cpp; \
+	echo "" 												>> $(NAME).cpp; \
+	echo "$(NAME)::$(NAME)(const $(NAME) &other)" 			>> $(NAME).cpp; \
+	echo "{" 												>> $(NAME).cpp; \
+	echo "	*this = other;" 								>> $(NAME).cpp; \
+	echo "}" 												>> $(NAME).cpp; \
+	echo "" 												>> $(NAME).cpp; \
+	echo "$(NAME) &$(NAME)::operator=(const $(NAME) &other)" >> $(NAME).cpp; \
+	echo "{" 												>> $(NAME).cpp; \
+	echo "	if (this == &other)" 							>> $(NAME).cpp; \
+	echo "	{" 												>> $(NAME).cpp; \
+	echo "		return (*this);" 							>> $(NAME).cpp; \
+	echo "	}" 												>> $(NAME).cpp; \
+	echo "" 												>> $(NAME).cpp; \
+	echo "	return (*this);" 								>> $(NAME).cpp; \
+	echo "}" 												>> $(NAME).cpp; \
+	echo "" 												>> $(NAME).cpp; \
+	echo "$(NAME)::~$(NAME)()" 								>> $(NAME).cpp; \
+	echo "{" 												>> $(NAME).cpp; \
+	echo "}" 												>> $(NAME).cpp; \
+	echo "" 												>> $(NAME).cpp; \
+	echo "/////////////////////////////////////////////////////"\
+	"//////////////// Getters //"							>> $(NAME).cpp; \
+	echo "/////////////////////////////////////////////////////"\
+	"//////////////// Setters //"							>> $(NAME).cpp; \
+	echo "/////////////////////////////////////////////////////"\
+	"////////////// Functions //"							>> $(NAME).cpp; \
+	echo "$(GRAY)Class created:$(COR) $(NAME)" ; 							\
+	\
+	make headers --silent 												;	\
+	\
+	clang-format -i $(NAME).cpp $(NAME).hpp								;	\
+	rm -f .clang-format
 ###################################################################### Headers #
 headers:
 	@for file in $$(find . -name "Makefile"); do 							\
