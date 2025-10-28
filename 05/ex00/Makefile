@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/09/27 16:11:17     #########  #########  ###      ###       #
+#    Updated: 2025/10/28 15:03:47     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -87,7 +87,46 @@ fclean: clean
 re: fclean all
 	@echo "$(GRAY)redone$(COR)"
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re ad
+###################################################################### Headers #
+addendum:
+	@for file in $$(find . -name "Makefile"); do 							\
+		if [ -f "$$file" ]; then 											\
+			first_line=$$(head -n 1 "$$file"); 								\
+			if [ "$$first_line" != "#  ************************************"\
+	"**************************************  #" ]; then 					\
+				echo "    File lacks a header:  $$file"; 					\
+				echo "#  ************************************"\
+	"**************************************  #" > temp.txt ; 				\
+				echo "#                                      "\
+	"     ::::::::    ::::::::   :::::::::   #" >> temp.txt ; 				\
+				echo "#    Makefile                          "\
+	"   :+:    :+:  :+:    :+:  :+:          #" >> temp.txt ; 				\
+				echo "#                                      "\
+	"        +:+         :+:   :+:           #" >> temp.txt ; 				\
+				echo "#    github.com/d-branco               "\
+	"     +#+         +#+      +#+#+#+       #" >> temp.txt ; 				\
+				echo "#                                      "\
+	"  +#+         +#+              +#+      #" >> temp.txt ; 				\
+				echo "#    Created: $$(date '+%Y/%m/%d %H:%M:%S')      "\
+	"#+#         #+#      +#+        #+#     #" >> temp.txt ; 				\
+				echo "#    Updated: 20XX/XX/XX XX:XX:XX     #"\
+	"########  #########  ###      ###       #" >> temp.txt ; 				\
+				echo "#                                      "\
+	"                       ########         #" >> temp.txt ; 				\
+				echo "#  ************************************"\
+	"**************************************  #" >> temp.txt ; 				\
+				echo "" >> temp.txt ; 										\
+				cat $$file >> temp.txt; 									\
+				cat temp.txt > $$file; 										\
+				rm temp.txt; 												\
+				echo "    File goten a header:  $$file"; 					\
+			else 															\
+				echo "    $(GRAY)File has header:      $$file$(COR)"; 		\
+			fi; 															\
+		fi; 																\
+	done
+
 ####################################################################### Format #
 .clang-format:
 	@echo "\
