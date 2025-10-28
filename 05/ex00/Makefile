@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/10/28 16:08:27     #########  #########  ###      ###       #
+#    Updated: 2025/10/28 16:58:56     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -49,7 +49,7 @@ AR				:= ar rcs
 ###################################################################### Targets #
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): headers $(OBJS)
 	@\
 	echo "$(GRAY)Compiled with:$(COR)	$(CC)"							;	\
 	echo "$(GRAY)Compile flags:$(COR)	$(CFLAGS)"						;	\
@@ -87,15 +87,14 @@ fclean: clean
 re: fclean all
 	@echo "$(GRAY)redone$(COR)"
 
-.PHONY: all clean fclean re ad
+.PHONY: all clean fclean re headers
 ###################################################################### Headers #
-addendum:
+headers:
 	@for file in $$(find . -name "Makefile"); do 							\
 		if [ -f "$$file" ]; then 											\
 			first_line=$$(head -n 1 "$$file"); 								\
 			if [ "$$first_line" != "#  ************************************"\
 	"**************************************  #" ]; then 					\
-				echo "    File lacks a header:  $$file"; 					\
 				echo "#  ************************************"\
 	"**************************************  #" > temp.txt ; 				\
 				echo "#                                      "\
@@ -120,31 +119,72 @@ addendum:
 				cat $$file >> temp.txt; 									\
 				cat temp.txt > $$file; 										\
 				rm -f temp.txt; 											\
-				echo "    File goten a header:  $$file"; 					\
+				echo "$(GRAY)Header create:$(COR) $$file"; 					\
 			else 															\
-				echo "    $(GRAY)File has header:      $$file$(COR)"; 		\
-																			\
 				header_date=$$(sed -n '8p' "$$file" | 						\
 					sed 's/.*Updated: \([0-9/: ]*\).*/\1/'); 				\
-				echo "        Header date:  $$header_date" ; 				\
+																			\
+				header_epoch=$$(date -d "$$header_date" \
+						+%s 2>/dev/null || echo 0); \
+																			\
+				file_epoch=$$(stat -c %Y "$$file"); 						\
+																			\
+				if [ $$file_epoch -gt $$header_epoch ]; then 				\
+					echo "$(GRAY)Header update:$(COR) $$file"; 				\
+					update_date=$$(date '+%Y/%m/%d %H:%M:%S'); 				\
+					sed -i "8s|.*|#    Updated: $$update_date"\
+	"     #########  #########  ###      ###       #|" "$$file"; 			\
+				fi; 														\
+																			\
+			fi; 															\
+		fi; 																\
+	done;																	\
+																			\
+	for file in $$(find . -name "*.cpp" -o -name "*.hpp"); do 				\
+		if [ -f "$$file" ]; then 											\
+			first_line=$$(head -n 1 "$$file"); 								\
+			if [ "$$first_line" != "/* ************************************"\
+	"************************************** */" ]; then 					\
+				echo "/* ************************************"\
+	"************************************** */" > temp.txt ; 				\
+				echo "/*                                     "\
+	"     ::::::::    ::::::::   :::::::::  */" >> temp.txt ; 				\
+				printf "/*   %-36.36s :+:    :+:  :+:    :+:  :+:         */\n"\
+					"$$(basename $$file)" >> temp.txt; \
+				echo "/*                                     "\
+	"        +:+         :+:   :+:          */" >> temp.txt ; 				\
+				echo "/*   github.com/d-branco               "\
+	"     +#+         +#+      +#+#+#+      */" >> temp.txt ; 				\
+				echo "/*                                     "\
+	"  +#+         +#+              +#+     */" >> temp.txt ; 				\
+				echo "/*   Created: $$(date '+%Y/%m/%d %H:%M:%S')      "\
+	"#+#         #+#      +#+        #+#    */" >> temp.txt ; 				\
+				echo "/*   Updated: $$(date '+%Y/%m/%d %H:%M:%S')     #"\
+	"########  #########  ###      ###      */" >> temp.txt ; 				\
+				echo "/*                                     "\
+	"                       ########        */" >> temp.txt ; 				\
+				echo "/* ************************************"\
+	"************************************** */" >> temp.txt ; 				\
+				echo "" >> temp.txt ; 										\
+				cat $$file >> temp.txt; 									\
+				cat temp.txt > $$file; 										\
+				rm -f temp.txt; 											\
+				echo "$(GRAY)Header create:$(COR) $$file"; 					\
+			else 															\
+				header_date=$$(sed -n '8p' "$$file" | 						\
+					sed 's/.*Updated: \([0-9/: ]*\).*/\1/'); 				\
 																			\
 																			\
 				header_epoch=$$(date -d "$$header_date" \
 						+%s 2>/dev/null || echo 0); \
-				echo "        Header epoch: $$header_epoch" ; 				\
 																			\
 				file_epoch=$$(stat -c %Y "$$file"); 						\
-				echo "        Update date:  $$file_epoch" ; 				\
 																			\
 				if [ $$file_epoch -gt $$header_epoch ]; then 				\
-					echo "        Updating header date in $$file"; 			\
+					echo "$(GRAY)Header update:$(COR) $$file"; 				\
 					update_date=$$(date '+%Y/%m/%d %H:%M:%S'); 				\
-					sed -i "8s|.*|#    Updated: $$update_date"\
-	"     #########  #########  ###      ###       #|" "$$file"; 			\
-				echo "#    Updated: 20XX/XX/XX XX:XX:XX     #"				\
-					>> temp.txt ; 											\
-				else \
-					echo "        $$file unchanged since last update"; 		\
+					sed -i "8s|.*|/*   Updated: $$update_date"\
+	"     #########  #########  ###      ###      */|" "$$file"; 			\
 				fi; 														\
 																			\
 			fi; 															\
