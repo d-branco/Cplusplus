@@ -5,20 +5,38 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/10/28 18:29:32      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/10/28 18:29:32     #########  #########  ###      ###      */
+/*   Updated: 2025/10/29 09:04:39     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
 ///////////////////////////////////////////////////// Canonical Orthodox Form //
-Bureaucrat::Bureaucrat()
+// Bureaucrat::Bureaucrat()
+// {
+// 	std::cout << "Error: Nameless, gradeless Bureaucrat.\n";
+// 	std::cout << "Note: this Constructor exists merely for Orthodox Canonical "
+// 				 "Form bureaucracy's sake.\n";
+// }
+
+Bureaucrat::Bureaucrat(const std::string &name, int grade) :
+	name_(name),
+	grade_(grade)
 {
+	std::cout << "Default Constructor: " << name_ << "(" << grade_ << ")\n";
+	if (grade_ < 1)
+	{
+		throw Bureaucrat::GradeTooHighException();
+	}
+	if (grade_ > 150)
+	{
+		throw Bureaucrat::GradeTooLowException();
+	}
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &other)
+Bureaucrat::Bureaucrat(const Bureaucrat &other) : name_(other.name_), grade_(other.grade_)
 {
-	*this = other;
+	std::cout << "Copy Constructor: " << this->name_ << "\n";
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
@@ -36,5 +54,25 @@ Bureaucrat::~Bureaucrat()
 }
 
 ///////////////////////////////////////////////////////////////////// Getters //
+const std::string &Bureaucrat::getName() const
+{
+	return (name_);
+}
+
+int Bureaucrat::getGrade() const
+{
+	return (grade_);
+}
+
 ///////////////////////////////////////////////////////////////////// Setters //
 /////////////////////////////////////////////////////////////////// Functions //
+////////////////////////////////////////////////////////////////// Exceptions //
+const char* Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return ("Error:\n  Grade cannot be above 1");
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return ("Error:\n  Grade cannot be bellow 150");
+}
