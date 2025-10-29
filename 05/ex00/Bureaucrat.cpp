@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/10/28 18:29:32      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/10/29 09:53:18     #########  #########  ###      ###      */
+/*   Updated: 2025/10/29 13:25:17     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Default Destructor: " << name_ << "\n";
+	std::cout << "Default Destructor: " << name_ << "(" << grade_ << ")\n";
 }
 
 ///////////////////////////////////////////////////////////////////// Getters //
@@ -69,6 +69,40 @@ int Bureaucrat::getGrade() const
 }
 
 ///////////////////////////////////////////////////////////////////// Setters //
+void Bureaucrat::grade_increment(int increment)
+{
+	if (increment <= 0)
+	{
+		return;
+	}
+	if ((this->grade_ - increment) < 1)
+	{
+		throw Bureaucrat::GradeTooHighException();
+	}
+	else
+	{
+		this->grade_ -= increment;
+		std::cout << "Bureaucrat " << name_ << "'s grade increased by " << increment << " (" << grade_ << ")\n";
+	}
+}
+
+void Bureaucrat::grade_decrement(int decrement)
+{
+	if (decrement <= 0)
+	{
+		return;
+	}
+	if ((this->grade_ + decrement) > 150)
+	{
+		throw Bureaucrat::GradeTooLowException();
+	}
+	else
+	{
+		this->grade_ += decrement;
+		std::cout << "Bureaucrat " << name_ << "'s grade decreased by " << decrement << " (" << grade_ << ")\n";
+	}
+}
+
 /////////////////////////////////////////////////////////////////// Functions //
 ////////////////////////////////////////////////////////////////// Exceptions //
 const char *Bureaucrat::GradeTooHighException::what() const throw()

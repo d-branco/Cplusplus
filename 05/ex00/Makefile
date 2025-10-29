@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/10/28 18:29:31     #########  #########  ###      ###       #
+#    Updated: 2025/10/29 12:51:52     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -49,7 +49,7 @@ AR				:= ar rcs
 ###################################################################### Targets #
 all: $(NAME)
 
-$(NAME): headers $(OBJS)
+$(NAME): $(OBJS)
 	@\
 	echo "$(GRAY)Compiled with:$(COR)	$(CC)"							;	\
 	echo "$(GRAY)Compile flags:$(COR)	$(CFLAGS)"						;	\
@@ -384,14 +384,15 @@ check-guards:
 		fi; \
 	done;
 ####################################################################### Colors #
-COR		:= \033[0m# COlor Remove
-PURPLE	:= \033[1;35m# purple
-GRAY	:= \033[1;90m# gray
-YELLOW	:= \033[1;93m# yellow
-BLUE	:= \033[1;96m# blue
+# COlor Remove
+COR		:= \033[0m
+PURPLE	:= \033[1;35m
+GRAY	:= \033[1;90m
+YELLOW	:= \033[1;93m
+BLUE	:= \033[1;96m
 ######################################################################### Test #
 test: CFLAGS += $(DEBUG_FLAGS)
-test: fclean $(NAME)
+test: fclean headers $(NAME)
 	@\
 	echo "\
 	$(COR)$(GRAY)========================================== $(NAME) START\
@@ -416,21 +417,21 @@ valgrind: $(NAME)
 	\
 		./$(TEST_RUN)
 
-exe: fclean $(NAME)
+exe: headers fclean $(NAME)
 	@\
 	./$(TEST_RUN)
 
-run: $(NAME)
+run: headers $(NAME)
 	@\
 	./$(TEST_RUN)
 
 debug: CFLAGS += $(DEBUG_FLAGS)
-debug: fclean $(NAME)
+debug: fclean headers $(NAME)
 	@\
 	./$(TEST_RUN)
 
 gprof: CFLAGS += $(GPROF_FLAGS)
-gprof: fclean $(NAME)
+gprof: fclean headers $(NAME)
 	@\
 	./$(TEST_RUN)														;	\
 	gprof $(NAME) gmon.out > gmon-ignoreme.txt							;	\
