@@ -5,16 +5,16 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/10/28 18:29:32      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/10/29 08:48:10     #########  #########  ###      ###      */
+/*   Updated: 2025/10/29 09:53:18     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 
+#include <exception>
 #include <iostream>
 #include <string>
-#include <exception>
 
 class Bureaucrat
 {
@@ -35,20 +35,26 @@ class Bureaucrat
 	///////////////////////////////////////////////////////////////// Getters //
 	const std::string &getName() const;
 	int				   getGrade() const;
+
 	///////////////////////////////////////////////////////////////// Setters //
+
 	/////////////////////////////////////////////////////////////// Functions //
+
 	////////////////////////////////////////////////////////////// Exceptions //
 	class GradeTooHighException : public std::exception
 	{
-		public:
+	  public:
 		virtual const char *what() const throw();
 	};
 
 	class GradeTooLowException : public std::exception
 	{
-		public:
+	  public:
 		virtual const char *what() const throw();
 	};
 };
+
+////////////////////////////////////////////////////////// Overload operators //
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat);
 
 #endif
