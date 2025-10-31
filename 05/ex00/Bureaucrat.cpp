@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/10/28 18:29:32      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/10/29 13:25:17     #########  #########  ###      ###      */
+/*   Updated: 2025/10/30 15:25:28     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -79,11 +79,9 @@ void Bureaucrat::grade_increment(int increment)
 	{
 		throw Bureaucrat::GradeTooHighException();
 	}
-	else
-	{
-		this->grade_ -= increment;
-		std::cout << "Bureaucrat " << name_ << "'s grade increased by " << increment << " (" << grade_ << ")\n";
-	}
+	this->grade_ -= increment;
+	std::cout << "Bureaucrat " << name_ << "'s grade increased by " << increment
+			  << " (" << grade_ << ")\n";
 }
 
 void Bureaucrat::grade_decrement(int decrement)
@@ -96,11 +94,9 @@ void Bureaucrat::grade_decrement(int decrement)
 	{
 		throw Bureaucrat::GradeTooLowException();
 	}
-	else
-	{
-		this->grade_ += decrement;
-		std::cout << "Bureaucrat " << name_ << "'s grade decreased by " << decrement << " (" << grade_ << ")\n";
-	}
+	this->grade_ += decrement;
+	std::cout << "Bureaucrat " << name_ << "'s grade decreased by " << decrement
+			  << " (" << grade_ << ")\n";
 }
 
 /////////////////////////////////////////////////////////////////// Functions //
