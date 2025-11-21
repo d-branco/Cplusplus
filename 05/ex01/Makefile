@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/11/21 09:12:37     #########  #########  ###      ###       #
+#    Updated: 2025/11/21 11:05:06     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -353,6 +353,7 @@ format: .clang-format
 	  cppcoreguidelines-*\n\
 	  -cppcoreguidelines-pro-type-member-init,\n\
 	  -cppcoreguidelines-avoid-magic-numbers\n\
+	  -cppcoreguidelines-avoid-const-or-ref-data-members\n\
 	\n\
 	CheckOptions:\n\
 	  - key:   readability-identifier-naming.ClassCase\n\
@@ -439,3 +440,18 @@ gprof: fclean headers $(NAME)
 	gprof $(NAME) gmon.out > gmon-ignoreme.txt							;	\
 	cat gmon-ignoreme.txt												;	\
 	rm -f gmon-ignoreme.txt gmon.out
+
+homerun: headers $(NAME)
+	@\
+	mv ./$(NAME) ~/$(NAME)												&&	\
+	chmod +x ~/$(NAME)													;	\
+	~/$(TEST_RUN)														;	\
+	rm -f ~/$(NAME)
+
+homedebug: CFLAGS += $(DEBUG_FLAGS)
+homedebug: fclean headers $(NAME)
+	@\
+	mv ./$(NAME) ~/$(NAME)												&&	\
+	chmod +x ~/$(NAME)													;	\
+	~/$(TEST_RUN)														;	\
+	rm -f ~/$(NAME)

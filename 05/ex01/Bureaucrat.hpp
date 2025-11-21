@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/10/28 18:29:32      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/21 09:12:38     #########  #########  ###      ###      */
+/*   Updated: 2025/11/21 11:05:06     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 #include <exception>
 #include <iostream>
 #include <string>
+
+#ifndef DEBUG
+# define DEBUG false
+#endif
 
 class Bureaucrat
 {
@@ -57,6 +61,6 @@ class Bureaucrat
 };
 
 ////////////////////////////////////////////////////////// Overload operators //
-std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat);
+std::ostream &operator<<(std::ostream &out_s, const Bureaucrat &bureaucrat);
 
 #endif

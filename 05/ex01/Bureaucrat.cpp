@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/10/28 18:29:32      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/21 09:12:38     #########  #########  ###      ###      */
+/*   Updated: 2025/11/21 11:05:06     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -112,10 +112,10 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 }
 
 ////////////////////////////////////////////////////////// Overload operators //
-std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat)
+std::ostream &operator<<(std::ostream &out_s, const Bureaucrat &bureaucrat)
 {
-	os << bureaucrat.getName() << ", bureaucrat grade "
-	   << bureaucrat.getGrade();
+	out_s << bureaucrat.getName() << ", bureaucrat grade "
+		  << bureaucrat.getGrade();
 
-	return (os);
+	return (out_s);
 }
