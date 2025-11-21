@@ -5,11 +5,11 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/11/20 15:31:51     #########  #########  ###      ###       #
+#    Updated: 2025/11/21 09:12:37     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
-NAME			:= bureaucrat.out
+NAME			:= form.out
 #NAME-BONUS		:= $(NAME)_bonus
 
 FORMATABLE		= $(HEADERS) $(SRCS)
@@ -18,9 +18,11 @@ TEST_RUN		:= $(NAME)
 ########################################################## Objects and Headers #
 HEADERS			:=															\
 	Bureaucrat.hpp															\
+	Form.hpp																\
 
 SRCS			:=															\
 	Bureaucrat.cpp															\
+	Form.cpp																\
 	\
 	main.cpp
 

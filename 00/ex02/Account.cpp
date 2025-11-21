@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                          ::::::::    ::::::::   :::::::::  */
-/*   Account.cpp                          :+:    :+:  :+:    :+:  :+:         */
-/*                                             +:+         :+:   :+:          */
-/*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
-/*                                       +#+         +#+              +#+     */
-/*   Created: 2025/08/31 09:02:58      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/08/31 09:07:11     #########  #########  ###      ###      */
-/*                                                            ########        */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Account.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abessa-m <abessa-m@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/31 09:07:11 by  #########        #+#    #+#             */
+/*   Updated: 2025/11/20 15:20:20 by abessa-m         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
-#include "Account.hpp"
 
 #include <ctime>
 #include <iostream>
@@ -145,7 +145,7 @@ bool Account::makeWithdrawal(int withdrawal)
 
 int Account::checkAmount() const
 {
-	std::cout << "TODO checkAmount()\n";
+	std::cout << "checkAmount()\n";
 	return (0);
 }
 
