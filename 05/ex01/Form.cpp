@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/21 09:12:38      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/21 11:05:06     #########  #########  ###      ###      */
+/*   Updated: 2025/11/21 17:10:51     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ Form::Form(const std::string &name,
 {
 	if (DEBUG)
 	{
-		std::cout << "==DEBUG==Default Constructor: \n"
-				  << "==DEBUG==  ├─name: " << name_
+		std::cout << "==DEBUG== Default Constructor: \n"
+				  << "==DEBUG==   ├─name: " << name_
 				  << ". Is signed: " << is_signed_ << "\n"
-				  << "==DEBUG==  └─Minimum grade to sign: " << sign_min_grade_
+				  << "==DEBUG==   └─Minimum grade to sign: " << sign_min_grade_
 				  << ". Minimum grade to execute: " << exec_min_grade_ << "\n";
 	}
 	if ((sign_min_grade < 1) || (exec_min_grade < 1))
@@ -51,7 +51,7 @@ Form::Form(const Form &other) :
 {
 	if (DEBUG)
 	{
-		std::cout << "==DEBUG==Copy Constructor: " << this->name_ << "\n";
+		std::cout << "==DEBUG== Copy Constructor: " << this->name_ << "\n";
 	}
 }
 
@@ -59,13 +59,14 @@ Form &Form::operator=(const Form &other)
 {
 	if (DEBUG)
 	{
-		std::cout << "==DEBUG==Copy Operator Constructor: " << this->name_
+		std::cout << "==DEBUG== Copy Operator Constructor: " << this->name_
 				  << "\n";
 	}
 	if (this == &other)
 	{
 		return (*this);
 	}
+	this->is_signed_ = other.is_signed_;
 
 	return (*this);
 }
@@ -74,7 +75,7 @@ Form::~Form()
 {
 	if (DEBUG)
 	{
-		std::cout << "==DEBUG==Default Destructor: " << name_ << "\n";
+		std::cout << "==DEBUG== Default Destructor: " << name_ << "\n";
 	}
 }
 
@@ -101,6 +102,22 @@ int Form::get_min_grade_to_execute() const
 
 ///////////////////////////////////////////////////////////////////// Setters //
 /////////////////////////////////////////////////////////////////// Functions //
+void Form::beSigned(const Bureaucrat &signer)
+{
+	if (DEBUG)
+	{
+		std::cout << "==DEBUG== " << signer.getName() << "(grade "
+				  << signer.getGrade() << ") is signning form " << this->name_
+				  << ".\n";
+	}
+	if (this->sign_min_grade_ < signer.getGrade())
+	{
+		std::cout << signer.getName() << " couldn't sign " << this->name_
+				  << " because their grade is too low.\n";
+		throw Form::GradeTooLowException();
+	}
+	this->is_signed_ = true;
+}
 
 ////////////////////////////////////////////////////////////////// Exceptions //
 const char *Form::GradeTooHighException::what() const throw()
@@ -110,14 +127,14 @@ const char *Form::GradeTooHighException::what() const throw()
 
 const char *Form::GradeTooLowException::what() const throw()
 {
-	return ("Error:\n  Grade cannot be bellow 150");
+	return ("Error:\n  Grade is too low.");
 }
 
 ////////////////////////////////////////////////////////// Overload operators //
 std::ostream &operator<<(std::ostream &out_s, const Form &Form)
 {
 	out_s << Form.get_name() << ", form is ";
-	if (Form.get_signed_state())
+	if (!Form.get_signed_state())
 	{
 		out_s << "not ";
 	}

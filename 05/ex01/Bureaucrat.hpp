@@ -5,20 +5,26 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/10/28 18:29:32      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/21 11:05:06     #########  #########  ###      ###      */
+/*   Updated: 2025/11/21 16:53:11     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
+#pragma once
+
 #ifndef BUREAUCRAT_HPP
-#define BUREAUCRAT_HPP
+# define BUREAUCRAT_HPP
 
-#include <exception>
-#include <iostream>
-#include <string>
+# include <exception>
+# include <iostream>
+# include <string>
 
-#ifndef DEBUG
-# define DEBUG false
-#endif
+# include "Form.hpp"
+
+# ifndef DEBUG
+#  define DEBUG false
+# endif
+
+class Form;
 
 class Bureaucrat
 {
@@ -45,6 +51,7 @@ class Bureaucrat
 	void			   grade_decrement(int decrement);
 
 	/////////////////////////////////////////////////////////////// Functions //
+	void			   signForm(Form &form_to_sign);
 
 	////////////////////////////////////////////////////////////// Exceptions //
 	class GradeTooHighException : public std::exception

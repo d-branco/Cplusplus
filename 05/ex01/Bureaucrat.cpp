@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/10/28 18:29:32      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/21 11:05:06     #########  #########  ###      ###      */
+/*   Updated: 2025/11/21 17:04:07     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade) :
 	name_(name),
 	grade_(grade)
 {
-	std::cout << "Default Constructor: " << name_ << "(" << grade_ << ")\n";
+	if (DEBUG)
+	{
+		std::cout << "==DEBUG== Default Constructor: " << name_ << "(" << grade_
+				  << ")\n";
+	}
 	if (grade_ < 1)
 	{
 		throw Bureaucrat::GradeTooHighException();
@@ -38,12 +42,15 @@ Bureaucrat::Bureaucrat(const Bureaucrat &other) :
 	name_(other.name_),
 	grade_(other.grade_)
 {
-	std::cout << "Copy Constructor: " << this->name_ << "\n";
+	if (DEBUG)
+	{
+		std::cout << "==DEBUG== Copy Constructor: " << this->name_ << "\n";
+	}
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
-	std::cout << "Copy Operator Constructor: " << this->name_ << "\n";
+	std::cout << "==DEBUG== Copy Operator Constructor: " << this->name_ << "\n";
 	if (this == &other)
 	{
 		return (*this);
@@ -54,7 +61,11 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Default Destructor: " << name_ << "(" << grade_ << ")\n";
+	if (DEBUG)
+	{
+		std::cout << "==DEBUG== Default Destructor: " << name_ << "(" << grade_
+				  << ")\n";
+	}
 }
 
 ///////////////////////////////////////////////////////////////////// Getters //
@@ -80,8 +91,12 @@ void Bureaucrat::grade_increment(int increment)
 		throw Bureaucrat::GradeTooHighException();
 	}
 	this->grade_ -= increment;
-	std::cout << "Bureaucrat " << name_ << "'s grade increased by " << increment
-			  << " (" << grade_ << ")\n";
+	if (DEBUG)
+	{
+		std::cout << "==DEBUG== Bureaucrat " << name_
+				  << "'s grade increased by " << increment << " (" << grade_
+				  << ")\n";
+	}
 }
 
 void Bureaucrat::grade_decrement(int decrement)
@@ -95,11 +110,27 @@ void Bureaucrat::grade_decrement(int decrement)
 		throw Bureaucrat::GradeTooLowException();
 	}
 	this->grade_ += decrement;
-	std::cout << "Bureaucrat " << name_ << "'s grade decreased by " << decrement
-			  << " (" << grade_ << ")\n";
+	if (DEBUG)
+	{
+		std::cout << "==DEBUG== Bureaucrat " << name_
+				  << "'s grade decreased by " << decrement << " (" << grade_
+				  << ")\n";
+	}
 }
 
-/////////////////////////////////////////////////////////////////// Functions //
+/////////////////////////////////////////////////////////////////// Functions
+/////4
+void Bureaucrat::signForm(Form &form_to_sign)
+{
+	if (DEBUG)
+	{
+		std::cout << "==DEBUG== Bureaucrat " << name_ << " is signing "
+				  << form_to_sign.get_name() << ".\n";
+	}
+	form_to_sign.beSigned(*this);
+	std::cout << name_ << " signed " << form_to_sign.get_name() << "\n";
+}
+
 ////////////////////////////////////////////////////////////////// Exceptions //
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
