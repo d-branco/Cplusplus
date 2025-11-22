@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/10/28 16:58:56      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/22 14:40:18     #########  #########  ###      ###      */
+/*   Updated: 2025/11/22 14:57:12     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int main()
 
 		rrf = someRandomInter.makeForm("robotomy request", "Bender");
 		std::cout << *rrf << "\n";
+		delete (rrf);
 	}
 	catch (const std::exception &e)
 	{
@@ -46,6 +47,7 @@ int main()
 
 		rrf = someRandomInter.makeForm("clear skies", "Porto");
 		std::cout << *rrf << "\n";
+		delete (rrf);
 	}
 	catch (const std::exception &e)
 	{
