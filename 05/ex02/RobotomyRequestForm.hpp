@@ -5,28 +5,34 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/22 11:03:36      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/22 12:15:37     #########  #########  ###      ###      */
+/*   Updated: 2025/11/22 13:04:27     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #ifndef ROBOTOMYREQUESTFORM_HPP
 #define ROBOTOMYREQUESTFORM_HPP
 
+#include <cstdlib>
+#include <ctime>
+
 #include "AForm.hpp"
 
-class RobotomyRequestForm
+class RobotomyRequestForm : public AForm
 {
   private:
+	std::string target_;
+
   public:
 	///////////////////////////////////////////////// Canonical Orthodox Form //
-	RobotomyRequestForm();
+	RobotomyRequestForm(const std::string &target);
 	RobotomyRequestForm(const RobotomyRequestForm &other);
 	RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
-	~RobotomyRequestForm();
+	virtual ~RobotomyRequestForm();
 
 	///////////////////////////////////////////////////////////////// Getters //
 	///////////////////////////////////////////////////////////////// Setters //
 	/////////////////////////////////////////////////////////////// Functions //
+	virtual void execute(Bureaucrat const &executor) const;
 };
 
 #endif
