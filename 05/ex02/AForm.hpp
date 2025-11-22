@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                          ::::::::    ::::::::   :::::::::  */
-/*   Form.hpp                             :+:    :+:  :+:    :+:  :+:         */
+/*   AForm.hpp                            :+:    :+:  :+:    :+:  :+:         */
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/21 09:12:38      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/22 10:56:21     #########  #########  ###      ###      */
+/*   Updated: 2025/11/22 12:34:48     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
-#ifndef AFORM_HPP
-#define AFORM_HPP
+#ifndef AForm_HPP
+#define AForm_HPP
 
 #include <exception>
 #include <iostream>
@@ -24,7 +24,7 @@
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
   private:
 	const std::string name_;
@@ -33,15 +33,16 @@ class Form
 	const int		  exec_min_grade_;
 
   public:
-	///////////////////////////////////////////////// Canonical Orthodox Form //
-	// Form();
-	Form(const std::string &name,
-		 bool				is_signed,
-		 const int			sign_min_grade,
-		 const int			exec_min_grade);
-	Form(const Form &other);
-	Form &operator=(const Form &other);
-	virtual ~Form();
+	///////////////////////////////////////////////// Canonical Orthodox AForm
+	/////
+	// AForm();
+	AForm(const std::string &name,
+		  bool				 is_signed,
+		  const int			 sign_min_grade,
+		  const int			 exec_min_grade);
+	AForm(const AForm &other);
+	AForm &operator=(const AForm &other);
+	virtual ~AForm();
 
 	///////////////////////////////////////////////////////////////// Getters //
 	const std::string &get_name() const;
@@ -75,6 +76,6 @@ class Form
 };
 
 ////////////////////////////////////////////////////////// Overload operators //
-std::ostream &operator<<(std::ostream &out_s, const Form &Form);
+std::ostream &operator<<(std::ostream &out_s, const AForm &AForm);
 
 #endif

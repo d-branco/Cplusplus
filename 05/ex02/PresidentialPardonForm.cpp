@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/22 11:05:24      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/22 11:05:24     #########  #########  ###      ###      */
+/*   Updated: 2025/11/22 12:38:15     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -13,7 +13,7 @@
 
 ///////////////////////////////////////////////////// Canonical Orthodox Form //
 PresidentialPardonForm::PresidentialPardonForm(const std::string &target) :
-	Form("Presidential Pardon", false, 25, 5),
+	AForm("Presidential Pardon", false, 25, 5),
 	target_(target)
 {
 	if (DEBUG)
@@ -24,7 +24,8 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string &target) :
 }
 
 PresidentialPardonForm::PresidentialPardonForm(
-	const PresidentialPardonForm &other) Form(other),
+	const PresidentialPardonForm &other) :
+	AForm(other),
 	target_(other.target_)
 {
 	if (DEBUG)
@@ -45,7 +46,7 @@ PresidentialPardonForm::operator=(const PresidentialPardonForm &other)
 		return (*this);
 	}
 
-	Form::operator=(other);
+	AForm::operator=(other);
 	this->target_ = other.target_;
 
 	return (*this);
@@ -66,11 +67,11 @@ void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
 	if (!this->get_signed_state())
 	{
-		throw Form::UnSignedException();
+		throw AForm::UnSignedException();
 	}
-	if (execute.getGrade() > this->get_min_grade_to_execute())
+	if (executor.getGrade() > this->get_min_grade_to_execute())
 	{
-		throw Form::GradeTooLowException();
+		throw AForm::GradeTooLowException();
 	}
 
 	std::cout << "Zaphod Beeblebrox has graciouslly pardoned " << target_

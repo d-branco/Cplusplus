@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/10/28 18:29:32      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/22 10:56:21     #########  #########  ###      ###      */
+/*   Updated: 2025/11/22 12:38:15     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -118,9 +118,8 @@ void Bureaucrat::grade_decrement(int decrement)
 	}
 }
 
-/////////////////////////////////////////////////////////////////// Functions
-/////4
-void Bureaucrat::signForm(Form &form_to_sign)
+/////////////////////////////////////////////////////////////////// Functions //
+void Bureaucrat::signForm(AForm &form_to_sign)
 {
 	if (DEBUG)
 	{
@@ -129,6 +128,16 @@ void Bureaucrat::signForm(Form &form_to_sign)
 	}
 	form_to_sign.beSigned(*this);
 	std::cout << name_ << " signed " << form_to_sign.get_name() << "\n";
+}
+
+void Bureaucrat::executeForm(AForm const &form_to_exe)
+{
+	if (DEBUG)
+	{
+		std::cout << "==DEBUG== Bureaucrat " << name_ << " is executing "
+				  << form_to_exe.get_name() << ".\n";
+	}
+	form_to_exe.execute(*this);
 }
 
 ////////////////////////////////////////////////////////////////// Exceptions //

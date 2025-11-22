@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                          ::::::::    ::::::::   :::::::::  */
-/*   Form.cpp                             :+:    :+:  :+:    :+:  :+:         */
+/*   AForm.cpp                            :+:    :+:  :+:    :+:  :+:         */
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/21 09:12:38      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/22 10:56:21     #########  #########  ###      ###      */
+/*   Updated: 2025/11/22 12:34:48     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 
-///////////////////////////////////////////////////// Canonical Orthodox Form //
-// Form::Form()
+///////////////////////////////////////////////////// Canonical Orthodox AForm
+/////
+// AForm::AForm()
 // {
 // }
 
-Form::Form(const std::string &name,
-		   bool				  is_signed,
-		   const int		  sign_min_grade,
-		   const int		  exec_min_grade) :
+AForm::AForm(const std::string &name,
+			 bool				is_signed,
+			 const int			sign_min_grade,
+			 const int			exec_min_grade) :
 	name_(name),
 	is_signed_(is_signed),
 	sign_min_grade_(sign_min_grade),
@@ -35,15 +36,15 @@ Form::Form(const std::string &name,
 	}
 	if ((sign_min_grade < 1) || (exec_min_grade < 1))
 	{
-		throw Form::GradeTooHighException();
+		throw AForm::GradeTooHighException();
 	}
 	if ((sign_min_grade > 150) || (exec_min_grade > 150))
 	{
-		throw Form::GradeTooLowException();
+		throw AForm::GradeTooLowException();
 	}
 }
 
-Form::Form(const Form &other) :
+AForm::AForm(const AForm &other) :
 	name_(other.name_),
 	is_signed_(other.is_signed_),
 	sign_min_grade_(other.sign_min_grade_),
@@ -55,7 +56,7 @@ Form::Form(const Form &other) :
 	}
 }
 
-Form &Form::operator=(const Form &other)
+AForm &AForm::operator=(const AForm &other)
 {
 	if (DEBUG)
 	{
@@ -71,7 +72,7 @@ Form &Form::operator=(const Form &other)
 	return (*this);
 }
 
-Form::~Form()
+AForm::~AForm()
 {
 	if (DEBUG)
 	{
@@ -80,72 +81,72 @@ Form::~Form()
 }
 
 ///////////////////////////////////////////////////////////////////// Getters //
-const std::string &Form::get_name() const
+const std::string &AForm::get_name() const
 {
 	return (name_);
 }
 
-bool Form::get_signed_state() const
+bool AForm::get_signed_state() const
 {
 	return (is_signed_);
 }
 
-int Form::get_min_grade_to_sign() const
+int AForm::get_min_grade_to_sign() const
 {
 	return (sign_min_grade_);
 }
 
-int Form::get_min_grade_to_execute() const
+int AForm::get_min_grade_to_execute() const
 {
 	return (exec_min_grade_);
 }
 
 ///////////////////////////////////////////////////////////////////// Setters //
 /////////////////////////////////////////////////////////////////// Functions //
-void Form::beSigned(const Bureaucrat &signer)
+void AForm::beSigned(const Bureaucrat &signer)
 {
 	if (DEBUG)
 	{
 		std::cout << "==DEBUG== " << signer.getName() << "(grade "
-				  << signer.getGrade() << ") is signning form " << this->name_
+				  << signer.getGrade() << ") is signning AForm " << this->name_
 				  << ".\n";
 	}
 	if (this->sign_min_grade_ < signer.getGrade())
 	{
 		std::cout << signer.getName() << " couldn't sign " << this->name_
 				  << " because their grade is too low.\n";
-		throw Form::GradeTooLowException();
+		throw AForm::GradeTooLowException();
 	}
 	this->is_signed_ = true;
 }
 
 ////////////////////////////////////////////////////////////////// Exceptions //
-const char *Form::GradeTooHighException::what() const throw()
+const char *AForm::GradeTooHighException::what() const throw()
 {
 	return ("Error:\n  Grade cannot be above 1");
 }
 
-const char *Form::GradeTooLowException::what() const throw()
+const char *AForm::GradeTooLowException::what() const throw()
 {
 	return ("Error:\n  Grade is too low.");
 }
 
-const char *Form::UnSignedException::what() const throw()
+const char *AForm::UnSignedException::what() const throw()
 {
-	return ("Error:\n  Form is unsigned.");
+	return ("Error:\n  AForm is unsigned.");
 }
 
 ////////////////////////////////////////////////////////// Overload operators //
-std::ostream &operator<<(std::ostream &out_s, const Form &Form)
+std::ostream &operator<<(std::ostream &out_s, const AForm &AForm)
 {
-	out_s << Form.get_name() << ", form is ";
-	if (!Form.get_signed_state())
+	out_s << AForm.get_name() << ", AForm is ";
+	if (!AForm.get_signed_state())
 	{
 		out_s << "not ";
 	}
 	out_s << "signed.\n  ├─Minimum grade to sign: "
-		  << Form.get_min_grade_to_sign() << "\n  └─Minimum grade to execute: "
-		  << Form.get_min_grade_to_execute();
+		  << AForm.get_min_grade_to_sign() << "\n  └─Minimum grade to execute: "
+		  << AForm.get_min_grade_to_execute();
 
 	return (out_s);
 }

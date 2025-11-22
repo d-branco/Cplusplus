@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/10/28 18:29:32      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/22 10:56:47     #########  #########  ###      ###      */
+/*   Updated: 2025/11/22 12:38:15     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define DEBUG false
 #endif
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -49,7 +49,8 @@ class Bureaucrat
 	void			   grade_decrement(int decrement);
 
 	/////////////////////////////////////////////////////////////// Functions //
-	void			   signForm(Form &form_to_sign);
+	void			   signForm(AForm &form_to_sign);
+	void			   executeForm(AForm const &form_to_exe);
 
 	////////////////////////////////////////////////////////////// Exceptions //
 	class GradeTooHighException : public std::exception

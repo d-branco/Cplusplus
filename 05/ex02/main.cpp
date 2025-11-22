@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/10/28 16:58:56      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/22 11:07:55     #########  #########  ###      ###      */
+/*   Updated: 2025/11/22 12:38:57     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -23,55 +23,60 @@
 
 int main()
 {
-	// try
-	// {
-	// 	Form zuv("Zweiundvierzig", false, 100, 20);
-	// 	std::cout << zuv << "\n";
+	try
+	{
+		Bureaucrat			   sus("Susana", 42);
+		PresidentialPardonForm fire("Artur");
+		std::cout << sus << "\n";
+		std::cout << fire << "\n";
 
-	// 	Form lov(zuv);
-	// 	lov = zuv;
-	// 	std::cout << "\n";
+		sus.signForm(fire);
+		std::cout << fire << "\n";
 
-	// 	// Form qc0("Quelque", true, 150,151);
-	// 	Form qc1("chose", true, 1, 0);
-	// }
-	// catch (const std::exception &e)
-	// {
-	// 	std::cout << e.what() << "\n";
-	// }
-	// std::cout << "\n";
+		fire.execute(sus);
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << "\n";
+	}
+	std::cout << "\n";
 
-	// try
-	// {
-	// 	Bureaucrat sus("Susana", 42);
-	// 	Form	   zwei("Zwei", false, 40, 20);
-	// 	std::cout << sus << "\n";
-	// 	std::cout << zwei << "\n";
+	try
+	{
+		Bureaucrat			   sus("Susana", 25);
+		PresidentialPardonForm fire("Artur");
+		std::cout << sus << "\n";
+		std::cout << fire << "\n";
 
-	// 	sus.signForm(zwei);
-	// 	std::cout << zwei << "\n";
-	// }
-	// catch (const std::exception &e)
-	// {
-	// 	std::cout << e.what() << "\n";
-	// }
-	// std::cout << "\n";
+		sus.signForm(fire);
+		std::cout << fire << "\n";
 
-	// try
-	// {
-	// 	Bureaucrat sus("Hannah", 42);
-	// 	Form	   drei("Drei", false, 100, 20);
-	// 	std::cout << sus << "\n";
-	// 	std::cout << drei << "\n";
+		fire.execute(sus);
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << "\n";
+	}
+	std::cout << "\n";
 
-	// 	sus.signForm(drei);
-	// 	std::cout << drei << "\n";
-	// }
-	// catch (const std::exception &e)
-	// {
-	// 	std::cout << e.what() << "\n";
-	// }
-	// std::cout << "\n";
+	try
+	{
+		Bureaucrat			   sus("Susana", 4);
+		PresidentialPardonForm fire("Artur");
+		std::cout << sus << "\n";
+		std::cout << fire << "\n";
+
+		sus.signForm(fire);
+		std::cout << fire << "\n";
+
+		fire.execute(sus);
+		sus.executeForm(fire);
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << "\n";
+	}
+	std::cout << "\n";
 
 	return (EXIT_SUCCESS);
 }
