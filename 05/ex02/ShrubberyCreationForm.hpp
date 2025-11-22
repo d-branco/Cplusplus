@@ -5,12 +5,15 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/22 11:03:25      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/22 13:03:39     #########  #########  ###      ###      */
+/*   Updated: 2025/11/22 13:27:26     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #ifndef SHRUBBERYCREATIONFORM_HPP
 #define SHRUBBERYCREATIONFORM_HPP
+
+#include <fstream>
+#include <iostream>
 
 #include "AForm.hpp"
 

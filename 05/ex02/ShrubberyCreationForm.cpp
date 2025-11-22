@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/22 11:03:25      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/22 13:03:39     #########  #########  ###      ###      */
+/*   Updated: 2025/11/22 13:27:49     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -13,7 +13,7 @@
 
 ///////////////////////////////////////////////////// Canonical Orthodox Form //
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) :
-	AForm("Shrubbery Creation ", false, 72, 45),
+	AForm("Shrubbery Creation ", false, 145, 137),
 	target_(target)
 {
 	if (DEBUG)
@@ -74,5 +74,20 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 		throw AForm::GradeTooLowException();
 	}
 
-	std::cout << target_; // TODO
+	std::string	  file_name = target_ + "_shrubbery";
+	std::ofstream file(file_name.c_str());
+	if (file.is_open())
+	{
+		file << "               ,@@@@@@@,\n";
+		file << "       ,,,.   ,@@@@@@/@@,  .oo8888o.\n";
+		file << "    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o\n";
+		file << "   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'\n";
+		file << "   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'\n";
+		file << "   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'\n";
+		file << "   `&%\\ ` /%&'    |.|        \\ '|8'\n";
+		file << "       |o|        | |         | |\n";
+		file << "       |.|        | |         | |\n";
+		file << "     \\/ ._\\//_/__/  ,\\_//__\\\\.  \\_//__/_\n";
+		file.close();
+	}
 }
