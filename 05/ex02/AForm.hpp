@@ -9,20 +9,18 @@
 /*                                                            ########        */
 /* ************************************************************************** */
 
-#pragma once
-
 #ifndef AFORM_HPP
-# define AFORM_HPP
+#define AFORM_HPP
 
-# include <exception>
-# include <iostream>
-# include <string>
+#include <exception>
+#include <iostream>
+#include <string>
 
-# include "Bureaucrat.hpp"
+#include "Bureaucrat.hpp"
 
-# ifndef DEBUG
-#  define DEBUG false
-# endif
+#ifndef DEBUG
+# define DEBUG false
+#endif
 
 class Bureaucrat;
 
@@ -54,6 +52,7 @@ class Form
 	///////////////////////////////////////////////////////////////// Setters //
 	/////////////////////////////////////////////////////////////// Functions //
 	void			   beSigned(const Bureaucrat &signer);
+	virtual void	   execute(Bureaucrat const &executor) const = 0;
 
 	////////////////////////////////////////////////////////////// Exceptions //
 	class GradeTooHighException : public std::exception
@@ -63,6 +62,12 @@ class Form
 	};
 
 	class GradeTooLowException : public std::exception
+	{
+	  public:
+		virtual const char *what() const throw();
+	};
+
+	class UnSignedException : public std::exception
 	{
 	  public:
 		virtual const char *what() const throw();

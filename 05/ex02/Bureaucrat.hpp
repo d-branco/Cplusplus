@@ -9,20 +9,18 @@
 /*                                                            ########        */
 /* ************************************************************************** */
 
-#pragma once
-
 #ifndef BUREAUCRAT_HPP
-# define BUREAUCRAT_HPP
+#define BUREAUCRAT_HPP
 
-# include <exception>
-# include <iostream>
-# include <string>
+#include <exception>
+#include <iostream>
+#include <string>
 
-# include "AForm.hpp"
+#include "AForm.hpp"
 
-# ifndef DEBUG
-#  define DEBUG false
-# endif
+#ifndef DEBUG
+# define DEBUG false
+#endif
 
 class Form;
 

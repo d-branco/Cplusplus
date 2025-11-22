@@ -14,19 +14,24 @@
 
 #include "AForm.hpp"
 
-class PresidentialPardonForm
+class PresidentialPardonForm : public Form
 {
   private:
+	std::string target_;
+
   public:
 	///////////////////////////////////////////////// Canonical Orthodox Form //
-	PresidentialPardonForm();
+	PresidentialPardonForm(const std :; string & target);
 	PresidentialPardonForm(const PresidentialPardonForm &other);
 	PresidentialPardonForm &operator=(const PresidentialPardonForm &other);
-	~PresidentialPardonForm();
+	virtual ~PresidentialPardonForm();
 
 	///////////////////////////////////////////////////////////////// Getters //
+
 	///////////////////////////////////////////////////////////////// Setters //
+
 	/////////////////////////////////////////////////////////////// Functions //
+	virtual void execute(Bureaucrat const &executor) const;
 };
 
 #endif

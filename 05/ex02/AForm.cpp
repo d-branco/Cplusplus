@@ -130,6 +130,11 @@ const char *Form::GradeTooLowException::what() const throw()
 	return ("Error:\n  Grade is too low.");
 }
 
+const char *Form::UnSignedException::what() const throw()
+{
+	return ("Error:\n  Form is unsigned.");
+}
+
 ////////////////////////////////////////////////////////// Overload operators //
 std::ostream &operator<<(std::ostream &out_s, const Form &Form)
 {
