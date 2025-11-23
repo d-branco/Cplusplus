@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/23 10:56:57      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/23 12:14:48     #########  #########  ###      ###      */
+/*   Updated: 2025/11/23 12:55:22     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class ScalarConverter
 {
   private:
 	///////////////////////////////////////////////// Canonical Orthodox Form //
-	ScalarConverter(); // Canonical Orthodox Form
+	ScalarConverter();
 	ScalarConverter(const ScalarConverter &other);
 	ScalarConverter &operator=(const ScalarConverter &other);
 	~ScalarConverter();
@@ -34,12 +34,12 @@ class ScalarConverter
 		CHAR,
 		INT,
 		FLOAT,
-		DOUBLE
+		DOUBLE,
+		PSEUDO,
+		OTHER
 	};
 
   public:
-	///////////////////////////////////////////////////////////////// Getters //
-	///////////////////////////////////////////////////////////////// Setters //
 	/////////////////////////////////////////////////////////////// Functions //
 	static void	  convert(const std::string &representation);
 	static e_type detect_type(const std::string &representation);
