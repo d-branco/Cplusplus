@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/23 10:56:57      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/23 13:34:04     #########  #########  ###      ###      */
+/*   Updated: 2025/11/23 13:46:50     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ ScalarConverter::detect_type(const std::string &representation)
 				&& (((representation[i]) == '-')
 					|| ((representation[i]) == '+'))))
 		{
-			if (DEBUG)
+			if ((DEBUG)
+				&& (((representation[i]) == '-')
+					|| ((representation[i]) == '+')))
 			{
 				std::cout << "==DEBUG== detect_type: sign detected!\n";
 			}
@@ -125,9 +127,123 @@ ScalarConverter::detect_type(const std::string &representation)
 		std::cout << "==DEBUG== detect_type: not an PSEUDO-LITERAL\n";
 	}
 
+	i			  = 0;
+	size_t n_dots = 0;
+	for (;;)
+	{
+		if ((std::isdigit(representation[i]))
+			|| ((i == 0)
+				&& (((representation[i]) == '-')
+					|| ((representation[i]) == '+'))))
+		{
+			if ((DEBUG)
+				&& (((representation[i]) == '-')
+					|| ((representation[i]) == '+')))
+			{
+				std::cout << "==DEBUG== detect_type: sign detected!\n";
+			}
+			i++;
+			continue;
+		}
+		if (representation[i] == '.')
+		{
+			if (DEBUG)
+			{
+				std::cout << "==DEBUG== detect_type: dot detected!\n";
+			}
+			if (n_dots == 0)
+			{
+				n_dots++;
+				i++;
+				continue;
+			}
+			else
+			{
+				if (DEBUG)
+				{
+					std::cout << "==DEBUG== detect_type: not a double\n";
+				}
+				break;
+			}
+		}
+		if (representation[i] == '\0')
+		{
+			if (DEBUG)
+			{
+				std::cout << "==DEBUG== detect_type: DOUBLE\n";
+			}
+			return (DOUBLE);
+		}
+		else
+		{
+			if (DEBUG)
+			{
+				std::cout << "==DEBUG== detect_type: not a DOUBLE\n";
+			}
+			break;
+		}
+	}
+
+	i	   = 0;
+	n_dots = 0;
+	for (;;)
+	{
+		if ((std::isdigit(representation[i]))
+			|| ((i == 0)
+				&& (((representation[i]) == '-')
+					|| ((representation[i]) == '+'))))
+		{
+			if ((DEBUG)
+				&& (((representation[i]) == '-')
+					|| ((representation[i]) == '+')))
+			{
+				std::cout << "==DEBUG== detect_type: sign detected!\n";
+			}
+			i++;
+			continue;
+		}
+		if (representation[i] == '.')
+		{
+			if (DEBUG)
+			{
+				std::cout << "==DEBUG== detect_type: dot detected!\n";
+			}
+			if (n_dots == 0)
+			{
+				n_dots++;
+				i++;
+				continue;
+			}
+			else
+			{
+				if (DEBUG)
+				{
+					std::cout << "==DEBUG== detect_type: not a float\n";
+				}
+				break;
+			}
+		}
+		if ((representation[i] == 'f') && (representation[i + 1] == '\0'))
+		{
+			if (DEBUG)
+			{
+				std::cout << "==DEBUG== detect_type: FLOAT\n";
+			}
+			return (FLOAT);
+		}
+		else
+		{
+			if (DEBUG)
+			{
+				std::cout << "==DEBUG== detect_type: not a FLOAT\n";
+			}
+			break;
+		}
+	}
+
 	if (DEBUG)
 	{
 		std::cout << "==DEBUG== detect_type: no type found!\n";
 	}
-	return (OTHER); // remove me, please
+	return (OTHER);
 }
