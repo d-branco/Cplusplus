@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/23 10:56:57      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/23 11:24:11     #########  #########  ###      ###      */
+/*   Updated: 2025/11/23 12:14:48     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -38,7 +38,24 @@ ScalarConverter::~ScalarConverter()
 ///////////////////////////////////////////////////////////////////// Getters //
 ///////////////////////////////////////////////////////////////////// Setters //
 /////////////////////////////////////////////////////////////////// Functions //
-void	ScalarConverter::convert(std::string representation)
+void ScalarConverter::convert(const std::string &representation)
+{
+	if (DEBUG)
+	{
+		std::cout << "==DEBUG== input: " << representation << "\n";
+	}
+
+	ScalarConverter::e_type scalar_type
+		= ScalarConverter::detect_type(representation);
+	if (DEBUG)
+	{
+		std::cout << "==DEBUG== type: " << scalar_type << "\n";
+	}
+}
+
+ScalarConverter::e_type
+ScalarConverter::detect_type(const std::string &representation)
 {
 	(void) representation;
+	return (CHAR);
 }
