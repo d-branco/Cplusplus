@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/23 10:56:57      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/23 14:24:03     #########  #########  ###      ###      */
+/*   Updated: 2025/11/23 15:22:10     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -54,18 +54,43 @@ void ScalarConverter::convert(const std::string &representation)
 
 	if (scalar_type == CHAR)
 	{
-		std::cout << "char:  '" << representation[0] << "'"
-				  << "\nint:    " << static_cast<int>(representation[0])
+		if (std::isprint(representation[0]))
+		{
+			std::cout << "char:   '" << representation[0] << "'" << "\n";
+		}
+		else
+		{
+			std::cout << "char:   Non displayable\n";
+		}
+		std::cout << "int:    " << static_cast<int>(representation[0])
 				  << "\nfloat:  " << static_cast<float>(representation[0])
-				  << ".0f"
-				  << "\ndouble: " << static_cast<double>(representation[0])
-				  << ".0" << "\n";
+				  << ".0f\ndouble: " << static_cast<double>(representation[0])
+				  << ".0\n";
+
 		return;
 	}
 
 	if (scalar_type == PSEUDO)
 	{
+		std::cout << "char:   impossible" << "\nint:    impossible" << "\n";
+		if ((representation == "nan") || (representation == "nanf"))
+		{
+			std::cout << "float:  nanf\ndouble: nan\n";
+		}
+		else if ((representation == "-inf") || (representation == "-inff"))
+		{
+			std::cout << "float:  -inff\ndouble: -inf\n";
+		}
+		else
+		{
+			std::cout << "float:  inff\ndouble: inf\n";
+		}
+
+		return;
 	}
+
+	// if ((scalar_type == INT)
+	// 	|| (scalar_type == FLOAT) || (scalar_type == DOUBLE))
 }
 
 ScalarConverter::e_type
@@ -124,7 +149,8 @@ ScalarConverter::detect_type(const std::string &representation)
 		std::cout << "==DEBUG== detect_type: not an CHAR\n";
 	}
 
-	if (representation == "-inff" || representation == "+inff"
+	if (representation == "inff" || representation == "inf"
+		|| representation == "-inff" || representation == "+inff"
 		|| representation == "nan" || representation == "-inf"
 		|| representation == "+inf" || representation == "nanf")
 	{

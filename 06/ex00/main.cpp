@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/23 10:56:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/23 12:05:15     #########  #########  ###      ###      */
+/*   Updated: 2025/11/23 14:46:19     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -33,5 +33,24 @@ int main(int argc, char **argv)
 	ScalarConverter::convert("nan");
 	std::cout << "\n";
 	ScalarConverter::convert("42.0f");
+	std::cout << "\n\n";
+
+	ScalarConverter::convert("*");
+	std::cout << "\n";
+	ScalarConverter::convert("\t");
+	std::cout << "\n";
+
+	ScalarConverter::convert("inf");
+	std::cout << "\n";
+	ScalarConverter::convert("+inff");
+	std::cout << "\n";
+	ScalarConverter::convert("-inf");
+	std::cout << "\n";
+	ScalarConverter::convert("+0");
+	std::cout << "\n";
+	ScalarConverter::convert("-2");
+	std::cout << "\n";
+	ScalarConverter::convert("+225");
+
 	return (EXIT_SUCCESS);
 }
