@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/23 10:56:57      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/23 13:46:50     #########  #########  ###      ###      */
+/*   Updated: 2025/11/23 14:24:03     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -41,18 +41,30 @@ void ScalarConverter::convert(const std::string &representation)
 {
 	if (DEBUG)
 	{
-		std::cout << "==DEBUG== input: " << representation << "\n";
+		std::cout << "==DEBUG== convert: input: " << representation << "\n";
 	}
 
 	ScalarConverter::e_type scalar_type
 		= ScalarConverter::detect_type(representation);
-	if (DEBUG)
-	{
-		std::cout << "==DEBUG== type: " << scalar_type << "\n";
-	}
 	if (scalar_type == OTHER)
 	{
+		std::cout << "Error:\n  Unrecognized scalar!\n";
 		return;
+	}
+
+	if (scalar_type == CHAR)
+	{
+		std::cout << "char:  '" << representation[0] << "'"
+				  << "\nint:    " << static_cast<int>(representation[0])
+				  << "\nfloat:  " << static_cast<float>(representation[0])
+				  << ".0f"
+				  << "\ndouble: " << static_cast<double>(representation[0])
+				  << ".0" << "\n";
+		return;
+	}
+
+	if (scalar_type == PSEUDO)
+	{
 	}
 }
 
