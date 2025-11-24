@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/23 10:56:57      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/23 15:22:10     #########  #########  ###      ###      */
+/*   Updated: 2025/11/24 16:45:45     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -13,7 +13,9 @@
 #define SCALARCONVERTER_HPP
 
 #include <iostream>
+#include <limits>
 #include <string>
+// #include <cstddef>
 
 #ifndef DEBUG
 # define DEBUG false
