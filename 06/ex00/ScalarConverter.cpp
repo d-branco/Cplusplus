@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/23 10:56:57      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/24 16:45:45     #########  #########  ###      ###      */
+/*   Updated: 2025/11/24 18:12:48     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -91,18 +91,40 @@ void ScalarConverter::convert(const std::string &representation)
 			temp_f = +std::numeric_limits<float>::infinity();
 			temp_d = +std::numeric_limits<double>::infinity();
 		}
-		std::cout << "float:  " << temp_f << "f\n";
-		std::cout << "double: " << temp_d << "\n";
+		std::cout << "float:  " << temp_f << "f\ndouble: " << temp_d << "\n";
 
 		return;
 	}
 
-	if ((scalar_type == INT)
-		|| (scalar_type == FLOAT) || (scalar_type == DOUBLE))
+	if ((scalar_type == INT) || (scalar_type == FLOAT)
+		|| (scalar_type == DOUBLE))
 	{
-		
+		double temp = std::strtod(representation.c_str(), NULL);
 
-		return ;
+		if (temp < 0 || temp > 127)
+		{
+			std::cout << "char:   impossible\n";
+		}
+		else if (std::isprint(static_cast<char>(temp)))
+		{
+			std::cout << "char:   '" << static_cast<char>(temp) << "'\n";
+		}
+		else
+		{
+			std::cout << "char:   Non displayable\n";
+		}
+
+		if ((temp > std::numeric_limits<int>::max())
+			|| (temp < std::numeric_limits<int>::min()))
+		{
+			std::cout << "int:    impossible\n";
+		}
+		else
+		{
+			std::cout << "int:    " << static_cast<int>(temp) << "\n";
+		}
+
+		return;
 	}
 }
 
