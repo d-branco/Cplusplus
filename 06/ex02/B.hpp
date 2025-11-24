@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                          ::::::::    ::::::::   :::::::::  */
-/*   Base.hpp                             :+:    :+:  :+:    :+:  :+:         */
+/*   B.hpp                                :+:    :+:  :+:    :+:  :+:         */
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/11/24 18:47:35      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/24 19:08:23     #########  #########  ###      ###      */
+/*   Created: 2025/11/24 18:47:39      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/11/24 19:15:13     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
-#ifndef BASE_HPP
-#define BASE_HPP
+#ifndef B_HPP
+#define B_HPP
 
-#ifndef DEBUG
-# define DEBUG false
-#endif
+#include "Base.hpp"
 
-#include <ctime>
-#include <iostream>
-#include <cstdlib>
-
-class Base
+class B : public Base
 {
   private:
   public:
 	///////////////////////////////////////////////// Canonical Orthodox Form //
-	Base();
-	// Base(const Base &other);
-	// Base &operator=(const Base &other);
-	virtual ~Base();
+	B();
+	// B(const B &other);
+	// B &operator=(const B &other);
+	~B();
 
 	///////////////////////////////////////////////////////////////// Getters //
 	///////////////////////////////////////////////////////////////// Setters //
 	/////////////////////////////////////////////////////////////// Functions //
-	Base *generate(void);
 };
 
 #endif

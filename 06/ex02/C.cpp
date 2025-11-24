@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/24 18:47:41      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/24 18:47:41     #########  #########  ###      ###      */
+/*   Updated: 2025/11/24 19:49:00     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -14,25 +14,33 @@
 ///////////////////////////////////////////////////// Canonical Orthodox Form //
 C::C()
 {
-}
-
-C::C(const C &other)
-{
-	*this = other;
-}
-
-C &C::operator=(const C &other)
-{
-	if (this == &other)
+	if (DEBUG)
 	{
-		return (*this);
+		std::cout << "==DEBUG== C: Default Constructor\n";
 	}
-
-	return (*this);
 }
+
+// C::C(const C &other)
+// {
+// 	*this = other;
+// }
+
+// C &C::operator=(const C &other)
+// {
+// 	if (this == &other)
+// 	{
+// 		return (*this);
+// 	}
+
+// 	return (*this);
+// }
 
 C::~C()
 {
+	if (DEBUG)
+	{
+		std::cout << "==DEBUG== C: Destructor\n";
+	}
 }
 
 ///////////////////////////////////////////////////////////////////// Getters //
