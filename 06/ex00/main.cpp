@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/23 10:56:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/24 17:54:28     #########  #########  ###      ###      */
+/*   Updated: 2025/11/24 18:21:09     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -58,6 +58,13 @@ int main(int argc, char **argv)
 	ScalarConverter::convert("9.225");
 	std::cout << "\n";
 	ScalarConverter::convert("-9.225");
+
+		std::cout << "\n";
+	ScalarConverter::convert("42f");
+	std::cout << "\n";
+	ScalarConverter::convert("42.0");
+	std::cout << "\n";
+	ScalarConverter::convert("42");
 
 	return (EXIT_SUCCESS);
 }

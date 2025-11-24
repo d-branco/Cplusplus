@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/23 10:56:57      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/24 18:12:48     #########  #########  ###      ###      */
+/*   Updated: 2025/11/24 18:23:29     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -96,7 +96,9 @@ void ScalarConverter::convert(const std::string &representation)
 		return;
 	}
 
-	if ((scalar_type == INT) || (scalar_type == FLOAT)
+	if (
+		(scalar_type == INT)
+		|| (scalar_type == FLOAT)
 		|| (scalar_type == DOUBLE))
 	{
 		double temp = std::strtod(representation.c_str(), NULL);
@@ -122,6 +124,15 @@ void ScalarConverter::convert(const std::string &representation)
 		else
 		{
 			std::cout << "int:    " << static_cast<int>(temp) << "\n";
+		}
+
+		if (temp == static_cast<int>(temp))
+		{
+			std::cout << "float:  " << static_cast<float>(temp) << ".0f\n";
+		}
+		else
+		{
+			std::cout << "float:  " << static_cast<float>(temp) << "f\n";
 		}
 
 		return;
