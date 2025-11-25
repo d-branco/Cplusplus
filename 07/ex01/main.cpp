@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/25 14:42:58      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/25 16:57:12     #########  #########  ###      ###      */
+/*   Updated: 2025/11/25 17:02:17     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -28,8 +28,14 @@ int main(void)
 	std::cout << "Original array: " << arr[0] << ", " << arr[1] << ", "
 			  << arr[2] << ", " << arr[3] << ", " << arr[4] << "\n";
 
-	iter(arr, 3, add_one);
+	iter(arr, 5, add_one);
 	std::cout << "Final array:    " << arr[0] << ", " << arr[1] << ", "
 			  << arr[2] << ", " << arr[3] << ", " << arr[4] << "\n";
+
+	const int ecole[2] = {4, 2};
+	std::cout << "Original array: " << ecole[0] << ", " << ecole[1] << "\n";
+
+	iter(ecole, 2, print_the_next);
+	std::cout << "Final array:    " << ecole[0] << ", " << ecole[1] << "\n";
 	return (EXIT_SUCCESS);
 }

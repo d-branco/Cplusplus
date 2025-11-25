@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/25 14:42:58      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/25 16:56:22     #########  #########  ###      ###      */
+/*   Updated: 2025/11/25 17:01:36     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ void iter(const T *array, const size_t lenght, void (*function)(const T &))
 template <typename T> void add_one(T &ori)
 {
 	ori++;
+}
+
+template <typename T> void print_the_next(T &ori)
+{
+	T temp = ori + 1;
+	std::cout << "Next: '" << temp << "'\n";
 }
 
 #endif
