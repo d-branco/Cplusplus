@@ -4,28 +4,18 @@
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/11/24 18:46:28      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/24 20:21:51     #########  #########  ###      ###      */
+/*   Created: 2025/11/25 10:54:17      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/11/25 11:04:31     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #include <cstdlib>
-#include <iostream>
 
-#include "Base.hpp"
-
-#include "A.hpp"
-#include "B.hpp"
-#include "C.hpp"
+#ifndef DEBUG
+# define DEBUG false
+#endif
 
 int main(void)
 {
-	std::srand(std::time(0));
-
-	Base *alpha = generate();
-	identify(alpha);
-	identify(*alpha);
-	delete (alpha);
-	
 	return (EXIT_SUCCESS);
 }

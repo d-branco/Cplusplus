@@ -5,11 +5,11 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/11/25 10:04:08     #########  #########  ###      ###       #
+#    Updated: 2025/11/25 10:56:31     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
-NAME			:= typeinfo.out
+NAME			:= serialization.out
 #NAME-BONUS		:= $(NAME)_bonus
 
 FORMATABLE		= $(HEADERS) $(SRCS)
@@ -17,16 +17,10 @@ FORMATABLE		= $(HEADERS) $(SRCS)
 TEST_RUN		:= $(NAME)
 ########################################################## Objects and Headers #
 HEADERS			:=															\
-	Base.hpp																\
-	A.hpp																	\
-	B.hpp																	\
-	C.hpp																	\
+	Serializer.hpp															\
 
 SRCS			:=															\
-	Base.cpp																\
-	A.cpp																	\
-	B.cpp																	\
-	C.cpp																	\
+	Serializer.cpp															\
 	\
 	main.cpp
 
@@ -335,7 +329,7 @@ headers:
 	UseTab: Always\n\
 	" > .clang-format
 
-format: .clang-format
+format: headers .clang-format
 	@\
 	clang-format -i $(FORMATABLE)										&&	\
 	echo "formatted"													;	\
