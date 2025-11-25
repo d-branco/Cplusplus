@@ -5,11 +5,11 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/11/25 14:17:09     #########  #########  ###      ###       #
+#    Updated: 2025/11/25 14:33:42     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
-NAME			:= few.out
+NAME			:= minmax.out
 #NAME-BONUS		:= $(NAME)_bonus
 
 FORMATABLE		= $(HEADERS) $(SRCS)
@@ -17,6 +17,7 @@ FORMATABLE		= $(HEADERS) $(SRCS)
 TEST_RUN		:= $(NAME)
 ########################################################## Objects and Headers #
 HEADERS			:=															\
+	template.hpp
 
 SRCS			:=															\
 	\
