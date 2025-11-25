@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/24 18:47:35      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/24 19:47:45     #########  #########  ###      ###      */
+/*   Updated: 2025/11/24 20:20:35     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ class Base
   public:
 	///////////////////////////////////////////////// Canonical Orthodox Form //
 	Base();
-	Base(const Base &other);
-	Base &operator=(const Base &other);
+	// Base(const Base &other);
+	// Base &operator=(const Base &other);
 	virtual ~Base();
 
 	///////////////////////////////////////////////////////////////// Getters //
@@ -36,5 +36,8 @@ class Base
 };
 
 Base *generate(void);
+
+void  identify(Base *p);
+void  identify(Base &p);
 
 #endif
