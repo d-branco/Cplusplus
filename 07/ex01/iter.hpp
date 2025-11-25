@@ -1,44 +1,30 @@
 /* ************************************************************************** */
 /*                                          ::::::::    ::::::::   :::::::::  */
-/*   template.hpp                         :+:    :+:  :+:    :+:  :+:         */
+/*   iter.hpp                             :+:    :+:  :+:    :+:  :+:         */
 /*                                             +:+         :+:   :+:          */
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
-/*   Created: 2025/11/25 14:32:00      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/25 14:39:10     #########  #########  ###      ###      */
+/*   Created: 2025/11/25 14:42:58      #+#         #+#      +#+        #+#    */
+/*   Updated: 2025/11/25 16:36:22     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
-#ifndef TEMPLATE_HPP
-#define TEMPLATE_HPP
+#ifndef ITER_HPP
+#define ITER_HPP
 
-template <typename T>
-T max(T x, T y)
+template <typename T, typename U>
+void iter(T *array, const size_t lenght, U function)
 {
-	if (x > y)
+	size_t i = 0;
+	for (;;)
 	{
-		return (x);
+		array[i] = function(array[i]);
+		i++;
+		if (i >= lenght)
+		{
+			break;
+		}
 	}
-	return (y);
-}
-
-template <typename T>
-T min(T x, T y)
-{
-	if (x < y)
-	{
-		return (x);
-	}
-	return (y);
-}
-
-template <typename T>
-void swap(T &x, T &y)
-{
-	T temp = x;
-	x = y;
-	y = temp;
-	return ;
 }
 
 #endif
