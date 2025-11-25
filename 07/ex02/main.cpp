@@ -5,21 +5,40 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/25 18:46:44      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/25 20:53:53     #########  #########  ###      ###      */
+/*   Updated: 2025/11/25 21:22:43     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #include "Array.hpp"
 
 #include <cstdlib>
+
 // #include <ctime>
 
-#define MAX_VAL 750
+// #define MAX_VAL 750
 
 int main(void)
 {
 	Array<int> alpha;
-    std::cout << "Array of size: " << alpha.size() << "\n\n";
+	std::cout << "Array of size: " << alpha.size() << "\n";
+	Array<int> bravo(0);
+	std::cout << "Array of size: " << bravo.size() << "\n";
+	Array<int> charlie(42);
+	std::cout << "Array of size: " << charlie.size() << "\n\n";
+
+	unsigned int ft = 16;
+	int * a = new int[ft];
+	std::cout << "Array 'a' (at adress: " << a << "):\n";
+	for (unsigned int ite = 0; ite < ft; ite++)
+	{
+		a[ite] = ite -42;
+	}
+	for (unsigned int ite = 0; ite < ft - 1; ite++)
+	{
+		std::cout << a[ite] << ", ";
+	}
+	std::cout << a[ft - 1] << "\n\n";
+	delete[] (a);
 
 	// Array<int> numbers(MAX_VAL);
 	// int		  *mirror = new int[MAX_VAL];

@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/25 19:25:39      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/25 20:55:15     #########  #########  ###      ###      */
+/*   Updated: 2025/11/25 21:02:30     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ template <class T> class Array
 	{
 		if (DEBUG)
 		{
-			std::cout << "==DEBUG== Array: Default Constructor: Empty array "
-						 "(size: 0)\n";
+			std::cout << "==DEBUG== Array: Default Constructor: Empty array\n";
 		}
 	}
 
@@ -38,7 +37,8 @@ template <class T> class Array
 	{
 		if (DEBUG)
 		{
-			std::cout << "==DEBUG== Array: Default Constructor: Array (size: "
+			std::cout << "==DEBUG== Array: Default Parametrized Constructor: "
+						 "Array (size: "
 					  << ene_ << ")\n";
 		}
 	}
@@ -79,7 +79,6 @@ template <class T> class Array
 	{
 		return (ene_);
 	}
-
 };
 
 #endif
