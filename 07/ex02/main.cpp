@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/25 18:46:44      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/25 21:22:43     #########  #########  ###      ###      */
+/*   Updated: 2025/11/25 21:39:01     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -26,19 +26,24 @@ int main(void)
 	Array<int> charlie(42);
 	std::cout << "Array of size: " << charlie.size() << "\n\n";
 
-	unsigned int ft = 16;
-	int * a = new int[ft];
-	std::cout << "Array 'a' (at adress: " << a << "):\n";
-	for (unsigned int ite = 0; ite < ft; ite++)
+	int *a = new int();
+	std::cout << "Array 'a' (at adress: " << a << "):\n" << *a << "\n";
+
+	unsigned int tttf = 16;
+	int			*b	  = new int[tttf];
+	std::cout << "Array 'b' (at adress: " << b << "):\n";
+	// Coment this for loop for an array set to zeroes! And some memory errors
+	for (unsigned int ite = 0; ite < tttf; ite++)
 	{
-		a[ite] = ite -42;
+		b[ite] = ite - 42;
 	}
-	for (unsigned int ite = 0; ite < ft - 1; ite++)
+	for (unsigned int ite = 0; ite < tttf - 1; ite++)
 	{
-		std::cout << a[ite] << ", ";
+		std::cout << b[ite] << ", ";
 	}
-	std::cout << a[ft - 1] << "\n\n";
-	delete[] (a);
+	std::cout << b[tttf - 1] << "\n\n";
+	delete (a);
+	delete[] (b);
 
 	// Array<int> numbers(MAX_VAL);
 	// int		  *mirror = new int[MAX_VAL];
