@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/25 10:54:17      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/25 13:29:21     #########  #########  ###      ###      */
+/*   Updated: 2025/11/25 14:09:12     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -23,14 +23,16 @@ int main(void)
 	Data *message		 = new Data();
 	message->secret_code = 42;
 	std::cout << "Old pointer (at " << &message << ") points to:\n  " << message
-			  << "\n";
+			  << "    (secret code: " << message->secret_code << ")\n";
 
 	uintptr_t duo = Serializer::serialize(message);
-	std::cout << "Unsigned integer value: \n  0x" << std::hex << duo << "\n";
+	std::cout << "Unsigned integer value: \n  0x" << std::hex << duo << std::dec
+			  << "\n";
 
 	Data *response = Serializer::deserialize(duo);
-	std::cout << "New pointer at (" << &response << ") points to \n  "
-			  << response << "\n";
+	std::cout << "New pointer (at " << &response << ") points to:\n  "
+			  << response << "    (secret code: " << response->secret_code
+			  << ")\n";
 
 	delete (message);
 	return (EXIT_SUCCESS);
