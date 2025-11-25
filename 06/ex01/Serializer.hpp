@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/25 10:55:58      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/25 11:04:31     #########  #########  ###      ###      */
+/*   Updated: 2025/11/25 12:35:54     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 #ifndef DEBUG
 # define DEBUG false
 #endif
+
+#include <iostream>
+#include <stdint.h>
+
+#include "Data.hpp"
 
 class Serializer
 {
@@ -29,6 +34,8 @@ class Serializer
 	///////////////////////////////////////////////////////////////// Getters //
 	///////////////////////////////////////////////////////////////// Setters //
 	/////////////////////////////////////////////////////////////// Functions //
+	static uintptr_t serialize(Data *ptr);
+	static Data		*deserialize(uintptr_t raw);
 };
 
 #endif
