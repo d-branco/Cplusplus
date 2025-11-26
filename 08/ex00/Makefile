@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/11/26 15:46:09     #########  #########  ###      ###       #
+#    Updated: 2025/11/26 21:13:14     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -419,11 +419,11 @@ valgrind: $(NAME)
 	\
 		./$(TEST_RUN)
 
-exe: headers fclean $(NAME)
+exe: headers format fclean $(NAME)
 	@\
 	./$(TEST_RUN)
 
-run: headers $(NAME)
+run: headers format $(NAME)
 	@\
 	./$(TEST_RUN)
 
@@ -440,7 +440,7 @@ gprof: fclean headers $(NAME)
 	cat gmon-ignoreme.txt												;	\
 	rm -f gmon-ignoreme.txt gmon.out
 
-homerun: fclean headers $(NAME)
+homerun: fclean headers format $(NAME)
 	@\
 	mv ./$(NAME) ~/$(NAME)												&&	\
 	chmod +x ~/$(NAME)													;	\
@@ -448,9 +448,25 @@ homerun: fclean headers $(NAME)
 	rm -f ~/$(NAME)
 
 homedebug: CFLAGS += $(DEBUG_FLAGS)
-homedebug: fclean headers $(NAME)
+homedebug: fclean headers format $(NAME)
 	@\
 	mv ./$(NAME) ~/$(NAME)												&&	\
 	chmod +x ~/$(NAME)													;	\
 	~/$(TEST_RUN)														;	\
+	rm -f ~/$(NAME)
+
+homevalgrind: fclean headers format $(NAME)
+		@\
+	mv ./$(NAME) ~/$(NAME)												&&	\
+	chmod +x ~/$(NAME)													;	\
+	\
+	valgrind																\
+		--track-fds=yes														\
+		--show-error-list=yes												\
+		--leak-check=full													\
+		--show-leak-kinds=all												\
+		--track-origins=yes													\
+		--max-stackframe=4200000											\
+	\
+		~/$(TEST_RUN)													;	\
 	rm -f ~/$(NAME)

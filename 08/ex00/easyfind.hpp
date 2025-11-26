@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/26 15:46:09      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/26 17:48:44     #########  #########  ###      ###      */
+/*   Updated: 2025/11/26 19:07:10     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -32,17 +32,17 @@ typename T::const_iterator easyfind(const T &int_container, int nbr)
 	{
 		for (;;)
 		{
+			if (pos == end)
+			{
+				throw std::exception();
+				std::cout << "TESTE\n ";
+			}
 			if (*pos == nbr)
 			{
 				std::cout << "INT " << *pos << " found\n";
 				return (pos);
 			}
 
-			if (pos == end)
-			{
-				throw std::exception();
-				std::cout << "TESTE\n ";
-			}
 			pos++;
 		}
 	}
