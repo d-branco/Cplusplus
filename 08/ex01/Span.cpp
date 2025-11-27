@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/27 14:33:02      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/27 17:31:00     #########  #########  ###      ###      */
+/*   Updated: 2025/11/27 19:21:15     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -134,34 +134,34 @@ unsigned int Span::shortestSpan()
 		span			 = temp_vec[1] - temp_vec[0];
 		if (DEBUG)
 		{
-			std::cout << "==DEBUG== Span: shortespan(): new minimum: " << span
+			std::cout << "==DEBUG== Span: shortesstpan(): new minimum: " << span
 					  << " (between " << temp_vec[1] << " and " << temp_vec[0]
 					  << ")\n";
 		}
 		for (;;)
 		{
+			if (iii >= vec_.size() - 2)
+			{
+				break;
+			}
 			if (span > (unsigned int) (temp_vec[iii + 1] - temp_vec[iii]))
 			{
 				span = temp_vec[iii + 1] - temp_vec[iii];
 				if (DEBUG)
 				{
-					std::cout
-						<< "==DEBUG== Span: shortespan(): new minimum: " << span
-						<< " (between " << temp_vec[iii + 1] << " and "
-						<< temp_vec[iii] << ")\n";
+					std::cout << "==DEBUG== Span: shortestspan(): new minimum: "
+							  << span << " (between " << temp_vec[iii + 1]
+							  << " and " << temp_vec[iii] << ")\n";
 				}
 			}
 			iii++;
-			if (iii >= vec_.size() - 2)
-			{
-				break;
-			}
 		}
 	}
 	catch (const std::exception &e)
 	{
-		std::cout << "Error:\n  Too few INT in vector (" << vec_.size()
-				  << ")\n";
+		std::cout << "Error:  Span::shortestSpan(): Too few INT in vector. "
+					 "Size: "
+				  << vec_.size() << "\n";
 	}
 
 	return (span);
@@ -179,11 +179,22 @@ unsigned int Span::longestSpan()
 		{
 			throw std::exception();
 		}
+		int min_ele = *std::min_element(vec_.begin(), vec_.end());
+		int max_ele = *std::max_element(vec_.begin(), vec_.end());
+		if (DEBUG)
+		{
+			std::cout << "==DEBUG== Span: longestspan(): Minimum: " << min_ele
+					  << "\n";
+			std::cout << "==DEBUG== Span: longestspan(): Maximum: " << max_ele
+					  << "\n";
+		}
+		return (max_ele - min_ele);
 	}
 	catch (const std::exception &e)
 	{
-		std::cout << "Error:\n  Too few INT in vector (" << vec_.size()
-				  << ")\n";
+		std::cout << "Error:  Span::longestSpan(): Too few INT in vector. "
+					 "Size: "
+				  << vec_.size() << "\n";
 	}
 
 	return (0);
