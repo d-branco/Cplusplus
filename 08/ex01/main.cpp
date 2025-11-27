@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/27 14:35:50      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/27 15:29:49     #########  #########  ###      ###      */
+/*   Updated: 2025/11/27 16:39:49     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -42,6 +42,15 @@ int main(void)
 	Span vitor(victoria);
 	vitor.addNumber(225);
 
+	std::cout << "\nCode from the subject bellow:\n";
+	Span sp = Span(5);
+	sp.addNumber(6);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
 	if (DEBUG)
 	{
 		std::cout << "\n==DEBUG== End of main()\n";

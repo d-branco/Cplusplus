@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/11/27 14:35:07     #########  #########  ###      ###       #
+#    Updated: 2025/11/27 17:07:43     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -87,7 +87,7 @@ fclean: clean
 re: fclean all
 	@echo "$(GRAY)redone$(COR)"
 
-.PHONY: all clean fclean re headers
+.PHONY: all clean fclean re headers clang-check
 ######################################################################## Class #
 class: .clang-format
 	@if [ -z "$(NAME)" ]; then 												\
@@ -386,6 +386,11 @@ check-guards:
 			fail=1; \
 		fi; \
 	done;
+
+clang-check:
+	@\
+	clang-check --analyze $(FORMATABLE) -- $(CFLAGS)					;	\
+	rm -f *.plist
 ####################################################################### Colors #
 # COlor Remove
 COR		:= \033[0m
@@ -395,7 +400,7 @@ YELLOW	:= \033[1;93m
 BLUE	:= \033[1;96m
 ######################################################################### Test #
 test: CFLAGS += $(DEBUG_FLAGS)
-test: fclean headers $(NAME)
+test: clang-check fclean headers $(NAME)
 	@\
 	echo "\
 	$(COR)$(GRAY)========================================== $(NAME) START\
