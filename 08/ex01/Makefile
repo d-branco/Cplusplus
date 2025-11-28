@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/11/27 17:07:43     #########  #########  ###      ###       #
+#    Updated: 2025/11/28 16:21:19     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -87,7 +87,7 @@ fclean: clean
 re: fclean all
 	@echo "$(GRAY)redone$(COR)"
 
-.PHONY: all clean fclean re headers clang-check
+.PHONY: all clean fclean re headers clang-check line
 ######################################################################## Class #
 class: .clang-format
 	@if [ -z "$(NAME)" ]; then 												\
@@ -400,7 +400,7 @@ YELLOW	:= \033[1;93m
 BLUE	:= \033[1;96m
 ######################################################################### Test #
 test: CFLAGS += $(DEBUG_FLAGS)
-test: clang-check fclean headers $(NAME)
+test: check-guards clang-check fclean headers $(NAME)
 	@\
 	echo "\
 	$(COR)$(GRAY)========================================== $(NAME) START\
@@ -423,7 +423,26 @@ valgrind: $(NAME)
 		--track-origins=yes													\
 		--max-stackframe=4200000											\
 	\
-		./$(TEST_RUN)
+	./$(TEST_RUN) 2>&1 | while IFS= read -r line; do \
+		case "$$line" in \
+			*==DEBUG==*) printf '\033[33m%s \033[0m\n' "$$line" ;; \
+			*==*[Cc]opyright*) ;; \
+			*==*freed*--*no*leaks*) printf '\033[1;30m\033[102m%s \033[0m\n' "$$line" ;; \
+			*==*ERROR*SUMMARY:*0*errors*from*0*contexts*) printf '\033[1;30m\033[102m%s \033[0m\n' "$$line" ;; \
+			*==*[Ii]nvalid*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*[Uu]ninitialised*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*[Cc]onditional*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*[Ll]ost*bytes*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*definitely*lost*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*indirectly*lost*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*possibly*lost*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*still*reachable*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*[Mm]ismatch*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*Process*terminating*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*) printf '\033[32m%s \033[0m\n' "$$line" ;; \
+			*) printf "$$line\n" ;;\
+		esac; \
+	done
 
 exe: headers format fclean $(NAME)
 	@\
@@ -434,9 +453,14 @@ run: headers format $(NAME)
 	./$(TEST_RUN)
 
 debug: CFLAGS += $(DEBUG_FLAGS)
-debug: fclean headers $(NAME)
+debug: fclean headers format $(NAME)
 	@\
-	./$(TEST_RUN)
+	./$(TEST_RUN) 2>&1 | while IFS= read -r line; do \
+		case "$$line" in \
+			*==DEBUG==*) printf '\033[33m%s \033[0m\n' "$$line" ;; \
+			*) printf "$$line\n" ;;\
+		esac; \
+	done
 
 gprof: CFLAGS += $(GPROF_FLAGS)
 gprof: fclean headers $(NAME)
@@ -458,11 +482,17 @@ homedebug: fclean headers format $(NAME)
 	@\
 	mv ./$(NAME) ~/$(NAME)												&&	\
 	chmod +x ~/$(NAME)													;	\
-	~/$(TEST_RUN)														;	\
+	\
+	~/$(TEST_RUN) 2>&1 | while IFS= read -r line; do \
+		case "$$line" in \
+			*==DEBUG==*) printf '\033[33m%s \033[0m\n' "$$line" ;; \
+			*) printf "$$line\n" ;;\
+		esac; \
+	done																;	\
 	rm -f ~/$(NAME)
 
 homevalgrind: fclean headers format $(NAME)
-		@\
+	@\
 	mv ./$(NAME) ~/$(NAME)												&&	\
 	chmod +x ~/$(NAME)													;	\
 	\
@@ -474,5 +504,85 @@ homevalgrind: fclean headers format $(NAME)
 		--track-origins=yes													\
 		--max-stackframe=4200000											\
 	\
-		~/$(TEST_RUN)													;	\
+	~/$(TEST_RUN) 2>&1 | while IFS= read -r line; do \
+		case "$$line" in \
+			*==DEBUG==*) printf '\033[33m%s \033[0m\n' "$$line" ;; \
+			*==*[Cc]opyright*) ;; \
+			*==*freed*--*no*leaks*) printf '\033[1;30m\033[102m%s \033[0m\n' "$$line" ;; \
+			*==*ERROR*SUMMARY:*0*errors*from*0*contexts*) printf '\033[1;30m\033[102m%s \033[0m\n' "$$line" ;; \
+			*==*[Ii]nvalid*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*[Uu]ninitialised*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*[Cc]onditional*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*[Ll]ost*bytes*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*definitely*lost*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*indirectly*lost*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*possibly*lost*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*still*reachable*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*[Mm]ismatch*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*Process*terminating*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*) printf '\033[32m%s \033[0m\n' "$$line" ;; \
+			*) printf "$$line\n" ;;\
+		esac; \
+	done																;	\
+	rm -f ~/$(NAME)
+
+line: CFLAGS += $(DEBUG_FLAGS)
+line: fclean format headers $(NAME)
+	@\
+	valgrind																\
+		--track-fds=yes														\
+		--show-error-list=yes												\
+		--leak-check=full													\
+		--show-leak-kinds=all												\
+		--track-origins=yes													\
+		--max-stackframe=4200000											\
+	\
+	./$(TEST_RUN) 2>&1 | while IFS= read -r line; do \
+		case "$$line" in \
+			*==DEBUG==*) printf '\033[33m%s \033[0m\n' "$$line" ; sleep 0.01 ;; \
+			*==*[Cc]opyright*) ;; \
+			*==*freed*--*no*leaks*) printf '\033[1;30m\033[102m%s \033[0m\n' "$$line" ; sleep 0.01 ;; \
+			*==*ERROR*SUMMARY:*0*errors*from*0*contexts*) printf '\033[1;30m\033[102m%s \033[0m\n' "$$line" ; sleep 0.01 ;; \
+			*==*[Ii]nvalid*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*[Uu]ninitialised*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*[Cc]onditional*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*[Ll]ost*bytes*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*definitely*lost*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*indirectly*lost*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*possibly*lost*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*still*reachable*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*[Mm]ismatch*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*Process*terminating*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*) printf '\033[32m%s \033[0m\n' "$$line"  ; sleep 0.01 ;; \
+			*) printf "$$line\n" ; sleep 0.042 ;;\
+		esac; \
+	done
+
+homeline: CFLAGS += $(DEBUG_FLAGS)
+homeline: fclean format headers $(NAME)
+	@\
+	mv ./$(NAME) ~/$(NAME)												&&	\
+	chmod +x ~/$(NAME)													;	\
+	\
+	echo TEST ; \
+	~/$(TEST_RUN) 2>&1 | while IFS= read -r line; do \
+		case "$$line" in \
+			*==DEBUG==*) printf '\033[33m%s \033[0m\n' "$$line" ; sleep 0.01 ;; \
+			*==*[Cc]opyright*) ;; \
+			*==*freed*--*no*leaks*) printf '\033[1;30m\033[102m%s \033[0m\n' "$$line" ; sleep 0.01 ;; \
+			*==*ERROR*SUMMARY:*0*errors*from*0*contexts*) printf '\033[1;30m\033[102m%s \033[0m\n' "$$line" ; sleep 0.01 ;; \
+			*==*[Ii]nvalid*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*[Uu]ninitialised*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*[Cc]onditional*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*[Ll]ost*bytes*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*definitely*lost*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*indirectly*lost*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*possibly*lost*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*still*reachable*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*[Mm]ismatch*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*Process*terminating*) printf '\033[1;30m\033[101m%s \033[0m\n' "$$line" ; sleep 1 ;; \
+			*==*) printf '\033[32m%s \033[0m\n' "$$line"  ; sleep 0.01 ;; \
+			*) printf "$$line\n" ; sleep 0.042 ;;\
+		esac; \
+	done																;	\
 	rm -f ~/$(NAME)
