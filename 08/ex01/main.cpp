@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/27 14:35:50      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/28 15:37:28     #########  #########  ###      ###      */
+/*   Updated: 2025/11/30 11:46:57     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -70,6 +70,24 @@ int main(void)
 	sp.addNumber(11);
 	std::cout << sp.shortestSpan() << std::endl;
 	std::cout << sp.longestSpan() << std::endl;
+	std::cout << "\nCode from the subject above:\n";
+	sp.printVector();
+
+	unsigned int large_uint = 10042;
+	std::cout << "\nVector with max size of 42,000. Adding 42 INT one by one\n";
+	Span hipo(large_uint);
+	for (unsigned int i = 0; i < large_uint; i++)
+	{
+		hipo.addNumber(i);
+	}
+	hipo.printVector();
+
+	std::cout << "\nVector with max size of 42,000. Adding 42 INT all at "
+				 "once\n";
+	Span whale(large_uint);
+	whale.fill_with_value(42, large_uint);
+	whale.printVector();
+
 	if (DEBUG)
 	{
 		std::cout << "\n==DEBUG== End of main()\n";

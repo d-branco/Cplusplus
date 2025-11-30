@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/27 14:33:02      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/28 08:16:06     #########  #########  ###      ###      */
+/*   Updated: 2025/11/30 11:42:37     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <iterator>
 #include <vector>
 
 class Span
@@ -40,6 +41,10 @@ class Span
 
 	unsigned int shortestSpan();
 	unsigned int longestSpan();
+
+	void		 fill_with_value(int value, unsigned int count);
+
+	void		 printVector();
 };
 
 #endif

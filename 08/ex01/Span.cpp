@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/27 14:33:02      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/28 14:54:13     #########  #########  ###      ###      */
+/*   Updated: 2025/11/30 11:42:20     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -198,4 +198,36 @@ unsigned int Span::longestSpan()
 	}
 
 	return (0);
+}
+
+void Span::fill_with_value(int value, unsigned int count)
+{
+	if (vec_.size() + count > ene_)
+	{
+		if (DEBUG)
+		{
+			std::cout << "==DEBUG== Span: fill_with_value(): Size too small\n";
+		}
+		return;
+	}
+	std::fill_n(std::back_inserter(vec_), count, value);
+}
+
+void Span::printVector()
+{
+	if (DEBUG)
+	{
+		std::cout << "==DEBUG== Span: printVector(): ";
+	}
+	unsigned int iii = 0;
+	for (;;)
+	{
+		std::cout << vec_[iii] << ", ";
+		iii++;
+		if (iii >= (vec_.size() - 1))
+		{
+			break;
+		}
+	}
+	std::cout << vec_[iii] << "\n";
 }
