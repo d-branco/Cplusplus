@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/30 12:19:21      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/11/30 13:36:41     #########  #########  ###      ###      */
+/*   Updated: 2025/11/30 14:48:14     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -61,9 +61,30 @@ template <class T> class MutantStack : public std::stack<T>
 		}
 	}
 
-	///////////////////////////////////////////////////////////////// Getters //
-	///////////////////////////////////////////////////////////////// Setters //
+	//////////////////////////////////////////////////////////////// Iterator //
+	//     Creates a new alias called 'iterator'
+	// that takes the place of the iterator of the container.
+	typedef typename std::stack<T>::container_type::iterator iterator;
+
 	/////////////////////////////////////////////////////////////// Functions //
+	// Access to 'c' - from std::stack
+	iterator												 begin()
+	{
+		if (DEBUG)
+		{
+			std::cout << "==DEBUG== MutantStack: begin()\n";
+		}
+		return (this->c.begin());
+	}
+
+	iterator end()
+	{
+		if (DEBUG)
+		{
+			std::cout << "==DEBUG== MutantStack: end()\n";
+		}
+		return (this->c.end());
+	}
 };
 
 #endif

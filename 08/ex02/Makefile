@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/11/30 13:05:18     #########  #########  ###      ###       #
+#    Updated: 2025/11/30 14:28:57     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -81,7 +81,7 @@ clean:
 fclean: clean
 	@\
 	$(RM) $(NAME) $(NAME-BONUS)											&&	\
-	echo "$(GRAY)File fcleaned.$(COR)"
+	echo "$(GRAY)File fcleaned:$(COR)	./$(NAME)"
 
 re: fclean all
 	@echo "$(GRAY)redone$(COR)"
@@ -330,8 +330,12 @@ headers:
 
 format: headers .clang-format
 	@\
-	clang-format -i $(FORMATABLE)										&&	\
-	echo "formatted"													;	\
+	for file in $(FORMATABLE); do 											\
+		if ! clang-format "$$file" | diff -q "$$file" - > /dev/null 2>&1; then \
+			clang-format -i "$$file"; 										\
+			echo "$(GRAY)File formated:$(COR)	$$file"; 					\
+		fi; 																\
+	done; 																	\
 	rm -f .clang-format
 
 #	  -cppcoreguidelines-avoid-magic-numbers
@@ -349,6 +353,7 @@ format: headers .clang-format
 	  -modernize-redundant-void-arg,\n\
 	  -modernize-use-nullptr,\n\
 	  cppcoreguidelines-*\n\
+	  -cppcoreguidelines-avoid-magic-numbers,\n\
 	  -cppcoreguidelines-pro-type-member-init,\n\
 	  -cppcoreguidelines-avoid-const-or-ref-data-members\n\
 	\n\
