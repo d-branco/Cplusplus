@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/11/30 19:53:46     #########  #########  ###      ###       #
+#    Updated: 2025/12/01 14:04:43     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -413,11 +413,19 @@ PURPLE	:= \033[1;35m
 GRAY	:= \033[1;90m
 YELLOW	:= \033[1;93m
 BLUE	:= \033[1;96m
+######################################################################### Time #
+time: $(NAME)
+	time -f "  Total time: %E " ./$(TEST_RUN)
+
+define TIMED_RUN
+time -f "==CRONO== Total time: %E " 
+endef
 ##################################################################### Valgrind #
 valgrind: $(NAME)
 	@\
-	echo "$(GRAY)Executing arg:$(COR)	valgrind ./$(TEST_RUN)"			; \
-	$(VALGRIND_CMD) ./$(TEST_RUN) $(VALGRIND_FILTER)
+	echo "$(GRAY)Executing arg:$(COR)	time valgrind ./$(TEST_RUN)"		; \
+	$(TIMED_RUN) $(VALGRIND_CMD) ./$(TEST_RUN) $(VALGRIND_FILTER)
+
 
 VALGRIND_CMD = valgrind \
 	--track-fds=yes \
@@ -468,8 +476,8 @@ test: check-guards clang-check fclean headers $(NAME) $(DATABASE)
 
 exe: headers format fclean $(NAME) $(DATABASE)
 	@\
-	echo "$(GRAY)Executing arg:$(COR)	./$(TEST_RUN)"					; \
-	./$(TEST_RUN)
+	echo "$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)"				; \
+	$(TIMED_RUN) ./$(TEST_RUN)
 
 run: $(NAME)
 	@\
@@ -488,8 +496,8 @@ endef
 debug: CFLAGS += $(DEBUG_FLAGS)
 debug: fclean headers format $(NAME) $(DATABASE)
 	@\
-	echo "$(GRAY)Executing arg:$(COR)	./$(TEST_RUN)"					; \
-	./$(TEST_RUN) $(DEBUG_FILTER)
+	echo "$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)"				; \
+	$(TIMED_RUN) ./$(TEST_RUN) $(DEBUG_FILTER)
 
 gprof: CFLAGS += $(GPROF_FLAGS)
 gprof: fclean headers $(NAME)
@@ -511,9 +519,9 @@ define CLEANUP_HOME
 endef
 homerun: fclean headers format $(NAME)
 	@\
-	echo "$(GRAY)Executing arg:$(COR)	./$(TEST_RUN)"					; \
+	echo "$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)"					; \
 	$(RUN_IN_HOME) 														; \
-	~/$(TEST_RUN) 														; \
+	$(TIMED_RUN)  ~/$(TEST_RUN) 											; \
 	$(CLEANUP_HOME)
 
 homedebug: CFLAGS += $(DEBUG_FLAGS)
@@ -535,8 +543,8 @@ homevalgrind: fclean headers format $(NAME)
 line: CFLAGS += $(DEBUG_FLAGS)
 line: fclean format headers $(NAME) $(DATABASE)
 	@\
-	echo "$(GRAY)Executing arg:$(COR)	./$(TEST_RUN)"					; \
-	$(VALGRIND_CMD) ./$(TEST_RUN) 2>&1 | while IFS= read -r line; do \
+	echo "$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)"					; \
+	$(TIMED_RUN) $(VALGRIND_CMD) ./$(TEST_RUN) 2>&1 | while IFS= read -r line; do \
 		case "$$line" in \
 			*==DEBUG==*) printf '\033[33m%-80s \033[0m\n' "$$line" ; sleep 0.01 ;; \
 			*==*[Cc]opyright*) ;; \
