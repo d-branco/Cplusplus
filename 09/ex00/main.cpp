@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/30 15:48:40      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/01 16:04:36     #########  #########  ###      ###      */
+/*   Updated: 2025/12/01 17:07:53     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <fstream>
 #include <iostream>
 #include <map>
+#include <sstream>
 #include <string>
 
 #ifdef DEBUG
@@ -55,7 +56,6 @@ int								   main(int argc, char **argv)
 		dprint("line to parse: \"" << i_line << "\"");
 	}
 
-	// db_file.close();
 	// i_file.close();
 	dprint("");
 	dprint("End of main()");
@@ -64,9 +64,36 @@ int								   main(int argc, char **argv)
 
 std::map<std::string, std::string> csv_to_map(std::ifstream &database_file)
 {
-	(void) database_file;
 	std::map<std::string, std::string> db;
+	std::string						   db_line;
 
+	std::getline(database_file, db_line);
+	dprint("csv_to_map(): header skipped: \"" << db_line << "\"");
+	while (std::getline(database_file, db_line))
+	{
+		std::istringstream ss(db_line);
+		std::string		   date;
+		std::string		   exchange_rate;
+
+		if (std::getline(ss, date, ',') && std::getline(ss, exchange_rate))
+		{
+			db[date] = exchange_rate;
+		}
+		else
+		{
+			dprint("csv_to_map(): invalid line: " << db_line);
+		}
+	}
+	if (db.empty())
+	{
+		dprint("Database empty!");
+		return (db);
+	}
+	dprint("csv_to_map(): first element: db[" << db.begin()->first
+											  << "] = " << db.begin()->second);
+	dprint("csv_to_map(): last  element: db["
+		   << (db.rbegin())->first << "] = " << (db.rbegin())->second);
+	database_file.close();
 	return (db);
 }
 
