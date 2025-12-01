@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/12/01 14:04:43     #########  #########  ###      ###       #
+#    Updated: 2025/12/01 15:44:14     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -14,7 +14,7 @@ NAME			:= btc
 
 FORMATABLE		= $(HEADERS) $(SRCS)
 
-TEST_RUN		= $(NAME) $(DATABASE)
+TEST_RUN		= $(NAME) input.txt
 DATABASE		= ../cpp_09/data.csv
 LINK			= https://cdn.intra.42.fr/document/document/40966/cpp_09.tgz
 
@@ -519,24 +519,24 @@ define CLEANUP_HOME
 endef
 homerun: fclean headers format $(NAME)
 	@\
-	echo "$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)"					; \
+	echo "$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)"				; \
 	$(RUN_IN_HOME) 														; \
-	$(TIMED_RUN)  ~/$(TEST_RUN) 											; \
+	$(TIMED_RUN) ~/$(TEST_RUN) 											; \
 	$(CLEANUP_HOME)
 
 homedebug: CFLAGS += $(DEBUG_FLAGS)
 homedebug: fclean headers format $(NAME)
 	@\
-	echo "$(GRAY)Executing arg:$(COR)	./$(TEST_RUN)"					; \
+	echo "$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)"				; \
 	$(RUN_IN_HOME) 														; \
-	~/$(TEST_RUN) $(DEBUG_FILTER) 										; \
+	$(TIMED_RUN) ~/$(TEST_RUN) $(DEBUG_FILTER) 							; \
 	$(CLEANUP_HOME)
 
 homevalgrind: fclean headers format $(NAME)
 	@\
-	echo "$(GRAY)Executing arg:$(COR)	./$(TEST_RUN)"					; \
+	echo "$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)"				; \
 	$(RUN_IN_HOME) 														; \
-	$(VALGRIND_CMD) ~/$(TEST_RUN) $(VALGRIND_FILTER)					; \
+	$(TIMED_RUN) $(VALGRIND_CMD) ~/$(TEST_RUN) $(VALGRIND_FILTER)		; \
 	$(CLEANUP_HOME)
 
 ######################################################################### Line #
@@ -562,8 +562,8 @@ line: fclean format headers $(NAME) $(DATABASE)
 homeline: CFLAGS += $(DEBUG_FLAGS)
 homeline: fclean format headers $(NAME)
 	@\
-	echo "$(GRAY)Executing arg:$(COR)	./$(TEST_RUN)"					; \
-	$(RUN_IN_HOME); \
+	echo "$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)"					; \
+	$(TIMED_RUN) $(RUN_IN_HOME); \
 	~/$(TEST_RUN) 2>&1 | while IFS= read -r line; do \
 		case "$$line" in \
 			*==DEBUG==*) printf '\033[33m%-80s \033[0m\n' "$$line" ; sleep 0.01 ;; \
