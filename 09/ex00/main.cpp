@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/11/30 15:48:40      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/01 17:07:53     #########  #########  ###      ###      */
+/*   Updated: 2025/12/02 16:57:45     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -31,10 +31,14 @@ int								   input_validation(int			   argc,
 													std::ifstream &input_file);
 std::string						   get_extension(const char *file_name);
 std::map<std::string, std::string> csv_to_map(std::ifstream &database_file);
+bool							   check_date_format(std::string date);
+void parse_line(std::map<std::string, std::string> mapa, std::string line);
+void calculate_line(std::map<std::string, std::string>::iterator it,
+					std::string									 i_line);
 
 // std::map<Key,T,Compare,Allocator>::lower_bound
-
-int								   main(int argc, char **argv)
+// lower_bound is a useful function in the case of searching the earlier date
+int	 main(int argc, char **argv)
 {
 	dprint("Debug mode activated");
 	std::ifstream db_file(DB_FILE);
@@ -51,15 +55,127 @@ int								   main(int argc, char **argv)
 	dprint("");
 	dprint("Parsing the input");
 	std::string i_line;
+	std::getline(i_file, i_line);
+	if (check_date_format(i_line))
+	{
+		dprint("Valid date: " << i_line.substr(0, 10));
+		parse_line(intra, i_line);
+	}
+	else
+	{
+		dprint("Invalid date");
+		dprint("Skipping header");
+	}
+	dprint("");
 	while (std::getline(i_file, i_line))
 	{
 		dprint("line to parse: \"" << i_line << "\"");
+		if (check_date_format(i_line))
+		{
+			dprint("Valid date: " << i_line.substr(0, 10));
+			parse_line(intra, i_line);
+		}
+		else
+		{
+			dprint("Invalid date");
+			std::cout << "Error: bad input => " << i_line << "\n";
+		}
+		dprint("");
 	}
 
 	// i_file.close();
 	dprint("");
 	dprint("End of main()");
 	return (EXIT_SUCCESS);
+}
+
+void parse_line(std::map<std::string, std::string> map_a, std::string i_line)
+{
+	dprint("parseline(): line to parse: \"" << i_line << "\"");
+	std::string line = i_line.substr(0, 10);
+	dprint("parseline(): date to search: \"" << line << "\"");
+	std::map<std::string, std::string>::iterator ite = map_a.find(line);
+	if (ite != map_a.end())
+	{
+		dprint("parseline(): Date " << line << " found!");
+		calculate_line(ite, i_line);
+	}
+	else
+	{
+		std::map<std::string, std::string>::iterator below
+			= map_a.lower_bound(line);
+
+		if (below == map_a.begin())
+		{
+			dprint("parseline(): Date "
+				   << line << " is before the earliest database date!");
+		}
+		else
+		{
+			--below;
+			dprint("parseline(): Previous date: "
+				   << below->first << " (closest to " << line << ")");
+			calculate_line(below, i_line);
+		}
+	}
+}
+
+void calculate_line(std::map<std::string, std::string>::iterator ite,
+					std::string									 i_line)
+{
+	dprint("calculate_line(): map[" << ite->first << "]=" << ite->second << "");
+
+	char  *end_ptr;
+	double historic_value = std::strtod(ite->second.c_str(), &end_ptr);
+	if (*end_ptr != '\0')
+	{
+		dprint("calculate_line(): Conversion to double error!");
+		std::cout << "Error: bad input => " << i_line << "\n";
+		return;
+	}
+	dprint("calculate_line(): <Double> Value: " << historic_value);
+	std::string amount_str	 = i_line.substr(13, i_line.size() - 13);
+	double		amount_value = std::strtod(amount_str.c_str(), &end_ptr);
+	if (*end_ptr != '\0')
+	{
+		dprint("calculate_line(): Conversion to double error!");
+		std::cout << "Error: bad input => " << i_line << "\n";
+		return;
+	}
+	dprint("calculate_line(): <Double>Amount: " << amount_value);
+	if (amount_value < 0)
+	{
+		std::cout << "Error: not a positive number.\n";
+		return;
+	}
+
+	if (amount_value > 1000)
+	{
+		std::cout << "Error: too large a number.\n";
+		return;
+	}
+
+	// std::cout << "Error: bad input => "<< i_line << "\n";
+
+	dprint(ite->first << " => " << i_line.substr(13, i_line.size() - 13)
+					  << " x " << ite->second);
+	double result = historic_value * amount_value;
+	std::cout << ite->first << " => " << result << "\n";
+}
+
+bool check_date_format(std::string date)
+{
+	if ((date.size() < 13) || (!isdigit(date[0])) || (!isdigit(date[1]))
+		|| (!isdigit(date[2])) || (!isdigit(date[3])) || ((date[4]) != '-')
+		|| (!isdigit(date[5])) || (!isdigit(date[6])) || ((date[7]) != '-')
+		|| (!isdigit(date[8])) || (!isdigit(date[9])) || ((date[10]) != ' ')
+		|| ((date[11]) != '|') || ((date[12]) != ' '))
+	{
+		return (false);
+	}
+
+	(void) date;
+	return (true);
 }
 
 std::map<std::string, std::string> csv_to_map(std::ifstream &database_file)
