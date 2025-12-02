@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/12/02 21:42:12     #########  #########  ###      ###       #
+#    Updated: 2025/12/02 22:26:09     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -14,8 +14,30 @@ NAME			:= RPN
 
 FORMATABLE		= $(HEADERS) $(SRCS)
 
-# TEST_RUN		= $(NAME) 3 4 +
-TEST_RUN		= $(NAME) 3 4 "+" 5 6 "+" "*"
+TEST_RUN		= $(NAME) "3 4 +"
+# TEST_RUN		= $(NAME) 3 4 + 5 6 + *
+
+battery:
+	@\
+	echo '$(GRAY)Executing arg:$(COR)	./$(NAME) "3 4 +"'				;	\
+	$(TIMED_RUN) $(VALGRIND_CMD)  ./$(NAME) "3 4 +" 						\
+	$(VALGRIND_FILTER)													;	\
+	echo '$(GRAY)Executing arg:$(COR)	./$(NAME) "3 4 + 5 6 + *"'		;	\
+	$(TIMED_RUN) $(VALGRIND_CMD)  ./$(NAME) "3 4 + 5 6 + *" 				\
+	$(VALGRIND_FILTER)													;	\
+	echo '$(GRAY)Executing arg:$(COR)	./RPN "8 9 * 9 - 9 - 9 - 4 - 1 +"';	\
+	$(TIMED_RUN) $(VALGRIND_CMD)  ./RPN "8 9 * 9 - 9 - 9 - 4 - 1 +" 		\
+	$(VALGRIND_FILTER)													;	\
+	echo '$(GRAY)Executing arg:$(COR)	./RPN "7 7 * 7 -"'				;	\
+	$(TIMED_RUN) $(VALGRIND_CMD)  ./RPN "7 7 * 7 -" 						\
+	$(VALGRIND_FILTER)													;	\
+	echo '$(GRAY)Executing arg:$(COR)	./RPN "1 2 * 2 / 2 * 2 4 - +"'	;	\
+	$(TIMED_RUN) $(VALGRIND_CMD)  ./RPN "1 2 * 2 / 2 * 2 4 - +"				\
+	$(VALGRIND_FILTER)													;	\
+	echo '$(GRAY)Executing arg:$(COR)	./RPN "(1 + 1)"'				;	\
+	$(TIMED_RUN) $(VALGRIND_CMD) ./RPN "(1 + 1)" 						\
+	$(VALGRIND_FILTER)													;	\
+
 ########################################################## Objects and Headers #
 HEADERS			:=															\
 	RPN.hpp
@@ -404,10 +426,10 @@ YELLOW	:= \033[1;93m
 BLUE	:= \033[1;96m
 ######################################################################### Time #
 time: $(NAME)
-	time -f "  Total time: %E " ./$(TEST_RUN)
+	@$(TIMED_RUN) ./$(TEST_RUN)
 
 define TIMED_RUN
-time -f "==CRONO== Total time: %E " 
+time --quiet --format "==CRONO== Total time: %E " 
 endef
 ##################################################################### Valgrind #
 valgrind: $(NAME)
@@ -465,12 +487,12 @@ test: check-guards clang-check fclean headers $(NAME) $(DATABASE)
 
 exe: headers format fclean $(NAME) $(DATABASE)
 	@\
-	echo "$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)"				; \
+	echo '$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)'				; \
 	$(TIMED_RUN) ./$(TEST_RUN)
 
 run: $(NAME)
 	@\
-	echo "$(GRAY)Executing arg:$(COR)	./$(TEST_RUN)"					; \
+	echo '$(GRAY)Executing arg:$(COR)	./$(TEST_RUN)'					; \
 	./$(TEST_RUN)
 
 define DEBUG_FILTER
@@ -485,13 +507,13 @@ endef
 debug: CFLAGS += $(DEBUG_FLAGS)
 debug: fclean headers format $(NAME) $(DATABASE)
 	@\
-	echo "$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)"				; \
+	echo '$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)'				; \
 	$(TIMED_RUN) ./$(TEST_RUN) $(DEBUG_FILTER)
 
 gprof: CFLAGS += $(GPROF_FLAGS)
 gprof: fclean headers $(NAME)
 	@\
-	echo "$(GRAY)Executing arg:$(COR)	gprof ./$(TEST_RUN)"			; \
+	echo '$(GRAY)Executing arg:$(COR)	gprof ./$(TEST_RUN)'			; \
 	./$(TEST_RUN)														; \
 	gprof $(NAME) gmon.out > gmon-ignoreme.txt							; \
 	cat gmon-ignoreme.txt												; \
@@ -508,7 +530,7 @@ define CLEANUP_HOME
 endef
 homerun: fclean headers format $(NAME)
 	@\
-	echo "$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)"				; \
+	echo '$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)'				; \
 	$(RUN_IN_HOME) 														; \
 	$(TIMED_RUN) ~/$(TEST_RUN) 											; \
 	$(CLEANUP_HOME)
@@ -516,14 +538,14 @@ homerun: fclean headers format $(NAME)
 homedebug: CFLAGS += $(DEBUG_FLAGS)
 homedebug: fclean headers format $(NAME)
 	@\
-	echo "$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)"				; \
+	echo '$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)'				; \
 	$(RUN_IN_HOME) 														; \
 	$(TIMED_RUN) ~/$(TEST_RUN) $(DEBUG_FILTER) 							; \
 	$(CLEANUP_HOME)
 
 homevalgrind: fclean headers format $(NAME)
 	@\
-	echo "$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)"				; \
+	echo '$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)'				; \
 	$(RUN_IN_HOME) 														; \
 	$(TIMED_RUN) $(VALGRIND_CMD) ~/$(TEST_RUN) $(VALGRIND_FILTER)		; \
 	$(CLEANUP_HOME)
@@ -532,7 +554,7 @@ homevalgrind: fclean headers format $(NAME)
 line: CFLAGS += $(DEBUG_FLAGS)
 line: fclean format headers $(NAME) $(DATABASE)
 	@\
-	echo "$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)"					; \
+	echo '$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)'					; \
 	$(TIMED_RUN) $(VALGRIND_CMD) ./$(TEST_RUN) 2>&1 | while IFS= read -r line; do \
 		case "$$line" in \
 			*==DEBUG==*) printf '\033[33m%-80s \033[0m\n' "$$line" ; sleep 0.01 ;; \
@@ -551,7 +573,7 @@ line: fclean format headers $(NAME) $(DATABASE)
 homeline: CFLAGS += $(DEBUG_FLAGS)
 homeline: fclean format headers $(NAME)
 	@\
-	echo "$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)"					; \
+	echo '$(GRAY)Executing arg:$(COR)	time ./$(TEST_RUN)'					; \
 	$(TIMED_RUN) $(RUN_IN_HOME); \
 	~/$(TEST_RUN) 2>&1 | while IFS= read -r line; do \
 		case "$$line" in \

@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/02 20:26:16      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/02 21:39:17     #########  #########  ###      ###      */
+/*   Updated: 2025/12/02 22:27:30     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -24,27 +24,42 @@
 std::string stack_to_string(std::stack<char> polish);
 
 // stack: adapts a container to provide stack (LIFO data structure)
-int			main(int, char **argv)
+int			main(int argc, char **argv)
 {
 	dprint("Debug mode activated");
+	if (argc != 2)
+	{
+		dprint("argc: " << argc);
+		std::cerr << "Error\n";
+		return (EXIT_FAILURE);
+	}
 	dprint("");
 
 	std::stack<char> polish;
 
-	size_t			 ite = 1;
+	size_t			 ite = 0;
 	// int				 nbr;
-	while (argv[ite])
+	while (argv[1][ite])
 	{
-		dprint("argv[i]: " << argv[ite]);
-		if (((argv[ite][0] >= '0') && (argv[ite][0] <= '9'))
-			|| (argv[ite][0] == '+') || (argv[ite][0] == '-')
-			|| (argv[ite][0] == '/') || (argv[ite][0] == '*'))
+		dprint("argv[1][" << ite << "]: " << argv[1][ite]);
+		if (((argv[1][ite] >= '0') && (argv[1][ite] <= '9'))
+			|| (argv[1][ite] == '+') || (argv[1][ite] == '-')
+			|| (argv[1][ite] == '/') || (argv[1][ite] == '*'))
 		{
-			polish.push(argv[ite][0]);
-			// dprint("nbr: " << nbr);
+			polish.push(argv[1][ite]);
+			// dprint("nbr: " << nbbr);
 			// nbr = atoi(argv[ite]);
 		}
+		else
+		{
+			std::cerr << "Error\n";
+			return (EXIT_FAILURE);
+		}
 		++ite;
+		if (argv[1][ite] != 0)
+		{
+			++ite;
+		}
 	}
 
 	dprint("Stack: [" << stack_to_string(polish) << " ]");
