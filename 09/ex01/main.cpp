@@ -58,30 +58,30 @@ int			main(int argc, char **argv)
 			// dprint("Stack: [" << stack_to_string(polish) << " ]");
 			switch (argv[1][ite])
 			{
-			case '+':
-			{
-				nbr += (polish.top());
-				break;
-			}
-			case '-':
-			{
-				nbr = (polish.top()) - nbr;
-				break;
-			}
-			case '/':
-			{
-				nbr = (polish.top()) / nbr;
-				break;
-			}
-			case '*':
-			{
-				nbr = (polish.top()) * nbr;
-				break;
-			}
-			default:
-			{
-				dprint("Unreachable \'swich case default\'");
-			}
+				case '+':
+				{
+					nbr += (polish.top());
+					break;
+				}
+				case '-':
+				{
+					nbr = (polish.top()) - nbr;
+					break;
+				}
+				case '/':
+				{
+					nbr = (polish.top()) / nbr;
+					break;
+				}
+				case '*':
+				{
+					nbr = (polish.top()) * nbr;
+					break;
+				}
+				default:
+				{
+					dprint("Unreachable \'swich case default\'");
+				}
 			}
 
 			polish.pop();
