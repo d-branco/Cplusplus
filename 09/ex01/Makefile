@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/12/02 22:26:09     #########  #########  ###      ###       #
+#    Updated: 2025/12/03 11:10:14     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -35,9 +35,20 @@ battery:
 	$(TIMED_RUN) $(VALGRIND_CMD)  ./RPN "1 2 * 2 / 2 * 2 4 - +"				\
 	$(VALGRIND_FILTER)													;	\
 	echo '$(GRAY)Executing arg:$(COR)	./RPN "(1 + 1)"'				;	\
-	$(TIMED_RUN) $(VALGRIND_CMD) ./RPN "(1 + 1)" 						\
+	$(TIMED_RUN) $(VALGRIND_CMD) ./RPN "(1 + 1)" 							\
 	$(VALGRIND_FILTER)													;	\
-
+	echo '$(GRAY)Executing arg:$(COR)	./RPN "45 * 45"'				;	\
+	$(TIMED_RUN) $(VALGRIND_CMD) ./RPN "45 * 45" 							\
+	$(VALGRIND_FILTER)													;	\
+	echo '$(GRAY)Executing arg:$(COR)	./RPN "44 * 9"'					;	\
+	$(TIMED_RUN) $(VALGRIND_CMD) ./RPN "44 * 9" 							\
+	$(VALGRIND_FILTER)													;	\
+	echo '$(GRAY)Executing arg:$(COR)	./RPN "900 / 4"'				;	\
+	$(TIMED_RUN) $(VALGRIND_CMD) ./RPN "900 / 4" 							\
+	$(VALGRIND_FILTER)													;	\
+	echo '$(GRAY)Executing arg:$(COR)	./RPN "5 5 * 9 9 * *"'			;	\
+	$(TIMED_RUN) $(VALGRIND_CMD) ./RPN "5 5 * 9 9 * *" 						\
+	$(VALGRIND_FILTER)													;	\
 ########################################################## Objects and Headers #
 HEADERS			:=															\
 	RPN.hpp
