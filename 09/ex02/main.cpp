@@ -5,11 +5,12 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/02 20:26:16      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/03 16:58:34     #########  #########  ###      ###      */
+/*   Updated: 2025/12/03 19:17:35     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #include <cstdlib>
+#include <iomanip>
 #include <iostream>
 #include <string>
 
@@ -27,28 +28,30 @@ int main(int argc, char **argv)
 	dprint("Debug mode activated");
 	if (argc < 2)
 	{
-		dprint("No argument prodived");
+		dprint("No argument provided");
 		std::cerr << "Error\n";
 		return (EXIT_FAILURE);
 	}
 	int maximum = atol(argv[1]);
-	int minimum = atol(argv[1]);
 	for (int i = 1; argv[i] != 0; ++i)
 	{
 		dprint("argv[" << i << "]: " << argv[i]);
+		if (0 >= atol(argv[i]))
+		{
+			dprint("Number elemente equal or smaller than zero");
+			std::cout << "Error\n";
+			return (EXIT_FAILURE);
+		}
 		if (maximum < atol(argv[i]))
 		{
 			maximum = atol(argv[i]);
 		}
-		else if (minimum > atol(argv[i]))
-		{
-			minimum = atol(argv[i]);
-		}
 	}
+	int nbr_length = get_nbr_length(maximum);
+	dprint("Number length: " << nbr_length << " (" << maximum << ")");
 	dprint("Maximum element: " << maximum
 							   << " length: " << get_nbr_length(maximum));
-	dprint("Minimum element: " << minimum
-							   << " length: " << get_nbr_length(minimum));
+	std::cout << "Before: " << std::setw(nbr_length) << maximum << "\n";
 
 	dprint("");
 
