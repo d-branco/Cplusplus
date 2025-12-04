@@ -5,15 +5,17 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/02 20:26:16      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/04 13:05:55     #########  #########  ###      ###      */
+/*   Updated: 2025/12/04 13:17:04     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
+#include <list>
 #include <string>
 #include <sys/time.h>
+#include <vector>
 
 #ifdef DEBUG
 # define dprint(msg) std::cout << "==DEBUG== " << msg << "\n"
@@ -47,6 +49,12 @@ int main(int argc, char **argv)
 	{
 		return (EXIT_FAILURE);
 	}
+
+	std::vector<int> vicky;
+	for (int i = 1; i < argc; ++i)
+	{
+		vicky.push_back(std::atoi(argv[i]));
+	}
 	gettimeofday(&s_i.start_time, NULL);
 
 	// First algorithm runs here
@@ -58,6 +66,11 @@ int main(int argc, char **argv)
 	std::cout << "Time to process a range of " << s_i.array_size
 			  << " elements with std::[..] : " << s_i.duration << " μs\n";
 
+	std::deque<int> duke;
+	for (int i = 1; i < argc; ++i)
+	{
+		duke.push_back(std::atoi(argv[i]));
+	}
 	gettimeofday(&s_i.start_time, NULL);
 
 	// Second algorithm runs here
