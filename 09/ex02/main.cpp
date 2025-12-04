@@ -5,14 +5,14 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/02 20:26:16      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/04 13:17:04     #########  #########  ###      ###      */
+/*   Updated: 2025/12/04 14:12:33     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #include <cstdlib>
+#include <deque>
 #include <iomanip>
 #include <iostream>
-#include <list>
 #include <string>
 #include <sys/time.h>
 #include <vector>
@@ -30,12 +30,14 @@ void				  get_duration(t_init &s_i);
 
 typedef struct s_init
 {
-	int			   maximum_value;
-	int			   array_size;
-	int			   nbr_length;
-	struct timeval start_time;
-	struct timeval end_time;
-	long		   duration;
+	int				 maximum_value;
+	int				 array_size;
+	int				 nbr_length;
+	struct timeval	 start_time;
+	struct timeval	 end_time;
+	long			 duration;
+	std::vector<int> vicky;
+	std::deque<int>	 duke;
 } t_init;
 
 int initializer(int argc, char **argv, t_init &s_i);
@@ -43,17 +45,10 @@ int initializer(int argc, char **argv, t_init &s_i);
 int main(int argc, char **argv)
 {
 	dprint("Debug mode activated");
-
 	s_init s_i;
 	if (initializer(argc, argv, s_i) != EXIT_SUCCESS)
 	{
 		return (EXIT_FAILURE);
-	}
-
-	std::vector<int> vicky;
-	for (int i = 1; i < argc; ++i)
-	{
-		vicky.push_back(std::atoi(argv[i]));
 	}
 	gettimeofday(&s_i.start_time, NULL);
 
@@ -61,25 +56,27 @@ int main(int argc, char **argv)
 
 	gettimeofday(&s_i.end_time, NULL);
 	get_duration(s_i);
-
-	std::cout << "After " << "\n";
-	std::cout << "Time to process a range of " << s_i.array_size
-			  << " elements with std::[..] : " << s_i.duration << " μs\n";
-
-	std::deque<int> duke;
-	for (int i = 1; i < argc; ++i)
+	std::cout << "After:  ";
+	for (int i = 1; argv[i] != 0; ++i)
 	{
-		duke.push_back(std::atoi(argv[i]));
+		if ((80 - 8 - 6) < (i * (s_i.nbr_length + 1)))
+		{
+			std::cout << " [...]";
+			break;
+		}
+		std::cout << " " << std::setw(s_i.nbr_length) << s_i.vicky[i - 1];
 	}
+	std::cout << "\nTime to process a range of " << s_i.array_size
+			  << " elements with std::vector: " << s_i.duration << " μs\n";
+
 	gettimeofday(&s_i.start_time, NULL);
 
 	// Second algorithm runs here
 
 	gettimeofday(&s_i.end_time, NULL);
 	get_duration(s_i);
-
 	std::cout << "Time to process a range of " << s_i.array_size
-			  << " elements with std::[..] : " << s_i.duration << " μs\n";
+			  << " elements with std::deque:  " << s_i.duration << " μs\n";
 
 	dprint("");
 	dprint("End of main()");
@@ -133,7 +130,7 @@ int initializer(int argc, char **argv, t_init &s_i)
 	gettimeofday(&s_i.end_time, NULL);
 	s_i.duration = 0;
 
-	std::cout << "Before ";
+	std::cout << "Before: ";
 	for (int i = 1; argv[i] != 0; ++i)
 	{
 		if ((80 - 8 - 6) < (i * (s_i.nbr_length + 1)))
@@ -144,6 +141,11 @@ int initializer(int argc, char **argv, t_init &s_i)
 		std::cout << " " << std::setw(s_i.nbr_length) << argv[i];
 	}
 	std::cout << "\n";
+	for (int i = 1; i < argc; ++i)
+	{
+		s_i.vicky.push_back(std::atoi(argv[i]));
+		s_i.duke.push_back(std::atoi(argv[i]));
+	}
 
 	dprint("Initialization successful");
 	dprint("");
