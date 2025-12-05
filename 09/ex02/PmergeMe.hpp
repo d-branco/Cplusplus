@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/03 12:09:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/05 12:03:37     #########  #########  ###      ###      */
+/*   Updated: 2025/12/05 15:09:42     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int			initializer(int argc, char **argv, t_init &s_i);
 
 // PmergeMe.cpp
 void		merge_intertion_vec(t_init &s_i);
-int			sort_pairs_vec(t_init &s_i, int pair_size);
-std::string print_vec(t_init &s_i);
+int			sort_pairs_vec(t_init &s_i, unsigned int pair_size);
+std::string print_vec(t_init &s_i, unsigned int pair_size);
 #endif
