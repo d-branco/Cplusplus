@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/02 20:26:16      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/05 11:32:50     #########  #########  ###      ###      */
+/*   Updated: 2025/12/05 11:57:05     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int main(int argc, char **argv)
 	gettimeofday(&s_i.start_time, NULL);
 
 	// First algorithm runs here
+	merge_intertion_vec(s_i);
 
 	gettimeofday(&s_i.end_time, NULL);
 	get_duration(s_i);
@@ -81,7 +82,7 @@ int initializer(int argc, char **argv, t_init &s_i)
 		if (0 >= current_val)
 		{
 			dprint("Number element equal or smaller than zero: " << argv[i]);
-			std::cout << "Error\n";
+			std::cerr << "Error\n";
 			return (EXIT_FAILURE);
 		}
 		if (s_i.maximum_value < current_val)
