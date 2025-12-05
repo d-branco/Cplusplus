@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/12/05 13:25:10     #########  #########  ###      ###       #
+#    Updated: 2025/12/05 18:55:40     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -14,15 +14,22 @@ NAME			:= PmergeMe
 
 FORMATABLE		= $(HEADERS) $(SRCS)
 
-TEST_RUN		= $(NAME) 3 5 9 7 4
+TEST_RUN		= $(NAME) 3 5 9 7 4 8 2 11 6
+# TEST_RUN		= $(NAME) 5 9 7 4 3
 # TEST_RUN		= $(NAME) 3 5 9 7 4 11 2 3 1 4 9 5 3 8 3 42 2 8 6 4 4
 # TEST_RUN		= $(NAME) `shuf -i 1-100000 -n 5 | tr '\n' " "`
 # TEST_RUN		= $(NAME) `shuf -i 1-100000 -n 3000 | tr "\n" " "`
 
+all: $(NAME)
+
 battery:
 	@\
-	echo '$(GRAY)Executing arg:$(COR)	./$(NAME) 3 5 9 7 4'				;	\
-	$(TIMED_RUN) $(VALGRIND_CMD)  ./$(NAME) 3 5 9 7 4 						\
+	echo '$(GRAY)Executing arg:$(COR)	./$(NAME) 3 5 9 7 4 8 2 1 6'	;	\
+	$(TIMED_RUN) $(VALGRIND_CMD)  ./$(NAME) 3 5 9 7 4 8 2 1 6 				\
+	$(VALGRIND_FILTER)													;	\
+	sleep 1																;	\
+	echo '$(GRAY)Executing arg:$(COR)	./$(NAME) 5 9 7 4 3'			;	\
+	$(TIMED_RUN) $(VALGRIND_CMD)  ./$(NAME) 5 9 7 4 3 						\
 	$(VALGRIND_FILTER)													;	\
 	sleep 1																;	\
 	echo '$(GRAY)Executing arg:$(COR)	./$(NAME) 3 5 9 7 4 11 2 3 1 4 9 5 3 8 3 42 2 8 6 4 4'				;	\
@@ -70,8 +77,6 @@ DEBUG_FLAGS		+= -DDEBUG
 RM				:= rm -f
 AR				:= ar rcs
 ###################################################################### Targets #
-all: $(NAME)
-
 $(NAME): $(OBJS)
 	@\
 	echo "$(GRAY)Compiled with:$(COR)	$(CC)"							; \

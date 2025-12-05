@@ -17,6 +17,8 @@ FORMATABLE		= $(HEADERS) $(SRCS)
 TEST_RUN		= $(NAME) "3 4 +"
 # TEST_RUN		= $(NAME) 3 4 + 5 6 + *
 
+all: $(NAME)
+
 battery:
 	@\
 	echo '$(GRAY)Executing arg:$(COR)	./$(NAME) "3 4 +"'				;	\
@@ -81,7 +83,7 @@ DEBUG_FLAGS		+= -DDEBUG
 RM				:= rm -f
 AR				:= ar rcs
 ###################################################################### Targets #
-all: $(NAME)
+
 
 $(NAME): $(OBJS)
 	@\

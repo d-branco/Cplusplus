@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/12/01 15:44:14     #########  #########  ###      ###       #
+#    Updated: 2025/12/06 19:14:49     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -17,6 +17,8 @@ FORMATABLE		= $(HEADERS) $(SRCS)
 TEST_RUN		= $(NAME) input.txt
 DATABASE		= ../cpp_09/data.csv
 LINK			= https://cdn.intra.42.fr/document/document/40966/cpp_09.tgz
+
+all: $(NAME)
 
 $(DATABASE):
 	@\
@@ -59,9 +61,7 @@ DEBUG_FLAGS		+= -DDEBUG
 RM				:= rm -f
 AR				:= ar rcs
 ###################################################################### Targets #
-all: $(NAME)
-
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(DATABASE)
 	@\
 	echo "$(GRAY)Compiled with:$(COR)	$(CC)"							; \
 	echo "$(GRAY)Compile flags:$(COR)	$(CFLAGS)"						; \
