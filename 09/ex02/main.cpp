@@ -5,42 +5,11 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/02 20:26:16      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/04 14:12:33     #########  #########  ###      ###      */
+/*   Updated: 2025/12/05 11:32:50     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
-#include <cstdlib>
-#include <deque>
-#include <iomanip>
-#include <iostream>
-#include <string>
-#include <sys/time.h>
-#include <vector>
-
-#ifdef DEBUG
-# define dprint(msg) std::cout << "==DEBUG== " << msg << "\n"
-#else
-# define dprint(msg) ((void) 0)
-#endif
-
-typedef struct s_init t_init;
-
-int					  get_nbr_length(int nbr);
-void				  get_duration(t_init &s_i);
-
-typedef struct s_init
-{
-	int				 maximum_value;
-	int				 array_size;
-	int				 nbr_length;
-	struct timeval	 start_time;
-	struct timeval	 end_time;
-	long			 duration;
-	std::vector<int> vicky;
-	std::deque<int>	 duke;
-} t_init;
-
-int initializer(int argc, char **argv, t_init &s_i);
+#include "PmergeMe.hpp"
 
 int main(int argc, char **argv)
 {
