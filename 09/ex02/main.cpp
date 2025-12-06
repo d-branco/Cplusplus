@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/02 20:26:16      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/05 11:57:05     #########  #########  ###      ###      */
+/*   Updated: 2025/12/06 21:40:11     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 		}
 		std::cout << " " << std::setw(s_i.nbr_length) << s_i.vicky[i - 1];
 	}
-	std::cout << "\nTime to process a range of " << s_i.array_size
+	std::cout << "\nTime to process " << s_i.array_size
 			  << " elements with std::vector: " << s_i.duration << " μs\n";
 
 	gettimeofday(&s_i.start_time, NULL);
@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 
 	gettimeofday(&s_i.end_time, NULL);
 	get_duration(s_i);
-	std::cout << "Time to process a range of " << s_i.array_size
+	std::cout << "Time to process " << s_i.array_size
 			  << " elements with std::deque:  " << s_i.duration << " μs\n";
 
 	dprint("");
