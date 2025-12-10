@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/03 12:09:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/05 15:09:42     #########  #########  ###      ###      */
+/*   Updated: 2025/12/10 11:03:54     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ typedef struct s_init
 	struct timeval	 end_time;
 	long			 duration;
 	std::vector<int> vicky;
+	std::vector<int> vicky_pend;
 	std::deque<int>	 duke;
+	std::deque<int>	 duke_pend;
 } t_init;
 
 // main.cpp
@@ -50,4 +52,7 @@ int			initializer(int argc, char **argv, t_init &s_i);
 void		merge_intertion_vec(t_init &s_i);
 int			sort_pairs_vec(t_init &s_i, unsigned int pair_size);
 std::string print_vec(t_init &s_i, unsigned int pair_size);
+
+void		separate_chains_vec(t_init &s_i, unsigned int pair_size);
+std::string print_pend_vec(t_init &s_i);
 #endif

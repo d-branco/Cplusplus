@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/02 20:26:16      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/06 21:40:11     #########  #########  ###      ###      */
+/*   Updated: 2025/12/10 11:19:27     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 	gettimeofday(&s_i.end_time, NULL);
 	get_duration(s_i);
 	std::cout << "After:  ";
-	for (int i = 1; argv[i] != 0; ++i)
+	for (unsigned int i = 1; argv[i] != 0; ++i)
 	{
 		if ((80 - 8 - 6) < (i * (s_i.nbr_length + 1)))
 		{
@@ -35,6 +35,12 @@ int main(int argc, char **argv)
 			break;
 		}
 		std::cout << " " << std::setw(s_i.nbr_length) << s_i.vicky[i - 1];
+		if (s_i.vicky.size() <= i)
+		{
+			std::cout << "\n";
+			std::cerr << "Error: Elements missing!\n";
+			break;
+		}
 	}
 	std::cout << "\nTime to process " << s_i.array_size
 			  << " elements with std::vector: " << s_i.duration << " μs\n";

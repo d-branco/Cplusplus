@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/12/06 21:17:25     #########  #########  ###      ###       #
+#    Updated: 2025/12/10 11:19:03     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -32,12 +32,16 @@ battery:
 	$(TIMED_RUN) $(VALGRIND_CMD)  ./$(NAME) 5 9 7 4 3 						\
 	$(VALGRIND_FILTER)													;	\
 	sleep 1																;	\
-	echo '$(GRAY)Executing arg:$(COR)	./$(NAME) 3 5 9 7 4 11 2 3 1 4 9 5 3 8 3 42 2 8 6 4 4'				;	\
-	$(TIMED_RUN) $(VALGRIND_CMD)  ./$(NAME) 3 5 9 7 4 11 2 3 1 4 9 5 3 8 3 42 2 8 6 4 4 						\
+	echo '$(GRAY)Executing arg:$(COR)										\
+	./$(NAME) 3 5 9 7 4 11 2 3 1 4 9 5 3 8 3 42 2 8 6 4 4'				;	\
+	$(TIMED_RUN) $(VALGRIND_CMD) 											\
+	./$(NAME) 3 5 9 7 4 11 2 3 1 4 9 5 3 8 3 42 2 8 6 4 4 					\
 	$(VALGRIND_FILTER)													;	\
 	sleep 1																;	\
-	echo '$(GRAY)Executing arg:$(COR)	./$(NAME) `shuf -i 42-225 -n 42 | tr "\n" " "`'				;	\
-	$(TIMED_RUN) $(VALGRIND_CMD)  ./$(NAME) `shuf -i 42-225 -n 42 | tr '\n' ' '` 						\
+	echo '$(GRAY)Executing arg:$(COR)										\
+	./$(NAME) `shuf -i 42-225 -n 42 | tr "\n" " "`'						;	\
+	$(TIMED_RUN) $(VALGRIND_CMD) 											\
+	 ./$(NAME) `shuf -i 42-225 -n 42 | tr '\n' ' '` 						\
 	$(VALGRIND_FILTER)													;	\
 
 
@@ -50,7 +54,7 @@ HEADERS			:=															\
 	PmergeMe.hpp
 
 SRCS			:=															\
-	PmergeMe.cpp														\
+	PmergeMe.cpp															\
 	\
 	main.cpp
 
@@ -568,7 +572,9 @@ line: fclean format headers $(NAME) $(DATABASE)
 			*==*ERROR*SUMMARY:*0*errors*from*0*contexts*) printf '\033[1;30m\033[102m%-80s \033[0m\n' "$$line" ; sleep 0.01 ;; \
 			*==*[Ii]nvalid* | *==*[Uu]ninitialised* | *==*[Cc]onditional* | *==*[Ll]ost*bytes* | \
 			*==*definitely*lost* | *==*indirectly*lost* | *==*possibly*lost* | *==*still*reachable* | \
-			*==*[Mm]ismatch* | *==*Process*terminating*) \
+			*==*[Mm]ismatch* | *==*Process*terminating* | \
+			\
+			*Error*) \
 				printf '\033[1;30m\033[101m%-80s \033[0m\n' "$$line" ; sleep 1 ;; \
 			*==*) printf '\033[32m%-80s \033[0m\n' "$$line" ; sleep 0.01 ;; \
 			*) printf "$$line\n" ; sleep 0.042 ;;\

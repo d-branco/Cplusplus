@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/03 12:09:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/06 21:37:35     #########  #########  ###      ###      */
+/*   Updated: 2025/12/10 11:13:55     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ int sort_pairs_vec(t_init &s_i, unsigned int pair_size)
 		dprint("sort_pairs_vec("
 			   << pair_size
 			   << "): End of recursion -> pairing size two big for two pairs.");
+		dprint("");
+
+		separate_chains_vec(s_i, pair_size / 2);
+
 		dprint("");
 		return (0);
 	}
@@ -61,6 +65,37 @@ int sort_pairs_vec(t_init &s_i, unsigned int pair_size)
 	dprint("sort_pairs_vec(" << pair_size << "): insert the pend elements");
 
 	return (0);
+}
+
+void separate_chains_vec(t_init &s_i, unsigned int pair_size)
+{
+	std::vector<int> main_chain;
+	size_t			 i = 0;
+	dprint("separate_chains(" << pair_size << "): moving elements to pend");
+	while (i + 2 * pair_size <= s_i.vicky.size())
+	{
+		s_i.vicky_pend.insert(s_i.vicky_pend.end(),
+							  s_i.vicky.begin() + i,
+							  s_i.vicky.begin() + i + pair_size);
+		main_chain.insert(main_chain.end(),
+						  s_i.vicky.begin() + i + pair_size,
+						  s_i.vicky.begin() + i + 2 * pair_size);
+		i += 2 * pair_size;
+	}
+
+	if (i < s_i.vicky.size())
+	{
+		dprint("separate_chains(" << pair_size << "): adding "
+								  << (s_i.vicky.size() - i)
+								  << " remaining elements");
+		s_i.vicky_pend.insert(s_i.vicky_pend.end(),
+							  s_i.vicky.begin() + i,
+							  s_i.vicky.end());
+	}
+
+	s_i.vicky = main_chain;
+	dprint("Vec.size(): " << s_i.vicky.size());
+	dprint(print_pend_vec(s_i));
 }
 
 std::string print_vec(t_init &s_i, unsigned int pair_size)
@@ -124,5 +159,36 @@ std::string print_vec(t_init &s_i, unsigned int pair_size)
 			break;
 		}
 	}
+	return (ret);
+}
+
+std::string print_pend_vec(t_init &s_i)
+{
+	std::string ret = "Vec:  ";
+	for (unsigned int i = 0; i < s_i.vicky.size(); ++i)
+	{
+		if ((80 - 15 - 6) < (i * (s_i.nbr_length + 1)))
+		{
+			ret += " [...]";
+			break;
+		}
+		std::ostringstream oss;
+		oss << " " << std::setw(s_i.nbr_length) << s_i.vicky[i];
+		ret += oss.str();
+	}
+
+	ret += "\n==DEBUG== pend: ";
+	for (unsigned int i = 0; i < s_i.vicky_pend.size(); ++i)
+	{
+		if ((80 - 15 - 6) < (i * (s_i.nbr_length + 1)))
+		{
+			ret += " [...]";
+			break;
+		}
+		std::ostringstream oss;
+		oss << " " << std::setw(s_i.nbr_length) << s_i.vicky_pend[i];
+		ret += oss.str();
+	}
+
 	return (ret);
 }
