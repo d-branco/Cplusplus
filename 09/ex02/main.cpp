@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/02 20:26:16      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/10 13:35:33     #########  #########  ###      ###      */
+/*   Updated: 2025/12/10 21:39:28     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -19,52 +19,55 @@ int main(int argc, char **argv)
 	{
 		return (EXIT_FAILURE);
 	}
-	gettimeofday(&s_i.start_time, NULL);
+	struct timeval start_time;
+	struct timeval end_time;
+	long		   duration = 0;
+	gettimeofday(&start_time, NULL);
+	gettimeofday(&end_time, NULL);
+
+	gettimeofday(&start_time, NULL);
 
 	// First algorithm runs here
 	merge_intertion_vec(s_i);
+	// s_i.vicky = merge_intertion_vec(s_i.vicky); // ideally
 
-	gettimeofday(&s_i.end_time, NULL);
-	get_duration(s_i);
+	gettimeofday(&end_time, NULL);
+
+	long seconds	  = end_time.tv_sec - start_time.tv_sec;
+	long microseconds = end_time.tv_usec - start_time.tv_usec;
+	duration		  = seconds * 1000000 + microseconds;
+	dprint("Time duration: " << duration << " microseconds");
+
 	std::cout << "After:  ";
-	for (unsigned int i = 1; argv[i] != 0; ++i)
+	for (unsigned int i = 1; s_i.vicky.size() > i - 1; ++i)
 	{
 		if ((80 - 8 - 6) < (i * (s_i.nbr_length + 1)))
 		{
 			std::cout << " [...]";
 			break;
 		}
-		if (s_i.vicky.size() < i)
-		{
-			std::cout << "\n";
-			std::cerr << "Error: Elements missing!\n";
-			break;
-		}
 		std::cout << " " << std::setw(s_i.nbr_length) << s_i.vicky[i - 1];
 	}
 	std::cout << "\nTime to process " << s_i.array_size
-			  << " elements with std::vector: " << s_i.duration << " μs\n";
+			  << " elements with std::vector: " << duration << " μs\n";
 
-	gettimeofday(&s_i.start_time, NULL);
+	gettimeofday(&start_time, NULL);
 
 	// Second algorithm runs here
 
-	gettimeofday(&s_i.end_time, NULL);
-	get_duration(s_i);
+	gettimeofday(&end_time, NULL);
+
+	seconds		 = end_time.tv_sec - start_time.tv_sec;
+	microseconds = end_time.tv_usec - start_time.tv_usec;
+	duration	 = seconds * 1000000 + microseconds;
+	dprint("Time duration: " << duration << " microseconds");
+
 	std::cout << "Time to process " << s_i.array_size
-			  << " elements with std::deque:  " << s_i.duration << " μs\n";
+			  << " elements with std::deque:  " << duration << " μs\n";
 
 	dprint("");
 	dprint("End of main()");
 	return (EXIT_SUCCESS);
-}
-
-void get_duration(t_init &s_i)
-{
-	long seconds	  = s_i.end_time.tv_sec - s_i.start_time.tv_sec;
-	long microseconds = s_i.end_time.tv_usec - s_i.start_time.tv_usec;
-	s_i.duration	  = seconds * 1000000 + microseconds;
-	dprint("Time duration: " << s_i.duration << " microseconds");
 }
 
 int initializer(int argc, char **argv, t_init &s_i)
@@ -101,10 +104,6 @@ int initializer(int argc, char **argv, t_init &s_i)
 	s_i.nbr_length = get_nbr_length(s_i.maximum_value);
 	dprint("Maximum element: " << s_i.maximum_value << " (length: "
 							   << get_nbr_length(s_i.maximum_value) << ")");
-
-	gettimeofday(&s_i.start_time, NULL);
-	gettimeofday(&s_i.end_time, NULL);
-	s_i.duration = 0;
 
 	std::cout << "Before: ";
 	for (int i = 1; argv[i] != 0; ++i)
