@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/03 12:09:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/10 11:03:54     #########  #########  ###      ###      */
+/*   Updated: 2025/12/10 13:38:00     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 #include <string>
 #include <sys/time.h>
 #include <vector>
-
-#include "PmergeMe.hpp"
 
 #ifdef DEBUG
 # define dprint(msg) std::cout << "==DEBUG== " << msg << "\n"
@@ -50,9 +48,9 @@ int			initializer(int argc, char **argv, t_init &s_i);
 
 // PmergeMe.cpp
 void		merge_intertion_vec(t_init &s_i);
-int			sort_pairs_vec(t_init &s_i, unsigned int pair_size);
+void		sort_pairs_vec(t_init &s_i, unsigned int pair_size);
 std::string print_vec(t_init &s_i, unsigned int pair_size);
-
 void		separate_chains_vec(t_init &s_i, unsigned int pair_size);
 std::string print_pend_vec(t_init &s_i);
+
 #endif

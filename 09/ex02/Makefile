@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/12/10 11:19:03     #########  #########  ###      ###       #
+#    Updated: 2025/12/10 12:46:02     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -43,11 +43,6 @@ battery:
 	$(TIMED_RUN) $(VALGRIND_CMD) 											\
 	 ./$(NAME) `shuf -i 42-225 -n 42 | tr '\n' ' '` 						\
 	$(VALGRIND_FILTER)													;	\
-
-
-# 	echo '$(GRAY)Executing arg:$(COR)	./$(NAME) `shuf -i 1-100000 -n 3000 | tr "\n" " "`'				;	\
-# 	$(TIMED_RUN) $(VALGRIND_CMD)  ./$(NAME) `shuf -i 1-100000 -n 3000 | tr "\n" " "` 						\
-# 	$(VALGRIND_FILTER)													;	\
 
 ########################################################## Objects and Headers #
 HEADERS			:=															\
@@ -459,9 +454,12 @@ define VALGRIND_FILTER
 2>&1 | while IFS= read -r line; do \
 	case "$$line" in \
 		*==DEBUG==*) printf '\033[33m%-80s \033[0m\n' "$$line" ;; \
+		\
 		*==*[Cc]opyright*) ;; \
+		\
 		*==*freed*--*no*leaks*) printf '\033[1;30m\033[102m%-80s \033[0m\n' "$$line" ;; \
 		*==*ERROR*SUMMARY:*0*errors*from*0*contexts*) printf '\033[1;30m\033[102m%-80s \033[0m\n' "$$line" ;; \
+		\
 		*==*[Ii]nvalid*) printf '\033[1;30m\033[101m%-80s \033[0m\n' "$$line" ; sleep 1 ;; \
 		*==*[Uu]ninitialised*) printf '\033[1;30m\033[101m%-80s \033[0m\n' "$$line" ; sleep 1 ;; \
 		*==*[Cc]onditional*) printf '\033[1;30m\033[101m%-80s \033[0m\n' "$$line" ; sleep 1 ;; \
@@ -472,7 +470,11 @@ define VALGRIND_FILTER
 		*==*still*reachable*) printf '\033[1;30m\033[101m%-80s \033[0m\n' "$$line" ; sleep 1 ;; \
 		*==*[Mm]ismatch*) printf '\033[1;30m\033[101m%-80s \033[0m\n' "$$line" ; sleep 1 ;; \
 		*==*Process*terminating*) printf '\033[1;30m\033[101m%-80s \033[0m\n' "$$line" ; sleep 1 ;; \
+		\
 		*==*) printf '\033[32m%-80s \033[0m\n' "$$line" ;; \
+		\
+		*[Ee]rror*) printf '\033[1;30m\033[101m%-80s \033[0m\n' "$$line" ; sleep 1 ;; \
+		\
 		*) printf "$$line\n" ;;\
 	esac; \
 done
@@ -508,6 +510,10 @@ define DEBUG_FILTER
 2>&1 | while IFS= read -r line; do \
 	case "$$line" in \
 		*==DEBUG==*) printf '\033[33m%-80s \033[0m\n' "$$line" ;; \
+		\
+		*[Ee]rror*) printf '\033[1;30m\033[101m%-80s \033[0m\n' "$$line" ; \
+			sleep 1 ;; \
+		\
 		*) printf "$$line\n" ;;\
 	esac; \
 done
@@ -567,16 +573,21 @@ line: fclean format headers $(NAME) $(DATABASE)
 	$(TIMED_RUN) $(VALGRIND_CMD) ./$(TEST_RUN) 2>&1 | while IFS= read -r line; do \
 		case "$$line" in \
 			*==DEBUG==*) printf '\033[33m%-80s \033[0m\n' "$$line" ; sleep 0.01 ;; \
+			\
 			*==*[Cc]opyright*) ;; \
+			\
 			*==*freed*--*no*leaks*) printf '\033[1;30m\033[102m%-80s \033[0m\n' "$$line" ; sleep 0.01 ;; \
 			*==*ERROR*SUMMARY:*0*errors*from*0*contexts*) printf '\033[1;30m\033[102m%-80s \033[0m\n' "$$line" ; sleep 0.01 ;; \
+			\
 			*==*[Ii]nvalid* | *==*[Uu]ninitialised* | *==*[Cc]onditional* | *==*[Ll]ost*bytes* | \
 			*==*definitely*lost* | *==*indirectly*lost* | *==*possibly*lost* | *==*still*reachable* | \
 			*==*[Mm]ismatch* | *==*Process*terminating* | \
 			\
 			*Error*) \
 				printf '\033[1;30m\033[101m%-80s \033[0m\n' "$$line" ; sleep 1 ;; \
+			\
 			*==*) printf '\033[32m%-80s \033[0m\n' "$$line" ; sleep 0.01 ;; \
+			\
 			*) printf "$$line\n" ; sleep 0.042 ;;\
 		esac; \
 	done
@@ -589,14 +600,21 @@ homeline: fclean format headers $(NAME)
 	~/$(TEST_RUN) 2>&1 | while IFS= read -r line; do \
 		case "$$line" in \
 			*==DEBUG==*) printf '\033[33m%-80s \033[0m\n' "$$line" ; sleep 0.01 ;; \
+			\
 			*==*[Cc]opyright*) ;; \
+			\
 			*==*freed*--*no*leaks*) printf '\033[1;30m\033[102m%-80s \033[0m\n' "$$line" ; sleep 0.01 ;; \
 			*==*ERROR*SUMMARY:*0*errors*from*0*contexts*) printf '\033[1;30m\033[102m%-80s \033[0m\n' "$$line" ; sleep 0.01 ;; \
+			\
 			*==*[Ii]nvalid* | *==*[Uu]ninitialised* | *==*[Cc]onditional* | *==*[Ll]ost*bytes* | \
 			*==*definitely*lost* | *==*indirectly*lost* | *==*possibly*lost* | *==*still*reachable* | \
-			*==*[Mm]ismatch* | *==*Process*terminating*) \
+			*==*[Mm]ismatch* | *==*Process*terminating* | \
+			\
+			*Error*) \
 				printf '\033[1;30m\033[101m%-80s \033[0m\n' "$$line" ; sleep 1 ;; \
+				\
 			*==*) printf '\033[32m%-80s \033[0m\n' "$$line" ; sleep 0.01 ;; \
+			\
 			*) printf "$$line\n" ; sleep 0.042 ;;\
 		esac; \
 	done; \

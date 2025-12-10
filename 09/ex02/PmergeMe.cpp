@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/03 12:09:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/10 11:13:55     #########  #########  ###      ###      */
+/*   Updated: 2025/12/10 13:40:45     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -23,23 +23,19 @@ void merge_intertion_vec(t_init &s_i)
 	dprint(print_vec(s_i, 0));
 }
 
-int sort_pairs_vec(t_init &s_i, unsigned int pair_size)
+void sort_pairs_vec(t_init &s_i, unsigned int pair_size)
 {
-	////
 	dprint("sort_pairs_vec(" << pair_size << "): init");
 	if (pair_size * 2 > s_i.vicky.size())
 	{
-		dprint("sort_pairs_vec("
-			   << pair_size
-			   << "): End of recursion -> pairing size two big for two pairs.");
+		dprint("sort_pairs_vec(" << pair_size << "): End of recursion");
 		dprint("");
 
 		separate_chains_vec(s_i, pair_size / 2);
 
 		dprint("");
-		return (0);
+		return;
 	}
-	////
 
 	dprint(print_vec(s_i, 0));
 	for (size_t i = 0; i + 2 * pair_size <= s_i.vicky.size();
@@ -64,11 +60,15 @@ int sort_pairs_vec(t_init &s_i, unsigned int pair_size)
 
 	dprint("sort_pairs_vec(" << pair_size << "): insert the pend elements");
 
-	return (0);
+	return;
 }
 
 void separate_chains_vec(t_init &s_i, unsigned int pair_size)
 {
+	if (s_i.vicky.size() <= 1)
+	{
+		return;
+	}
 	std::vector<int> main_chain;
 	size_t			 i = 0;
 	dprint("separate_chains(" << pair_size << "): moving elements to pend");

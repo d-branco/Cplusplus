@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/02 20:26:16      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/10 11:19:27     #########  #########  ###      ###      */
+/*   Updated: 2025/12/10 13:35:33     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ int main(int argc, char **argv)
 			std::cout << " [...]";
 			break;
 		}
-		std::cout << " " << std::setw(s_i.nbr_length) << s_i.vicky[i - 1];
-		if (s_i.vicky.size() <= i)
+		if (s_i.vicky.size() < i)
 		{
 			std::cout << "\n";
 			std::cerr << "Error: Elements missing!\n";
 			break;
 		}
+		std::cout << " " << std::setw(s_i.nbr_length) << s_i.vicky[i - 1];
 	}
 	std::cout << "\nTime to process " << s_i.array_size
 			  << " elements with std::vector: " << s_i.duration << " μs\n";
