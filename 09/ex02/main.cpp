@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/02 20:26:16      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/10 21:39:28     #########  #########  ###      ###      */
+/*   Updated: 2025/12/11 08:42:47     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 int main(int argc, char **argv)
 {
 	dprint("Debug mode activated");
-	s_init s_i;
+	s_init_vec s_i;
 	if (initializer(argc, argv, s_i) != EXIT_SUCCESS)
 	{
 		return (EXIT_FAILURE);
@@ -28,15 +28,14 @@ int main(int argc, char **argv)
 	gettimeofday(&start_time, NULL);
 
 	// First algorithm runs here
-	merge_intertion_vec(s_i);
-	// s_i.vicky = merge_intertion_vec(s_i.vicky); // ideally
+	s_i.vicky = merge_intertion_vec(s_i);
 
 	gettimeofday(&end_time, NULL);
 
-	long seconds	  = end_time.tv_sec - start_time.tv_sec;
-	long microseconds = end_time.tv_usec - start_time.tv_usec;
-	duration		  = seconds * 1000000 + microseconds;
-	dprint("Time duration: " << duration << " microseconds");
+	long seconds	 = end_time.tv_sec - start_time.tv_sec;
+	long nanoseconds = end_time.tv_usec - start_time.tv_usec;
+	duration		 = seconds * 1000000 + nanoseconds;
+	dprint("Time duration: " << duration << " nanoseconds");
 
 	std::cout << "After:  ";
 	for (unsigned int i = 1; s_i.vicky.size() > i - 1; ++i)
@@ -57,10 +56,10 @@ int main(int argc, char **argv)
 
 	gettimeofday(&end_time, NULL);
 
-	seconds		 = end_time.tv_sec - start_time.tv_sec;
-	microseconds = end_time.tv_usec - start_time.tv_usec;
-	duration	 = seconds * 1000000 + microseconds;
-	dprint("Time duration: " << duration << " microseconds");
+	seconds		= end_time.tv_sec - start_time.tv_sec;
+	nanoseconds = end_time.tv_usec - start_time.tv_usec;
+	duration	= seconds * 1000000 + nanoseconds;
+	dprint("Time duration: " << duration << " nanoseconds");
 
 	std::cout << "Time to process " << s_i.array_size
 			  << " elements with std::deque:  " << duration << " μs\n";
@@ -70,7 +69,7 @@ int main(int argc, char **argv)
 	return (EXIT_SUCCESS);
 }
 
-int initializer(int argc, char **argv, t_init &s_i)
+int initializer(int argc, char **argv, t_vec &s_i)
 {
 	dprint("Initializing data");
 
@@ -119,7 +118,7 @@ int initializer(int argc, char **argv, t_init &s_i)
 	for (int i = 1; i < argc; ++i)
 	{
 		s_i.vicky.push_back(std::atoi(argv[i]));
-		s_i.duke.push_back(std::atoi(argv[i]));
+		// s_i.duke.push_back(std::atoi(argv[i]));
 	}
 
 	dprint("Initialization successful");

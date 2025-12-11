@@ -5,26 +5,43 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/03 12:09:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/10 22:26:08     #########  #########  ###      ###      */
+/*   Updated: 2025/12/11 08:39:09     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-void merge_intertion_vec(t_init &s_i)
+std::vector<int> merge_intertion_vec(t_vec &s_i)
 {
+	// TODO
+	// recreate a new t_vec fot this iteration with new:
+	// 		maximum_value;
+	// 		array_size;
+	// 		nbr_length;
 	dprint("Before sorting: ");
 	dprint(print_vec(s_i));
 	dprint("");
 
 	sort_pairs_vec(s_i);
 
+	dprint("Inserting the element paired with the smallest number");
+	s_i.vicky.insert(s_i.vicky.begin(), s_i.vicky_pend[0]);
+	s_i.vicky_pend.erase(s_i.vicky_pend.begin());
+	dprint(print_vec(s_i));
+	dprint("");
+
+	dprint("Inserting the remaining elements");
+	s_i.vicky_sort = s_i.vicky;
+
 	dprint("After sorting: ");
 	dprint(print_vec(s_i));
+
+	return (s_i.vicky_sort);
 }
 
-void sort_pairs_vec(t_init &s_i)
+void sort_pairs_vec(t_vec &s_i)
 {
+	dprint("Sorting the pairs");
 	for (size_t i = 0; i + 2 <= s_i.vicky.size(); i++)
 	{
 		if (s_i.vicky[i] > s_i.vicky[i + 1])
@@ -48,7 +65,7 @@ void sort_pairs_vec(t_init &s_i)
 	dprint("");
 
 	dprint("|| TODO || Recursively call itsel to order half of itself!");
-	//// temporaty bubble sort
+	//// temporaty bubble sort /////////////////////////////////////////////////
 	size_t i	= 0;
 	int	   temp = 0;
 	while (i < s_i.vicky.size() - 1)
@@ -68,14 +85,12 @@ void sort_pairs_vec(t_init &s_i)
 		}
 		i++;
 	}
-	//// remove before deliverance
+	//// remove before deliverance /////////////////////////////////////////////
 	dprint(print_vec(s_i));
 	dprint("");
-
-	return;
 }
 
-std::string print_vec(t_init &s_i)
+std::string print_vec(t_vec &s_i)
 {
 	std::string ret = "Vec:  ";
 	for (unsigned int i = 0; i < s_i.vicky.size(); ++i)
