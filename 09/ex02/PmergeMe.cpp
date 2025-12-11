@@ -5,12 +5,13 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/03 12:09:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/11 16:59:10     #########  #########  ###      ###      */
+/*   Updated: 2025/12/11 18:50:58     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
+/////////////////////////////////////////////////////////////////////// Deque //
 std::deque<int> merge_intertion_deq(t_deq &s_i)
 {
 	t_deq s_d;
@@ -59,7 +60,7 @@ std::string print_deq(t_deq &s_d)
 	std::string ret = "Deq: ";
 	for (unsigned int i = 0; i < s_d.duke.size(); ++i)
 	{
-		if ((80 - 15 - 6) < (i * (s_d.nbr_length + 1)))
+		if ((80 - 15 - 6) < ((i + 1) * (s_d.nbr_length + 1)))
 		{
 			ret += " [...]";
 			break;
@@ -71,7 +72,7 @@ std::string print_deq(t_deq &s_d)
 	ret += "\n==DEBUG== pend:";
 	for (unsigned int i = 0; i < s_d.duke_pend.size(); ++i)
 	{
-		if ((80 - 15 - 6) < (i * (s_d.nbr_length + 1)))
+		if ((80 - 15 - 6) < ((i + 1) * (s_d.nbr_length + 1)))
 		{
 			ret += " [...]";
 			break;
@@ -83,7 +84,7 @@ std::string print_deq(t_deq &s_d)
 	ret += "\n==DEBUG== sort:";
 	for (unsigned int i = 0; i < s_d.duke_sort.size(); ++i)
 	{
-		if ((80 - 15 - 6) < (i * (s_d.nbr_length + 1)))
+		if ((80 - 15 - 6) < ((i + 1) * (s_d.nbr_length + 1)))
 		{
 			ret += " [...]";
 			break;
@@ -95,8 +96,47 @@ std::string print_deq(t_deq &s_d)
 	return (ret);
 }
 
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////// Jacobsthal sequence //
+std::vector<unsigned int> get_jacob_vec()
+{
+	std::vector<unsigned int> jacob;
+	// jacob.push_back(0);
+	// jacob.push_back(1);
 
+	// unsigned int i = 2;
+	// unsigned int prev1;
+	// unsigned int prev2;
+	// unsigned int current;
+	// for (;;)
+	// {
+	// 	prev1 = jacob[i - 1];
+	// 	prev2 = jacob[i - 2];
+	// 	if (prev1 > INT_MAX - 2 * prev2)
+	// 	{
+	// 		break;
+	// 	}
+
+	// 	current = prev1 + 2 * prev2;
+	// 	jacob.push_back(current);
+
+	// 	i++;
+	// }
+
+	static const unsigned int array[]
+		= {0,		  1,		 1,			3,		  5,		11,
+		   21,		  43,		 85,		171,	  341,		683,
+		   1365,	  2731,		 5461,		10923,	  21845,	43691,
+		   87381,	  174763,	 349525,	699051,	  1398101,	2796203,
+		   5592405,	  11184811,	 22369621,	44739243, 89478485, 178956971,
+		   357913941, 715827883, 1431655765};
+
+	// This is c++98
+	jacob = std::vector<unsigned int>(array,
+									  array + sizeof(array) / sizeof(array[0]));
+	return (jacob);
+}
+
+////////////////////////////////////////////////////////////////////// Vector //
 std::vector<int> merge_intertion_vec(t_vec &s_i)
 {
 	t_vec s_v;
@@ -200,45 +240,6 @@ void insert_vec(t_vec &s_v)
 	}
 }
 
-std::vector<unsigned int> get_jacob_vec()
-{
-	std::vector<unsigned int> jacob;
-	// jacob.push_back(0);
-	// jacob.push_back(1);
-
-	// unsigned int i = 2;
-	// unsigned int prev1;
-	// unsigned int prev2;
-	// unsigned int current;
-	// for (;;)
-	// {
-	// 	prev1 = jacob[i - 1];
-	// 	prev2 = jacob[i - 2];
-	// 	if (prev1 > INT_MAX - 2 * prev2)
-	// 	{
-	// 		break;
-	// 	}
-
-	// 	current = prev1 + 2 * prev2;
-	// 	jacob.push_back(current);
-
-	// 	i++;
-	// }
-
-	static const unsigned int array[]
-		= {0,		  1,		 1,			3,		  5,		11,
-		   21,		  43,		 85,		171,	  341,		683,
-		   1365,	  2731,		 5461,		10923,	  21845,	43691,
-		   87381,	  174763,	 349525,	699051,	  1398101,	2796203,
-		   5592405,	  11184811,	 22369621,	44739243, 89478485, 178956971,
-		   357913941, 715827883, 1431655765};
-
-	// This is c++98
-	jacob = std::vector<unsigned int>(array,
-									  array + sizeof(array) / sizeof(array[0]));
-	return (jacob);
-}
-
 void sort_pairs_vec(t_vec &s_i)
 {
 	dprint("Sorting the pairs");
@@ -264,7 +265,7 @@ void sort_pairs_vec(t_vec &s_i)
 	dprint(print_vec(s_i));
 	dprint("");
 
-	dprint("||||Recursively call itself to order itself!");
+	dprint("|||| Recursively call itself to order itself!");
 	if (s_i.vicky.size() <= 1)
 	{
 		return;
@@ -318,7 +319,7 @@ std::string print_vec(t_vec &s_i)
 	std::string ret = "Vec: ";
 	for (unsigned int i = 0; i < s_i.vicky.size(); ++i)
 	{
-		if ((80 - 15 - 6) < (i * (s_i.nbr_length + 1)))
+		if ((80 - 15 - 6) < ((i + 1) * (s_i.nbr_length + 1)))
 		{
 			ret += " [...]";
 			break;
@@ -330,7 +331,7 @@ std::string print_vec(t_vec &s_i)
 	ret += "\n==DEBUG== pend:";
 	for (unsigned int i = 0; i < s_i.vicky_pend.size(); ++i)
 	{
-		if ((80 - 15 - 6) < (i * (s_i.nbr_length + 1)))
+		if ((80 - 15 - 6) < ((i + 1) * (s_i.nbr_length + 1)))
 		{
 			ret += " [...]";
 			break;
@@ -342,7 +343,7 @@ std::string print_vec(t_vec &s_i)
 	ret += "\n==DEBUG== sort:";
 	for (unsigned int i = 0; i < s_i.vicky_sort.size(); ++i)
 	{
-		if ((80 - 15 - 6) < (i * (s_i.nbr_length + 1)))
+		if ((80 - 15 - 6) < ((i + 1) * (s_i.nbr_length + 1)))
 		{
 			ret += " [...]";
 			break;

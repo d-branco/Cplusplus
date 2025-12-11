@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/02 20:26:16      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/11 16:51:47     #########  #########  ###      ###      */
+/*   Updated: 2025/12/11 18:46:33     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 	std::cout << "After:  ";
 	for (unsigned int i = 1; s_v.vicky.size() > i - 1; ++i)
 	{
-		if ((80 - 8 - 6) < (i * (s_v.nbr_length + 1)))
+		if ((80 - 5 - 8) < (i * (s_v.nbr_length + 1)))
 		{
 			std::cout << " [...]";
 			break;
@@ -126,7 +126,7 @@ int initializer(int argc, char **argv, t_vec &s_v, t_deq &s_d)
 	std::cout << "Before: ";
 	for (int i = 1; argv[i] != 0; ++i)
 	{
-		if ((80 - 8 - 6) < (i * (s_v.nbr_length + 1)))
+		if ((80 - 5 - 8) < (i * (s_v.nbr_length + 1)))
 		{
 			std::cout << " [...]";
 			break;

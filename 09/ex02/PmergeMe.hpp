@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/03 12:09:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/11 16:57:35     #########  #########  ###      ###      */
+/*   Updated: 2025/12/11 18:45:40     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -58,13 +58,15 @@ int							get_nbr_length(int nbr);
 int				 initializer(int argc, char **argv, t_vec &s_v, t_deq &s_d);
 
 // PmergeMe.cpp
-// std::vector<int> merge_intertion_vec(std::vector<int> vicky);
 std::vector<int> merge_intertion_vec(t_vec &s_v);
 void			 sort_pairs_vec(t_vec &s_v);
+std::string		 print_vec(t_vec &s_v);
+void			 insert_vec(t_vec &s_v);
+
 std::vector<unsigned int> get_jacob_vec();
-std::string				  print_vec(t_vec &s_v);
-void					  insert_vec(t_vec &s_v);
 
 std::deque<int>			  merge_intertion_deq(t_deq &s_d);
+// void					  sort_pairs_deq(t_deq &s_d);
 std::string				  print_deq(t_deq &s_d);
+// void					  insert_deq(t_deq &s_d);
 #endif
