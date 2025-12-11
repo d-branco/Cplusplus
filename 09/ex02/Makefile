@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/12/11 10:16:42     #########  #########  ###      ###       #
+#    Updated: 2025/12/11 13:53:31     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -14,11 +14,11 @@ NAME			:= PmergeMe
 
 FORMATABLE		= $(HEADERS) $(SRCS)
 
-TEST_RUN		= $(NAME) 6 14 5 12 1 3 7 13 8 2 11 15 4 10 9 16
+# TEST_RUN		= $(NAME) 6 14 5 12 1 3 7 13 8 2 11 15 4 10 9 16
 # TEST_RUN		= $(NAME) 5 9 7 4 3
 # TEST_RUN		= $(NAME) 3 5 9 7 4 11 2 3 1 4 9 5 3 8 3 42 2 8 6 4 4
 # TEST_RUN		= $(NAME) `shuf -i 1-100000 -n 5 | tr '\n' " "`
-# TEST_RUN		= $(NAME) `shuf -i 1-100000 -n 3000 | tr "\n" " "`
+TEST_RUN		= $(NAME) `shuf -i 1-42 -n 42 | tr "\n" " "`
 
 all: $(NAME)
 
@@ -37,17 +37,15 @@ battery:
 	./$(NAME) 3 5 9 7 4 11 2 3 1 4 9 5 3 8 3 42 2 8 6 4 4 					\
 	$(VALGRIND_FILTER)													;	\
 	sleep 1																;	\
-	echo '$(GRAY)Executing arg:$(COR) ./$(NAME) `shuf -i 42-225 -n 42 | tr "\\n" " "`'	;	\
+	echo '$(GRAY)Executing arg:$(COR) ./$(NAME) `shuf -i 42-2025 -n 225 | tr "\\n" " "`'	;	\
 	$(TIMED_RUN) $(VALGRIND_CMD) 											\
-	 ./$(NAME) `shuf -i 42-225 -n 42 | tr '\n' ' '` 						\
+	 ./$(NAME) `shuf -i 42-2025 -n 225 | tr '\n' ' '` 						\
 	$(VALGRIND_FILTER)													;	\
-
-#	Replace bubble sort before uncommenting this
-# 	sleep 1																;	\
-# 	echo '$(GRAY)Executing arg:$(COR) ./$(NAME) `shuf -i 1-123000 -n 4242 | tr "\\n" " "`'	;	\
-# 	$(TIMED_RUN) $(VALGRIND_CMD) 											\
-# 	 ./$(NAME) `shuf -i 1-123000 -n 4242 | tr '\n' ' '` 						\
-# 	$(VALGRIND_FILTER)													;	\
+	sleep 1																;	\
+	echo '$(GRAY)Executing arg:$(COR) ./$(NAME) `shuf -i 1-123000 -n 4242 | tr "\\n" " "`'	;	\
+	$(TIMED_RUN) $(VALGRIND_CMD) 											\
+	 ./$(NAME) `shuf -i 1-123000 -n 4242 | tr '\n' ' '` 						\
+	$(VALGRIND_FILTER)													;	\
 
 ########################################################## Objects and Headers #
 HEADERS			:=															\
@@ -306,6 +304,7 @@ headers:
 .clang-format:
 	@echo "\
 	Language: Cpp\n\
+	Standard: c++03\n\
 	\n\
 	AlignConsecutiveDeclarations:\n\
 	  Enabled: true\n\

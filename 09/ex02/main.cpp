@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/02 20:26:16      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/11 09:26:11     #########  #########  ###      ###      */
+/*   Updated: 2025/12/11 14:06:29     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 int main(int argc, char **argv)
 {
 	dprint("Debug mode activated");
-	s_init_vec s_i;
+	t_vec s_i;
 	if (initializer(argc, argv, s_i) != EXIT_SUCCESS)
 	{
 		return (EXIT_FAILURE);
@@ -34,7 +34,13 @@ int main(int argc, char **argv)
 
 	long seconds	 = end_time.tv_sec - start_time.tv_sec;
 	long nanoseconds = end_time.tv_usec - start_time.tv_usec;
-	duration		 = seconds * 1000000 + nanoseconds;
+	if (nanoseconds < 0)
+	{
+		seconds--;
+		nanoseconds += 1000000;
+	}
+	duration = seconds * 1000000 + nanoseconds;
+	(void) duration;
 	dprint("Time duration: " << duration << " nanoseconds");
 
 	std::cout << "After:  ";
@@ -48,7 +54,8 @@ int main(int argc, char **argv)
 		std::cout << " " << std::setw(s_i.nbr_length) << s_i.vicky[i - 1];
 	}
 	std::cout << "\nTime to process " << s_i.array_size
-			  << " elements with std::vector: " << duration << " μs\n";
+			  << " elements with std::vector: " << std::setw(3) << seconds
+			  << " s  and " << std::setw(6) << nanoseconds << " μs\n";
 
 	gettimeofday(&start_time, NULL);
 
@@ -58,11 +65,17 @@ int main(int argc, char **argv)
 
 	seconds		= end_time.tv_sec - start_time.tv_sec;
 	nanoseconds = end_time.tv_usec - start_time.tv_usec;
-	duration	= seconds * 1000000 + nanoseconds;
+	if (nanoseconds < 0)
+	{
+		seconds--;
+		nanoseconds += 1000000;
+	}
+	duration = seconds * 1000000 + nanoseconds;
 	dprint("Time duration: " << duration << " nanoseconds");
 
 	std::cout << "Time to process " << s_i.array_size
-			  << " elements with std::deque:  " << duration << " μs\n";
+			  << " elements with std::deque:  " << std::setw(3) << seconds
+			  << " s  and " << std::setw(6) << nanoseconds << " μs\n";
 
 	dprint("");
 	dprint("End of main()");

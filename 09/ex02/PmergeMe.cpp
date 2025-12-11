@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/03 12:09:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/11 10:16:42     #########  #########  ###      ###      */
+/*   Updated: 2025/12/11 16:35:38     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -13,32 +13,105 @@
 
 std::vector<int> merge_intertion_vec(t_vec &s_i)
 {
-	// TODO
-	// recreate a new t_vec fot this iteration with new:
-	// 		maximum_value;
-	// 		array_size;
-	// 		nbr_length;
+	t_vec s_v;
+	s_v.vicky		  = s_i.vicky;
+	s_v.maximum_value = -1;
+	for (size_t i = 0; i < s_v.vicky.size(); i++)
+	{
+		if (s_v.vicky[i] > s_v.maximum_value)
+		{
+			s_v.maximum_value = s_v.vicky[i];
+		}
+	}
+	s_v.array_size = s_v.vicky.size();
+	s_v.nbr_length = get_nbr_length(s_v.maximum_value);
+
 	dprint("Before sorting: ");
-	dprint(print_vec(s_i));
+	dprint(print_vec(s_v));
 	dprint("");
 
-	sort_pairs_vec(s_i);
+	sort_pairs_vec(s_v);
 
 	dprint("Inserting the element paired with the smallest number");
-	s_i.vicky.insert(s_i.vicky.begin(), s_i.vicky_pend[0]);
-	s_i.vicky_pend.erase(s_i.vicky_pend.begin());
-	dprint(print_vec(s_i));
+	s_v.vicky.insert(s_v.vicky.begin(), s_v.vicky_pend[0]);
+	s_v.vicky_pend.erase(s_v.vicky_pend.begin());
+	dprint(print_vec(s_v));
 	dprint("");
 
 	dprint("Inserting the remaining elements");
-	s_i.vicky_sort = s_i.vicky;
+	s_v.vicky_sort = s_v.vicky;
 
-	std::vector<unsigned int> jacob = get_jacob_vec();
+	dprint("Insertion init");
+	dprint(print_vec(s_v));
+	insert_vec(s_v);
+	dprint("Insertion finit");
+	dprint("");
 
 	dprint("After sorting: ");
-	dprint(print_vec(s_i));
+	dprint(print_vec(s_v));
+	dprint("");
 
-	return (s_i.vicky_sort);
+	return (s_v.vicky_sort);
+}
+
+void insert_vec(t_vec &s_v)
+{
+	std::vector<unsigned int> jacob = get_jacob_vec();
+	for (size_t k = 2; k < jacob.size(); k++)
+	{
+		int upper = jacob[k] - 2;
+		int lower = jacob[k - 1] - 1;
+		if (upper >= (int) s_v.vicky_pend.size())
+		{
+			upper = s_v.vicky_pend.size() - 1;
+		}
+		for (int idx = upper; idx >= lower; idx--)
+		{
+			int						   pend_val = s_v.vicky_pend[idx];
+			std::vector<int>::iterator it_partner;
+			if (idx + 2 < (int) s_v.vicky.size())
+			{
+				int partner_val = s_v.vicky[idx + 2];
+				it_partner		= std::find(s_v.vicky_sort.begin(),
+										s_v.vicky_sort.end(),
+										partner_val);
+			}
+			else
+			{
+				it_partner = s_v.vicky_sort.end();
+			}
+
+			std::vector<int>::iterator pos
+				= std::lower_bound(s_v.vicky_sort.begin(),
+								   it_partner,
+								   pend_val);
+			size_t insert_i = pos - s_v.vicky_sort.begin();
+			dprint("Inserting element " << pend_val << " at index "
+										<< insert_i);
+			s_v.vicky_sort.insert(pos, pend_val);
+
+			std::string highlight = "Sort:";
+			for (size_t i = 0; i < s_v.vicky_sort.size(); i++)
+			{
+				std::ostringstream oss;
+				if (i == insert_i)
+				{
+					oss << " [" << s_v.vicky_sort[i] << "]";
+				}
+				else
+				{
+					oss << " " << s_v.vicky_sort[i];
+				}
+				highlight += oss.str();
+				if (highlight.length() > 80 - 15 - 6 - 2)
+				{
+					highlight += " [...]";
+					break;
+				}
+			}
+			dprint(highlight);
+		}
+	}
 }
 
 std::vector<unsigned int> get_jacob_vec()
@@ -105,35 +178,58 @@ void sort_pairs_vec(t_vec &s_i)
 	dprint(print_vec(s_i));
 	dprint("");
 
-	dprint("|| TODO || Recursively call itsel to order half of itself!");
-	//// temporaty bubble sort /////////////////////////////////////////////////
-	size_t i	= 0;
-	int	   temp = 0;
-	while (i < s_i.vicky.size() - 1)
+	dprint("||||Recursively call itself to order itself!");
+	if (s_i.vicky.size() <= 1)
 	{
-		if (s_i.vicky[i + 1] < s_i.vicky[i])
-		{
-			temp			 = s_i.vicky[i + 1];
-			s_i.vicky[i + 1] = s_i.vicky[i];
-			s_i.vicky[i]	 = temp;
-
-			temp				  = s_i.vicky_pend[i + 1];
-			s_i.vicky_pend[i + 1] = s_i.vicky_pend[i];
-			s_i.vicky_pend[i]	  = temp;
-
-			i = 0;
-			continue;
-		}
-		i++;
+		return;
 	}
-	//// remove before deliverance /////////////////////////////////////////////
+
+	std::vector<t_pair_o_int> pairs;
+	size_t					  paired_count = s_i.vicky.size();
+	for (size_t k = 0; k < paired_count; ++k)
+	{
+		pairs.push_back(std::make_pair(s_i.vicky[k], s_i.vicky_pend[k]));
+	}
+
+	t_vec next_level = s_i;
+	next_level.vicky_pend.clear();
+	next_level.vicky_sort.clear();
+
+	dprint("|||| Recursion init:  " << s_i.array_size);
+	s_i.vicky = merge_intertion_vec(next_level);
+	dprint("|||| Recursion finit: " << s_i.array_size);
+
+	std::vector<int> stragglers;
+	for (size_t k = paired_count; k < s_i.vicky_pend.size(); ++k)
+	{
+		stragglers.push_back(s_i.vicky_pend[k]);
+	}
+
+	s_i.vicky_pend.clear();
+	for (size_t k = 0; k < s_i.vicky.size(); ++k)
+	{
+		for (size_t j = 0; j < pairs.size(); ++j)
+		{
+			if (pairs[j].first == s_i.vicky[k])
+			{
+				s_i.vicky_pend.push_back(pairs[j].second);
+				pairs.erase(pairs.begin() + j);
+				break;
+			}
+		}
+	}
+
+	for (size_t k = 0; k < stragglers.size(); ++k)
+	{
+		s_i.vicky_pend.push_back(stragglers[k]);
+	}
 	dprint(print_vec(s_i));
 	dprint("");
 }
 
 std::string print_vec(t_vec &s_i)
 {
-	std::string ret = "Vec:  ";
+	std::string ret = "Vec: ";
 	for (unsigned int i = 0; i < s_i.vicky.size(); ++i)
 	{
 		if ((80 - 15 - 6) < (i * (s_i.nbr_length + 1)))
@@ -145,7 +241,7 @@ std::string print_vec(t_vec &s_i)
 		oss << " " << std::setw(s_i.nbr_length) << s_i.vicky[i];
 		ret += oss.str();
 	}
-	ret += "\n==DEBUG== pend: ";
+	ret += "\n==DEBUG== pend:";
 	for (unsigned int i = 0; i < s_i.vicky_pend.size(); ++i)
 	{
 		if ((80 - 15 - 6) < (i * (s_i.nbr_length + 1)))
@@ -157,7 +253,7 @@ std::string print_vec(t_vec &s_i)
 		oss << " " << std::setw(s_i.nbr_length) << s_i.vicky_pend[i];
 		ret += oss.str();
 	}
-	ret += "\n==DEBUG== sort: ";
+	ret += "\n==DEBUG== sort:";
 	for (unsigned int i = 0; i < s_i.vicky_sort.size(); ++i)
 	{
 		if ((80 - 15 - 6) < (i * (s_i.nbr_length + 1)))
