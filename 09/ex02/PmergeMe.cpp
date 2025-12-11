@@ -5,11 +5,97 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/03 12:09:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/11 16:35:38     #########  #########  ###      ###      */
+/*   Updated: 2025/12/11 16:59:10     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+
+std::deque<int> merge_intertion_deq(t_deq &s_i)
+{
+	t_deq s_d;
+	s_d.duke		  = s_i.duke;
+	s_d.maximum_value = -1;
+	for (size_t i = 0; i < s_d.duke.size(); i++)
+	{
+		if (s_d.duke[i] > s_d.maximum_value)
+		{
+			s_d.maximum_value = s_d.duke[i];
+		}
+	}
+	s_d.array_size = s_d.duke.size();
+	s_d.nbr_length = get_nbr_length(s_d.maximum_value);
+
+	dprint("Before sorting: ");
+	dprint(print_deq(s_d));
+	dprint("");
+
+	// sort_pairs_dec(s_d);
+
+	dprint("Inserting the element paired with the smallest number");
+	// s_d.duke.insert(s_d.duke.begin(), s_d.duke_pend[0]);
+	// s_d.duke_pend.erase(s_d.duke_pend.begin());
+	dprint(print_deq(s_d));
+	dprint("");
+
+	dprint("Inserting the remaining elements");
+	s_d.duke_sort = s_d.duke;
+
+	dprint("Insertion init");
+	dprint(print_deq(s_d));
+	// insert_vec(s_d);
+	dprint("Insertion finit");
+	dprint("");
+
+	dprint("After sorting: ");
+	dprint(print_deq(s_d));
+	dprint("");
+
+	return (s_d.duke_sort);
+}
+
+std::string print_deq(t_deq &s_d)
+{
+	std::string ret = "Deq: ";
+	for (unsigned int i = 0; i < s_d.duke.size(); ++i)
+	{
+		if ((80 - 15 - 6) < (i * (s_d.nbr_length + 1)))
+		{
+			ret += " [...]";
+			break;
+		}
+		std::ostringstream oss;
+		oss << " " << std::setw(s_d.nbr_length) << s_d.duke[i];
+		ret += oss.str();
+	}
+	ret += "\n==DEBUG== pend:";
+	for (unsigned int i = 0; i < s_d.duke_pend.size(); ++i)
+	{
+		if ((80 - 15 - 6) < (i * (s_d.nbr_length + 1)))
+		{
+			ret += " [...]";
+			break;
+		}
+		std::ostringstream oss;
+		oss << " " << std::setw(s_d.nbr_length) << s_d.duke_pend[i];
+		ret += oss.str();
+	}
+	ret += "\n==DEBUG== sort:";
+	for (unsigned int i = 0; i < s_d.duke_sort.size(); ++i)
+	{
+		if ((80 - 15 - 6) < (i * (s_d.nbr_length + 1)))
+		{
+			ret += " [...]";
+			break;
+		}
+		std::ostringstream oss;
+		oss << " " << std::setw(s_d.nbr_length) << s_d.duke_sort[i];
+		ret += oss.str();
+	}
+	return (ret);
+}
+
+////////////////////////////////////////////////////////////////////////////////
 
 std::vector<int> merge_intertion_vec(t_vec &s_i)
 {

@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/02 20:26:16      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/11 14:06:29     #########  #########  ###      ###      */
+/*   Updated: 2025/12/11 16:51:47     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 int main(int argc, char **argv)
 {
 	dprint("Debug mode activated");
-	t_vec s_i;
-	if (initializer(argc, argv, s_i) != EXIT_SUCCESS)
+	t_vec s_v;
+	t_deq s_d;
+	if (initializer(argc, argv, s_v, s_d) != EXIT_SUCCESS)
 	{
 		return (EXIT_FAILURE);
 	}
@@ -28,7 +29,7 @@ int main(int argc, char **argv)
 	gettimeofday(&start_time, NULL);
 
 	// First algorithm runs here
-	s_i.vicky = merge_intertion_vec(s_i);
+	s_v.vicky = merge_intertion_vec(s_v);
 
 	gettimeofday(&end_time, NULL);
 
@@ -44,22 +45,23 @@ int main(int argc, char **argv)
 	dprint("Time duration: " << duration << " nanoseconds");
 
 	std::cout << "After:  ";
-	for (unsigned int i = 1; s_i.vicky.size() > i - 1; ++i)
+	for (unsigned int i = 1; s_v.vicky.size() > i - 1; ++i)
 	{
-		if ((80 - 8 - 6) < (i * (s_i.nbr_length + 1)))
+		if ((80 - 8 - 6) < (i * (s_v.nbr_length + 1)))
 		{
 			std::cout << " [...]";
 			break;
 		}
-		std::cout << " " << std::setw(s_i.nbr_length) << s_i.vicky[i - 1];
+		std::cout << " " << std::setw(s_v.nbr_length) << s_v.vicky[i - 1];
 	}
-	std::cout << "\nTime to process " << s_i.array_size
+	std::cout << "\nTime to process " << s_v.array_size
 			  << " elements with std::vector: " << std::setw(3) << seconds
 			  << " s  and " << std::setw(6) << nanoseconds << " μs\n";
 
 	gettimeofday(&start_time, NULL);
 
 	// Second algorithm runs here
+	s_d.duke = merge_intertion_deq(s_d);
 
 	gettimeofday(&end_time, NULL);
 
@@ -73,7 +75,7 @@ int main(int argc, char **argv)
 	duration = seconds * 1000000 + nanoseconds;
 	dprint("Time duration: " << duration << " nanoseconds");
 
-	std::cout << "Time to process " << s_i.array_size
+	std::cout << "Time to process " << s_v.array_size
 			  << " elements with std::deque:  " << std::setw(3) << seconds
 			  << " s  and " << std::setw(6) << nanoseconds << " μs\n";
 
@@ -82,7 +84,7 @@ int main(int argc, char **argv)
 	return (EXIT_SUCCESS);
 }
 
-int initializer(int argc, char **argv, t_vec &s_i)
+int initializer(int argc, char **argv, t_vec &s_v, t_deq &s_d)
 {
 	dprint("Initializing data");
 
@@ -93,8 +95,10 @@ int initializer(int argc, char **argv, t_vec &s_i)
 		return (EXIT_FAILURE);
 	}
 
-	s_i.maximum_value = atoi(argv[1]);
-	s_i.array_size	  = 0;
+	s_v.maximum_value = atoi(argv[1]);
+	s_d.maximum_value = atoi(argv[1]);
+	s_v.array_size	  = 0;
+	s_d.array_size	  = 0;
 
 	for (int i = 1; argv[i] != 0; ++i)
 	{
@@ -106,32 +110,34 @@ int initializer(int argc, char **argv, t_vec &s_i)
 			std::cerr << "Error\n";
 			return (EXIT_FAILURE);
 		}
-		if (s_i.maximum_value < current_val)
+		if (s_v.maximum_value < current_val)
 		{
-			s_i.maximum_value = current_val;
+			s_v.maximum_value = current_val;
+			s_d.maximum_value = current_val;
 		}
-		s_i.array_size++;
+		s_v.array_size++;
 	}
 
-	s_i.nbr_length = get_nbr_length(s_i.maximum_value);
-	dprint("Maximum element: " << s_i.maximum_value << " (length: "
-							   << get_nbr_length(s_i.maximum_value) << ")");
+	s_v.nbr_length = get_nbr_length(s_v.maximum_value);
+	s_d.nbr_length = get_nbr_length(s_v.maximum_value);
+	dprint("Maximum element: " << s_v.maximum_value << " (length: "
+							   << get_nbr_length(s_v.maximum_value) << ")");
 
 	std::cout << "Before: ";
 	for (int i = 1; argv[i] != 0; ++i)
 	{
-		if ((80 - 8 - 6) < (i * (s_i.nbr_length + 1)))
+		if ((80 - 8 - 6) < (i * (s_v.nbr_length + 1)))
 		{
 			std::cout << " [...]";
 			break;
 		}
-		std::cout << " " << std::setw(s_i.nbr_length) << argv[i];
+		std::cout << " " << std::setw(s_v.nbr_length) << argv[i];
 	}
 	std::cout << "\n";
 	for (int i = 1; i < argc; ++i)
 	{
-		s_i.vicky.push_back(std::atoi(argv[i]));
-		// s_i.duke.push_back(std::atoi(argv[i]));
+		s_v.vicky.push_back(std::atoi(argv[i]));
+		s_d.duke.push_back(std::atoi(argv[i]));
 	}
 
 	dprint("Initialization successful");
