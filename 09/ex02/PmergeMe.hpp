@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/03 12:09:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/11 08:39:09     #########  #########  ###      ###      */
+/*   Updated: 2025/12/11 10:00:22     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <deque>
 #include <iomanip>
 #include <iostream>
+#include <limits.h>
 #include <sstream>
 #include <string>
 #include <sys/time.h>
@@ -49,13 +50,14 @@ typedef struct s_init_vec
 // } t_vec;
 
 // main.cpp
-int				 get_nbr_length(int nbr);
-int				 initializer(int argc, char **argv, t_vec &s_i);
+int						  get_nbr_length(int nbr);
+int						  initializer(int argc, char **argv, t_vec &s_i);
 
 // PmergeMe.cpp
 // std::vector<int> merge_intertion_vec(std::vector<int> vicky);
-std::vector<int> merge_intertion_vec(t_vec &s_i);
-void			 sort_pairs_vec(t_vec &s_i);
-std::string		 print_vec(t_vec &s_i);
+std::vector<int>		  merge_intertion_vec(t_vec &s_i);
+void					  sort_pairs_vec(t_vec &s_i);
+std::vector<unsigned int> get_jacob_vec();
+std::string				  print_vec(t_vec &s_i);
 
 #endif
