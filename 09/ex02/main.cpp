@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/02 20:26:16      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/11 18:46:33     #########  #########  ###      ###      */
+/*   Updated: 2025/12/12 09:45:29     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -43,7 +43,20 @@ int main(int argc, char **argv)
 	duration = seconds * 1000000 + nanoseconds;
 	(void) duration;
 	dprint("Time duration: " << duration << " nanoseconds");
-
+	bool sorted = true;
+	for (size_t i = 0; i < s_v.vicky.size() - 1; i++)
+	{
+		if (s_v.vicky[i] > s_v.vicky[i + 1])
+		{
+			std::cerr << "Error: Vector is NOT SORTED correctly!\n";
+			sorted = false;
+			break;
+		}
+	}
+	if (sorted == true)
+	{
+		dprint("Vector is correctly sorted");
+	}
 	std::cout << "After:  ";
 	for (unsigned int i = 1; s_v.vicky.size() > i - 1; ++i)
 	{
@@ -74,7 +87,20 @@ int main(int argc, char **argv)
 	}
 	duration = seconds * 1000000 + nanoseconds;
 	dprint("Time duration: " << duration << " nanoseconds");
-
+	sorted = true;
+	for (size_t i = 0; i < s_d.duke.size() - 1; i++)
+	{
+		if (s_d.duke[i] > s_d.duke[i + 1])
+		{
+			std::cerr << "Error: Deque is NOT SORTED correctly!\n";
+			sorted = false;
+			break;
+		}
+	}
+	if (sorted == true)
+	{
+		dprint("Deque is correctly sorted");
+	}
 	std::cout << "Time to process " << s_v.array_size
 			  << " elements with std::deque:  " << std::setw(3) << seconds
 			  << " s  and " << std::setw(6) << nanoseconds << " μs\n";

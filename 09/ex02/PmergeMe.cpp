@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/03 12:09:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/11 18:50:58     #########  #########  ###      ###      */
+/*   Updated: 2025/12/12 09:28:32     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -169,6 +169,7 @@ std::vector<int> merge_intertion_vec(t_vec &s_i)
 
 	dprint("Insertion init");
 	dprint(print_vec(s_v));
+	dprint("");
 	insert_vec(s_v);
 	dprint("Insertion finit");
 	dprint("");
@@ -183,14 +184,20 @@ std::vector<int> merge_intertion_vec(t_vec &s_i)
 void insert_vec(t_vec &s_v)
 {
 	std::vector<unsigned int> jacob = get_jacob_vec();
-	for (size_t k = 2; k < jacob.size(); k++)
+	for (size_t k = 3; k < jacob.size(); k++)
 	{
 		int upper = jacob[k] - 2;
 		int lower = jacob[k - 1] - 1;
+		if (lower >= (int) s_v.vicky_pend.size())
+		{
+			break;
+		}
 		if (upper >= (int) s_v.vicky_pend.size())
 		{
 			upper = s_v.vicky_pend.size() - 1;
 		}
+		dprint("Range of elements to pair: " << lower << " to " << upper);
+
 		for (int idx = upper; idx >= lower; idx--)
 		{
 			int						   pend_val = s_v.vicky_pend[idx];
@@ -216,7 +223,32 @@ void insert_vec(t_vec &s_v)
 										<< insert_i);
 			s_v.vicky_sort.insert(pos, pend_val);
 
-			std::string highlight = "Sort:";
+			std::string highlight = "pend:";
+			for (int i = 0; i < (int) s_v.vicky_pend.size(); i++)
+			{
+				std::ostringstream oss;
+				if (i == lower)
+				{
+					oss << " [" << s_v.vicky_pend[i];
+				}
+				else if (i == upper)
+				{
+					oss << " " << s_v.vicky_pend[i] << "]";
+				}
+				else
+				{
+					oss << " " << s_v.vicky_pend[i];
+				}
+				highlight += oss.str();
+				if ((int) highlight.length()
+					> 80 - 15 - 6 - 2 * (upper - lower + 1))
+				{
+					highlight += " [...]";
+					break;
+				}
+			}
+			dprint(highlight);
+			highlight = "sort:";
 			for (size_t i = 0; i < s_v.vicky_sort.size(); i++)
 			{
 				std::ostringstream oss;
@@ -272,8 +304,8 @@ void sort_pairs_vec(t_vec &s_i)
 	}
 
 	std::vector<t_pair_o_int> pairs;
-	size_t					  paired_count = s_i.vicky.size();
-	for (size_t k = 0; k < paired_count; ++k)
+	size_t					  n_pairs = s_i.vicky.size();
+	for (size_t k = 0; k < n_pairs; ++k)
 	{
 		pairs.push_back(std::make_pair(s_i.vicky[k], s_i.vicky_pend[k]));
 	}
@@ -286,10 +318,10 @@ void sort_pairs_vec(t_vec &s_i)
 	s_i.vicky = merge_intertion_vec(next_level);
 	dprint("|||| Recursion finit: " << s_i.array_size);
 
-	std::vector<int> stragglers;
-	for (size_t k = paired_count; k < s_i.vicky_pend.size(); ++k)
+	std::vector<int> remaining;
+	for (size_t k = n_pairs; k < s_i.vicky_pend.size(); ++k)
 	{
-		stragglers.push_back(s_i.vicky_pend[k]);
+		remaining.push_back(s_i.vicky_pend[k]);
 	}
 
 	s_i.vicky_pend.clear();
@@ -306,9 +338,9 @@ void sort_pairs_vec(t_vec &s_i)
 		}
 	}
 
-	for (size_t k = 0; k < stragglers.size(); ++k)
+	for (size_t k = 0; k < remaining.size(); ++k)
 	{
-		s_i.vicky_pend.push_back(stragglers[k]);
+		s_i.vicky_pend.push_back(remaining[k]);
 	}
 	dprint(print_vec(s_i));
 	dprint("");
