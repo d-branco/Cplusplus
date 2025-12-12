@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/02 20:26:16      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/12 09:45:29     #########  #########  ###      ###      */
+/*   Updated: 2025/12/12 15:42:06     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 int main(int argc, char **argv)
 {
 	dprint("Debug mode activated");
-	t_vec s_v;
-	t_deq s_d;
+	PmergeMeVec s_v;
+	PmergeMeDeq s_d;
 	if (initializer(argc, argv, s_v, s_d) != EXIT_SUCCESS)
 	{
 		return (EXIT_FAILURE);
@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 	gettimeofday(&start_time, NULL);
 
 	// First algorithm runs here
-	s_v.vicky = merge_intertion_vec(s_v);
+	std::vector<int> sorted_vec = s_v.run();
 
 	gettimeofday(&end_time, NULL);
 
@@ -44,9 +44,9 @@ int main(int argc, char **argv)
 	(void) duration;
 	dprint("Time duration: " << duration << " nanoseconds");
 	bool sorted = true;
-	for (size_t i = 0; i < s_v.vicky.size() - 1; i++)
+	for (size_t i = 0; i < sorted_vec.size() - 1; i++)
 	{
-		if (s_v.vicky[i] > s_v.vicky[i + 1])
+		if (sorted_vec[i] > sorted_vec[i + 1])
 		{
 			std::cerr << "Error: Vector is NOT SORTED correctly!\n";
 			sorted = false;
@@ -58,23 +58,23 @@ int main(int argc, char **argv)
 		dprint("Vector is correctly sorted");
 	}
 	std::cout << "After:  ";
-	for (unsigned int i = 1; s_v.vicky.size() > i - 1; ++i)
+	for (unsigned int i = 1; sorted_vec.size() > i - 1; ++i)
 	{
-		if ((80 - 5 - 8) < (i * (s_v.nbr_length + 1)))
+		if ((80 - 5 - 8) < (i * (s_v.getNbrLength() + 1)))
 		{
 			std::cout << " [...]";
 			break;
 		}
-		std::cout << " " << std::setw(s_v.nbr_length) << s_v.vicky[i - 1];
+		std::cout << " " << std::setw(s_v.getNbrLength()) << sorted_vec[i - 1];
 	}
-	std::cout << "\nTime to process " << s_v.array_size
+	std::cout << "\nTime to process " << s_v.getSize()
 			  << " elements with std::vector: " << std::setw(3) << seconds
 			  << " s  and " << std::setw(6) << nanoseconds << " μs\n";
 
 	gettimeofday(&start_time, NULL);
 
 	// Second algorithm runs here
-	s_d.duke = merge_intertion_deq(s_d);
+	std::deque<int> sorted_deq = s_d.run();
 
 	gettimeofday(&end_time, NULL);
 
@@ -88,9 +88,9 @@ int main(int argc, char **argv)
 	duration = seconds * 1000000 + nanoseconds;
 	dprint("Time duration: " << duration << " nanoseconds");
 	sorted = true;
-	for (size_t i = 0; i < s_d.duke.size() - 1; i++)
+	for (size_t i = 0; i < sorted_deq.size() - 1; i++)
 	{
-		if (s_d.duke[i] > s_d.duke[i + 1])
+		if (sorted_deq[i] > sorted_deq[i + 1])
 		{
 			std::cerr << "Error: Deque is NOT SORTED correctly!\n";
 			sorted = false;
@@ -101,7 +101,7 @@ int main(int argc, char **argv)
 	{
 		dprint("Deque is correctly sorted");
 	}
-	std::cout << "Time to process " << s_v.array_size
+	std::cout << "Time to process " << s_v.getSize()
 			  << " elements with std::deque:  " << std::setw(3) << seconds
 			  << " s  and " << std::setw(6) << nanoseconds << " μs\n";
 
@@ -110,7 +110,7 @@ int main(int argc, char **argv)
 	return (EXIT_SUCCESS);
 }
 
-int initializer(int argc, char **argv, t_vec &s_v, t_deq &s_d)
+int initializer(int argc, char **argv, PmergeMeVec &s_v, PmergeMeDeq &s_d)
 {
 	dprint("Initializing data");
 
@@ -121,14 +121,13 @@ int initializer(int argc, char **argv, t_vec &s_v, t_deq &s_d)
 		return (EXIT_FAILURE);
 	}
 
-	s_v.maximum_value = atoi(argv[1]);
-	s_d.maximum_value = atoi(argv[1]);
-	s_v.array_size	  = 0;
-	s_d.array_size	  = 0;
+	int max_val = std::atoi(argv[1]);
+	s_v.setMax(max_val);
+	s_d.setMax(max_val);
 
 	for (int i = 1; argv[i] != 0; ++i)
 	{
-		int current_val = atoi(argv[i]);
+		int current_val = std::atoi(argv[i]);
 
 		if (0 >= current_val)
 		{
@@ -136,34 +135,33 @@ int initializer(int argc, char **argv, t_vec &s_v, t_deq &s_d)
 			std::cerr << "Error\n";
 			return (EXIT_FAILURE);
 		}
-		if (s_v.maximum_value < current_val)
+		if (s_v.getMax() < current_val)
 		{
-			s_v.maximum_value = current_val;
-			s_d.maximum_value = current_val;
+			s_v.setMax(current_val);
+			s_d.setMax(current_val);
 		}
-		s_v.array_size++;
 	}
 
-	s_v.nbr_length = get_nbr_length(s_v.maximum_value);
-	s_d.nbr_length = get_nbr_length(s_v.maximum_value);
-	dprint("Maximum element: " << s_v.maximum_value << " (length: "
-							   << get_nbr_length(s_v.maximum_value) << ")");
+	s_v.setNbrLength(get_nbr_length(s_v.getMax()));
+	s_d.setNbrLength(get_nbr_length(s_d.getMax()));
+	dprint("Maximum element: " << s_v.getMax() << " (length: "
+							   << get_nbr_length(s_v.getMax()) << ")");
 
 	std::cout << "Before: ";
 	for (int i = 1; argv[i] != 0; ++i)
 	{
-		if ((80 - 5 - 8) < (i * (s_v.nbr_length + 1)))
+		if ((80 - 5 - 8) < (i * (s_v.getNbrLength() + 1)))
 		{
 			std::cout << " [...]";
 			break;
 		}
-		std::cout << " " << std::setw(s_v.nbr_length) << argv[i];
+		std::cout << " " << std::setw(s_v.getNbrLength()) << argv[i];
 	}
 	std::cout << "\n";
 	for (int i = 1; i < argc; ++i)
 	{
-		s_v.vicky.push_back(std::atoi(argv[i]));
-		s_d.duke.push_back(std::atoi(argv[i]));
+		s_v.push_back(std::atoi(argv[i]));
+		s_d.push_back(std::atoi(argv[i]));
 	}
 
 	dprint("Initialization successful");

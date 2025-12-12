@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/03 12:09:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/12 10:08:25     #########  #########  ###      ###      */
+/*   Updated: 2025/12/12 15:41:45     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -30,43 +30,76 @@
 # define dprint(msg) ((void) 0)
 #endif
 
-typedef struct s_vec
-{
-	int				 maximum_value;
-	int				 array_size;
-	int				 nbr_length;
-	std::vector<int> vicky;
-	std::vector<int> vicky_pend;
-	std::vector<int> vicky_sort;
-} t_vec;
-
-typedef struct s_deq
-{
-	int				maximum_value;
-	int				array_size;
-	int				nbr_length;
-
-	std::deque<int> duke;
-	std::deque<int> duke_pend;
-	std::deque<int> duke_sort;
-} t_deq;
-
 typedef std::pair<int, int> t_pair_o_int;
 
+class PmergeMeVec
+{
+  public:
+	PmergeMeVec();
+	PmergeMeVec(const PmergeMeVec &src);
+	~PmergeMeVec();
+	PmergeMeVec		 &operator=(const PmergeMeVec &rhs);
+
+	std::vector<int>  run();
+	void			  push_back(int val);
+	std::vector<int> &getVec();
+	size_t			  getSize() const;
+	int				  getNbrLength() const;
+	int				  getMax() const;
+	void			  setMax(int val);
+	void			  setNbrLength(int val);
+
+  private:
+	int								 maximum_value_;
+	int								 array_size_;
+	int								 nbr_length_;
+	std::vector<int>				 vec_;
+	std::vector<int>				 pend_;
+	std::vector<int>				 sort_;
+
+	void							 sortPairs();
+	void							 insert();
+	std::string						 print();
+
+	static std::vector<unsigned int> getJacobVec();
+	static int						 calcNbrLength(int nbr);
+};
+
+class PmergeMeDeq
+{
+  public:
+	PmergeMeDeq();
+	PmergeMeDeq(const PmergeMeDeq &src);
+	~PmergeMeDeq();
+	PmergeMeDeq		&operator=(const PmergeMeDeq &rhs);
+
+	std::deque<int>	 run();
+	void			 push_back(int val);
+	std::deque<int> &getDeq();
+	size_t			 getSize() const;
+	int				 getNbrLength() const;
+	int				 getMax() const;
+	void			 setMax(int val);
+	void			 setNbrLength(int val);
+
+  private:
+	int								 maximum_value_;
+	int								 array_size_;
+	int								 nbr_length_;
+	std::deque<int>					 deq_;
+	std::deque<int>					 pend_;
+	std::deque<int>					 sort_;
+
+	void							 sortPairs();
+	void							 insert();
+	std::string						 print();
+
+	static std::vector<unsigned int> getJacobVec();
+	static int						 calcNbrLength(int nbr);
+};
+
 // main.cpp
-int							get_nbr_length(int nbr);
-int				 initializer(int argc, char **argv, t_vec &s_v, t_deq &s_d);
+int get_nbr_length(int nbr);
+int initializer(int argc, char **argv, PmergeMeVec &s_v, PmergeMeDeq &s_d);
 
-// PmergeMe.cpp
-std::vector<int> merge_intertion_vec(t_vec &s_v);
-void			 sort_pairs_vec(t_vec &s_v);
-std::string		 print_vec(t_vec &s_v);
-void			 insert_vec(t_vec &s_v);
-
-std::vector<unsigned int> get_jacob_vec();
-
-std::deque<int>			  merge_intertion_deq(t_deq &s_d);
-void					  sort_pairs_deq(t_deq &s_d);
-std::string				  print_deq(t_deq &s_d);
-void					  insert_deq(t_deq &s_d);
 #endif
