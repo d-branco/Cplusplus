@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/03 12:09:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/11 18:45:40     #########  #########  ###      ###      */
+/*   Updated: 2025/12/12 10:08:25     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void			 insert_vec(t_vec &s_v);
 std::vector<unsigned int> get_jacob_vec();
 
 std::deque<int>			  merge_intertion_deq(t_deq &s_d);
-// void					  sort_pairs_deq(t_deq &s_d);
+void					  sort_pairs_deq(t_deq &s_d);
 std::string				  print_deq(t_deq &s_d);
-// void					  insert_deq(t_deq &s_d);
+void					  insert_deq(t_deq &s_d);
 #endif

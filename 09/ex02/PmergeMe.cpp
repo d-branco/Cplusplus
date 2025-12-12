@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/03 12:09:12      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/12 09:28:32     #########  #########  ###      ###      */
+/*   Updated: 2025/12/12 10:18:35     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ std::deque<int> merge_intertion_deq(t_deq &s_i)
 	dprint(print_deq(s_d));
 	dprint("");
 
-	// sort_pairs_dec(s_d);
+	sort_pairs_deq(s_d);
 
 	dprint("Inserting the element paired with the smallest number");
-	// s_d.duke.insert(s_d.duke.begin(), s_d.duke_pend[0]);
-	// s_d.duke_pend.erase(s_d.duke_pend.begin());
+	s_d.duke.insert(s_d.duke.begin(), s_d.duke_pend[0]);
+	s_d.duke_pend.erase(s_d.duke_pend.begin());
 	dprint(print_deq(s_d));
 	dprint("");
 
@@ -44,7 +44,7 @@ std::deque<int> merge_intertion_deq(t_deq &s_i)
 
 	dprint("Insertion init");
 	dprint(print_deq(s_d));
-	// insert_vec(s_d);
+	insert_deq(s_d);
 	dprint("Insertion finit");
 	dprint("");
 
@@ -94,6 +94,169 @@ std::string print_deq(t_deq &s_d)
 		ret += oss.str();
 	}
 	return (ret);
+}
+
+void insert_deq(t_deq &s_d)
+{
+	std::vector<unsigned int> jacob = get_jacob_vec();
+	for (size_t k = 3; k < jacob.size(); k++)
+	{
+		int upper = jacob[k] - 2;
+		int lower = jacob[k - 1] - 1;
+		if (lower >= (int) s_d.duke_pend.size())
+		{
+			break;
+		}
+		if (upper >= (int) s_d.duke_pend.size())
+		{
+			upper = s_d.duke_pend.size() - 1;
+		}
+		dprint("Range of elements to pair: " << lower << " to " << upper);
+
+		for (int idx = upper; idx >= lower; idx--)
+		{
+			int						  pend_val = s_d.duke_pend[idx];
+			std::deque<int>::iterator it_partner;
+			if (idx + 2 < (int) s_d.duke.size())
+			{
+				int partner_val = s_d.duke[idx + 2];
+				it_partner		= std::find(s_d.duke_sort.begin(),
+										s_d.duke_sort.end(),
+										partner_val);
+			}
+			else
+			{
+				it_partner = s_d.duke_sort.end();
+			}
+
+			std::deque<int>::iterator pos
+				= std::lower_bound(s_d.duke_sort.begin(), it_partner, pend_val);
+			size_t insert_i = pos - s_d.duke_sort.begin();
+			dprint("Inserting element " << pend_val << " at index "
+										<< insert_i);
+			s_d.duke_sort.insert(pos, pend_val);
+
+			std::string highlight = "pend:";
+			for (int i = 0; i < (int) s_d.duke_pend.size(); i++)
+			{
+				std::ostringstream oss;
+				if (i == lower)
+				{
+					oss << " [" << s_d.duke_pend[i];
+				}
+				else if (i == upper)
+				{
+					oss << " " << s_d.duke_pend[i] << "]";
+				}
+				else
+				{
+					oss << " " << s_d.duke_pend[i];
+				}
+				highlight += oss.str();
+				if ((int) highlight.length()
+					> 80 - 15 - 6 - 2 * (upper - lower + 1))
+				{
+					highlight += " [...]";
+					break;
+				}
+			}
+			dprint(highlight);
+			highlight = "sort:";
+			for (size_t i = 0; i < s_d.duke_sort.size(); i++)
+			{
+				std::ostringstream oss;
+				if (i == insert_i)
+				{
+					oss << " [" << s_d.duke_sort[i] << "]";
+				}
+				else
+				{
+					oss << " " << s_d.duke_sort[i];
+				}
+				highlight += oss.str();
+				if (highlight.length() > 80 - 15 - 6 - 2)
+				{
+					highlight += " [...]";
+					break;
+				}
+			}
+			dprint(highlight);
+		}
+	}
+}
+
+void sort_pairs_deq(t_deq &s_i)
+{
+	dprint("Sorting the pairs");
+	for (size_t i = 0; i + 2 <= s_i.duke.size(); i++)
+	{
+		if (s_i.duke[i] > s_i.duke[i + 1])
+		{
+			s_i.duke_pend.push_back(s_i.duke[i + 1]);
+			s_i.duke.erase(s_i.duke.begin() + i + 1);
+		}
+		else
+		{
+			s_i.duke_pend.push_back(s_i.duke[i]);
+			s_i.duke.erase(s_i.duke.begin() + i);
+		}
+	}
+	size_t tmp_size = s_i.duke_pend.size();
+	while (s_i.duke.size() > tmp_size)
+	{
+		s_i.duke_pend.push_back(s_i.duke[(s_i.duke.size() - 1)]);
+		s_i.duke.pop_back();
+	}
+	dprint(print_deq(s_i));
+	dprint("");
+
+	dprint("|||| Recursively call itself to order itself!");
+	if (s_i.duke.size() <= 1)
+	{
+		return;
+	}
+
+	std::deque<t_pair_o_int> pairs;
+	size_t					 n_pairs = s_i.duke.size();
+	for (size_t k = 0; k < n_pairs; ++k)
+	{
+		pairs.push_back(std::make_pair(s_i.duke[k], s_i.duke_pend[k]));
+	}
+
+	t_deq next_level = s_i;
+	next_level.duke_pend.clear();
+	next_level.duke_sort.clear();
+
+	dprint("|||| Recursion init:  " << s_i.array_size);
+	s_i.duke = merge_intertion_deq(next_level);
+	dprint("|||| Recursion finit: " << s_i.array_size);
+
+	std::deque<int> remaining;
+	for (size_t k = n_pairs; k < s_i.duke_pend.size(); ++k)
+	{
+		remaining.push_back(s_i.duke_pend[k]);
+	}
+
+	s_i.duke_pend.clear();
+	for (size_t k = 0; k < s_i.duke.size(); ++k)
+	{
+		for (size_t j = 0; j < pairs.size(); ++j)
+		{
+			if (pairs[j].first == s_i.duke[k])
+			{
+				s_i.duke_pend.push_back(pairs[j].second);
+				pairs.erase(pairs.begin() + j);
+				break;
+			}
+		}
+	}
+
+	for (size_t k = 0; k < remaining.size(); ++k)
+	{
+		s_i.duke_pend.push_back(remaining[k]);
+	}
+	dprint(print_deq(s_i));
+	dprint("");
 }
 
 ///////////////////////////////////////////////////////// Jacobsthal sequence //
