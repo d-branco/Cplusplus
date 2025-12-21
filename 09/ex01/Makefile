@@ -5,7 +5,7 @@
 #    github.com/d-branco                    +#+         +#+      +#+#+#+       #
 #                                        +#+         +#+              +#+      #
 #    Created: 2025/07/08 21:04:23      #+#         #+#      +#+        #+#     #
-#    Updated: 2025/12/08 14:32:13     #########  #########  ###      ###       #
+#    Updated: 2025/12/21 10:58:57     #########  #########  ###      ###       #
 #                                                             ########         #
 #  **************************************************************************  #
 
@@ -51,6 +51,15 @@ battery:
 	echo '$(GRAY)Executing arg:$(COR)	./RPN "5 5 * 9 9 * *"'			;	\
 	$(TIMED_RUN) $(VALGRIND_CMD) ./RPN "5 5 * 9 9 * *" 						\
 	$(VALGRIND_FILTER)													;	\
+	echo '$(GRAY)Executing arg:$(COR)	./RPN "1 + 1"'					;	\
+	$(TIMED_RUN) $(VALGRIND_CMD) ./RPN "1 + 1" 								\
+	$(VALGRIND_FILTER)													;	\
+		echo '$(GRAY)Executing arg:$(COR)	./RPN "+"'					;	\
+	$(TIMED_RUN) $(VALGRIND_CMD) ./RPN "+" 									\
+	$(VALGRIND_FILTER)													;	\
+		echo '$(GRAY)Executing arg:$(COR)	./RPN "5 5 * * *"'			;	\
+	$(TIMED_RUN) $(VALGRIND_CMD) ./RPN "5 5 * * *" 							\
+	$(VALGRIND_FILTER)													;	\
 ########################################################## Objects and Headers #
 HEADERS			:=															\
 	RPN.hpp
@@ -77,7 +86,7 @@ CFLAGS			+= -Wshadow
 #CFLAGS			+= -Wno-shadow
 
 GPROF_FLAGS		+= -pg
-DEBUG_FLAGS		+= -g
+DEBUG_FLAGS		+= -g3 -O0
 DEBUG_FLAGS		+= -DDEBUG
 ########################################################### Intermediate steps #
 RM				:= rm -f

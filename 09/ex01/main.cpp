@@ -5,7 +5,7 @@
 /*   github.com/d-branco                    +#+         +#+      +#+#+#+      */
 /*                                       +#+         +#+              +#+     */
 /*   Created: 2025/12/02 20:26:16      #+#         #+#      +#+        #+#    */
-/*   Updated: 2025/12/08 14:32:13     #########  #########  ###      ###      */
+/*   Updated: 2025/12/21 11:02:18     #########  #########  ###      ###      */
 /*                                                            ########        */
 /* ************************************************************************** */
 
@@ -52,37 +52,47 @@ int			main(int argc, char **argv)
 		else if ((argv[1][ite] == '+') || (argv[1][ite] == '-')
 				 || (argv[1][ite] == '/') || (argv[1][ite] == '*'))
 		{
+			if (polish.empty())
+			{
+				std::cerr << "Error\n";
+				return (EXIT_FAILURE);
+			}
 			nbr = (polish.top());
 			polish.pop();
 			// dprint("nbr = " << nbr);
 			// dprint("Stack: [" << stack_to_string(polish) << " ]");
-			
+
+			if (polish.empty())
+			{
+				std::cerr << "Error\n";
+				return (EXIT_FAILURE);
+			}
 			switch (argv[1][ite])
 			{
-				case '+':
-				{
-					nbr += (polish.top());
-					break;
-				}
-				case '-':
-				{
-					nbr = (polish.top()) - nbr;
-					break;
-				}
-				case '/':
-				{
-					nbr = (polish.top()) / nbr;
-					break;
-				}
-				case '*':
-				{
-					nbr = (polish.top()) * nbr;
-					break;
-				}
-				default:
-				{
-					dprint("Unreachable \'swich case default\'");
-				}
+			case '+':
+			{
+				nbr += (polish.top());
+				break;
+			}
+			case '-':
+			{
+				nbr = (polish.top()) - nbr;
+				break;
+			}
+			case '/':
+			{
+				nbr = (polish.top()) / nbr;
+				break;
+			}
+			case '*':
+			{
+				nbr = (polish.top()) * nbr;
+				break;
+			}
+			default:
+			{
+				dprint("Unreachable \'swich case default\'");
+			}
 			}
 
 			polish.pop();
