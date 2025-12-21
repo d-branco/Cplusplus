@@ -43,7 +43,7 @@ int	 main(int argc, char **argv)
 	dprint("Debug mode activated");
 	std::ifstream db_file(DB_FILE);
 	std::ifstream i_file(argv[1]);
-	if (input_validation(argc, argv, i_file, db_file) != 0)
+	if (input_validation(argc, argv, db_file, i_file) != 0)
 	{
 		return (EXIT_FAILURE);
 	}
